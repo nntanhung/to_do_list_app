@@ -1,36 +1,44 @@
-import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../themes/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-class ColorsHelper {
-  // static Color colorText(String status) {
-  //   switch (status) {
-  //     case Constants.success:
-  //       return AppColors.secondaryGreen;
-  //     case Constants.draft:
-  //       return AppColors.secondaryDeepYellow;
-  //     case Constants.cancelled:
-  //       return AppColors.secondaryDeepOrange;
-  //     case Constants.processing:
-  //       return AppColors.primaryBlue;
-  //     default:
-  //       return AppColors.secondaryCeriseDeep;
-  //   }
-  // }
+import '../routers/route_keys.dart';
 
-  // static Color colorBackground(String status) {
-  //   switch (status) {
-  //     case Constants.success:
-  //       return AppColors.secondaryGreenTint20;
-  //     case Constants.draft:
-  //       return AppColors.secondaryYellowTints25;
-  //     case Constants.cancelled:
-  //       return AppColors.secondaryOrangeTints25;
-  //     case Constants.processing:
-  //       return AppColors.primaryBlueTints25;
-  //     default:
-  //       return AppColors.secondarySalmonTints25;
-  //   }
-  // }
+class Helper {
+  static String mapType(String type) {
+    switch (type) {
+      case RouteKey.signIn:
+        return tr('sign_in');
+      case RouteKey.signUp:
+        return tr('sign_up');
+      default:
+        return tr('forgot_password');
+    }
+  }
+
+    static const mappingDayOfWeek = {
+    'mon': 'M',
+    'tue': 'T',
+    'wed': 'W',
+    'thu': 'T',
+    'fri': 'F',
+    'sat': 'S',
+    'sun': 'S',
+    'th2': 'T2',
+    'th3': 'T3',
+    'th4': 'T4',
+    'th5': 'T5',
+    'th6': 'T6',
+    'th7': 'T7',
+    'cn': 'CN',
+  };
+
+  static const mapDayToVN = {
+    'Monday': 'Thứ 2',
+    'Tuesday': 'Thứ 3',
+    'Wednesday': 'Thứ 4',
+    'Thursday': 'Thứ 5',
+    'Friday': 'Thứ 6',
+    'Saturday': 'Thứ 7',
+    'Sunday': 'Chủ nhật',
+  };
 }

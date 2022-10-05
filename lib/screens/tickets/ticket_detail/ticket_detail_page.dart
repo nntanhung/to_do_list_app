@@ -2,20 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../styles/dimens.dart';
-import '../../../constants.dart';
 import '../../../extensions/string_extension.dart';
 import '../../../helpers/colors_helper.dart';
 import '../../../themes/app_colors.dart';
 import '../../../widgets/widget.dart';
 
-class TicketDetailPage extends StatefulWidget {
-  const TicketDetailPage({Key? key}) : super(key: key);
+class TicketDetailScreen extends StatefulWidget {
+  const TicketDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<TicketDetailPage> createState() => _TicketDetailPageState();
+  State<TicketDetailScreen> createState() => _TicketDetailScreenState();
 }
 
-class _TicketDetailPageState extends State<TicketDetailPage> {
+class _TicketDetailScreenState extends State<TicketDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

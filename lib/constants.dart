@@ -2,13 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 class Constants {
   static const String emptyString = '';
-  static const String processing = 'Processing';
-  static const String success = 'Success';
-  static const String draft = 'Draft';
-  static const String cancelled = 'Cancelled';
-  static const String needAdditional = 'Need Additional';
-
+  static const redAsterisk = ' *';
   static const double iconSize = 24.0;
+  static const int maxPassword = 24;
 }
 
 class ImageAssetPath {
@@ -23,7 +19,8 @@ class ImageAssetPath {
   static const String clockIcon = 'assets/images/clock_ic.svg';
   static const String clockSmallIcon = 'assets/images/clock_small_ic.svg';
   static const String editIcon = 'assets/images/edit_ic.svg';
-  static const String eyeOffIcon = 'assets\images\eye_off_ic.svg';
+  static const String eyeOffIcon = 'assets/images/eye_off_ic.svg';
+  static const String eyeOnIcon = 'assets/images/eye_on_ic.svg';
   static const String filterIcon = 'assets/images/filter_ic.svg';
   static const String logOutIcon = 'assets/images/log_out_ic.svg';
   static const String menuIcon = 'assets/images/menu_ic.svg';
@@ -38,13 +35,13 @@ class ImageAssetPath {
   static const String starIcon = 'assets/images/star_ic.svg';
   static const String starSmallIcon = 'assets/images/star_small_ic.svg';
   static const String trashIcon = 'assets/images/trash_ic.svg';
-
-  /// SVG folder
-  static const String sendEmail = 'assets/svg/send_email.svg';
+  static const String logoSimple = 'assets/images/logo_simple.svg';
+  static const String line = 'assets/images/line.svg';
+  static const String imageIcon = 'assets/images/image_ic.svg';
 }
 class DataFormat {
-  static final DateFormat ddMMyyyy = DateFormat('dd/MM/yyyy');
-  static final DateFormat hhmmddMMyyyy = DateFormat('HH:mm - dd/MM/yyyy');
-  static final DateFormat hhMM = DateFormat('HH:mm');
-  static final DateFormat hhMMSS = DateFormat('HH:mm:ss');
+  static const String ddMMyyyy = 'dd/MM/yyyy';
+  static const String hhmmddMMyyyy = 'HH:mm - dd/MM/yyyy';
+  static const String hhMM = 'HH:mm';
+  static const String hhMMSS = 'HH:mm:ss';
 }

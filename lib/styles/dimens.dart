@@ -121,12 +121,15 @@ class Dimens {
   static const double size98 = 98.0;
   static const double size99 = 99.0;
   static const double size100 = 100.0;
+  static const double size120 = 120.0;
   static const double size125 = 125.0;
   static const double size140 = 140.0;
   static const double size150 = 150.0;
   static const double size160 = 160.0;
   static const double size164 = 164.0;
   static const double size168 = 168.0;
+  static const double size180 = 180.0;
+  static const double size187 = 187.0;
   static const double size200 = 200.0;
   static const double size204 = 204.0;
   static const double size206 = 206.0;

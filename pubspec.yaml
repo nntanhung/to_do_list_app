@@ -29,6 +29,10 @@ dependencies:
   logger: ^1.1.0
   flutter_easyloading: ^3.0.5
   flutter_svg: ^1.1.5
+  easy_debounce: ^2.0.2+1
+  uuid: ^3.0.6
+  flutter_form_builder: ^7.6.0
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:

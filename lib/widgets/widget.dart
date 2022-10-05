@@ -1,3 +1,4 @@
 export 'commons/loading_widget.dart';
 export 'commons/loading_widget.dart';
-export 'label_status.dart';
+export 'ticket_card.dart';
+export 'body_authen.dart';

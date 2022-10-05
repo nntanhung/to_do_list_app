@@ -20,7 +20,7 @@ class AppTheme {
         pageTransitionsTheme: _pageTransitions,
         fontFamily: _fontFamily,
         primaryColor: AppColors.primaryWhite,
-        scaffoldBackgroundColor: AppColors.primaryLightRed,
+        scaffoldBackgroundColor: AppColors.primaryWhite,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
@@ -28,23 +28,7 @@ class AppTheme {
           centerTitle: true,
           color: AppColors.primaryWhite,
         ),
-        // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        //   type: BottomNavigationBarType.fixed,
-        //   showSelectedLabels: false,
-        //   showUnselectedLabels: false,
-        //   selectedItemColor: AppColors.primaryRed,
-        //   unselectedItemColor: AppColors.interactiveEnabled,
-        //   selectedLabelStyle: TextStyle(
-        //     color: AppColors.primaryWhite,
-        //     fontSize: 12.0,
-        //     fontWeight: FontWeight.w600,
-        //   ),
-        //   unselectedLabelStyle: TextStyle(
-        //     color: AppColors.primaryWhiteTints80,
-        //     fontSize: 12.0,
-        //     fontWeight: FontWeight.w400,
-        //   ),
-        // ),
+        
         textTheme: const TextTheme(
           caption: TextStyle(
             color: AppColors.primaryWhite,
@@ -53,7 +37,7 @@ class AppTheme {
           ),
 
           bodyText2: TextStyle(
-            color: AppColors.primaryWhite,
+            color: AppColors.primaryBlack,
             fontSize: 14.0,
             fontWeight: FontWeight.normal,
             fontFamily: 'Montserrat'
@@ -62,13 +46,13 @@ class AppTheme {
           bodyText1: TextStyle(
             color: AppColors.primaryBlack,
             fontSize: 16.0,
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.w400,
             fontFamily: 'Montserrat'
           ),
 
           subtitle2: TextStyle(
             color: AppColors.primaryWhite,
-            fontSize: Dimens.size12,
+            fontSize: Dimens.size11,
             fontWeight: FontWeight.w400,
             fontFamily: 'Montserrat'
           ),
@@ -87,6 +71,20 @@ class AppTheme {
             fontFamily: 'Montserrat'
           ),
 
+          headline6: TextStyle(
+            color: AppColors.primaryBlack,
+            fontSize: Dimens.size12,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Montserrat',
+          ),
+
+          headline5: TextStyle(
+            color: AppColors.primaryWhite,
+            fontSize: Dimens.size16,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Montserrat',
+          ),
+
           headline4: TextStyle(
             color: AppColors.primaryWhite,
             fontSize: Dimens.size26,
@@ -95,7 +93,7 @@ class AppTheme {
           ),
 
           headline3: TextStyle(
-            color: AppColors.primaryWhite,
+            color: AppColors.primaryLightRed,
             fontSize: Dimens.size36,
             fontWeight: FontWeight.w400,
             fontFamily: 'BebasNeue'
