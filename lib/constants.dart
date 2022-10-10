@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 
 class Constants {
   static const String emptyString = '';
@@ -38,10 +37,12 @@ class ImageAssetPath {
   static const String logoSimple = 'assets/images/logo_simple.svg';
   static const String line = 'assets/images/line.svg';
   static const String imageIcon = 'assets/images/image_ic.svg';
+  static const String backIcon = 'assets/images/back_ic.svg';
 }
 class DataFormat {
   static const String ddMMyyyy = 'dd/MM/yyyy';
   static const String hhmmddMMyyyy = 'HH:mm - dd/MM/yyyy';
   static const String hhMM = 'HH:mm';
   static const String hhMMSS = 'HH:mm:ss';
+  static const String ddMMMMy = 'dd MMMM y';
 }

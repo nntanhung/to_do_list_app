@@ -7,10 +7,10 @@ import 'themes/app_themes.dart';
 
 class TodoListApp extends StatelessWidget {
   final _appRouter = AppDependencies.injector.get<AppRouter>();
-  // final bool isInitialCompleted;
+  final bool isInitialCompleted;
 
   TodoListApp({Key? key,
-  //  required this.isInitialCompleted,
+   required this.isInitialCompleted,
    }) : super(key: key);
 
   // This widget is the root of your application.

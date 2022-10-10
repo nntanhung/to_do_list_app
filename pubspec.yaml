@@ -33,6 +33,7 @@ dependencies:
   uuid: ^3.0.6
   flutter_form_builder: ^7.6.0
   flutter_staggered_animations: ^1.1.1
+  datetime_picker_formfield_new: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -49,7 +50,9 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/logo.png"
-
+  web:
+    generate: true
+    image_path: "assets/images/logo.png"
   
 
 flutter:

@@ -7,7 +7,7 @@
     "edit_todo": "EDIT TODO",
     "add_todo": "ADD TODO",
     "all": "All",
-    "by_time": "By Time",
+    "by_time": "By Time {}",
     "deadline": "Dealine",
     "email": "Email",
     "password": "Password",
@@ -19,11 +19,13 @@
     "dont_have_an_account": "Don't have an account? ",
     "delete_todo": "Delete TODO",
     "cancel": "Cancel",
-    "created_at": "Created at ",
+    "created_at": "Created at {}",
     "have_an_account": "Have an account? ",
     "forgot_password": "Forgot Password?",
     "change_password": "Change Password",
     "description": "Description",
     "title": "Title",
+    "error_validate_format_datetime": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy hh:mm.",
+    "common_date_help": "Trợ giúp",
     "end_json": ""
 }

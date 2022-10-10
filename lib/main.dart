@@ -11,10 +11,10 @@ void main() async {
   runApp(EasyLocalization(
       path: 'assets/translations',
       supportedLocales: const [Locale('vi'), Locale('en')],
-      startLocale: const Locale('vi'),
-      fallbackLocale: const Locale('vi'),
+      // startLocale: const Locale('vi'),
+      // fallbackLocale: const Locale('vi'),
       child: TodoListApp(
-        // isInitialCompleted: true,
+        isInitialCompleted: true,
       )));
 }
 

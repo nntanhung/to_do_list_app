@@ -54,6 +54,13 @@ class SignUpScreenState extends State<SignUpScreen> {
           onTextClick: () {
             AutoRouter.of(context).pop(RouteKey.signIn);
           },
+          onTapped: () {
+            AutoRouter.of(context).pushNamed(RouteKey.tickets);
+            // _bloc.model.isSubmitting = true;
+            // if (_formKey.currentState!.validate()) {
+            //   _bloc.add(RequestSignUpEvent());
+            // }
+          },
         ),
       ),
     );

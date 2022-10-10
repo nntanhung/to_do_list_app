@@ -41,9 +41,16 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     TicketDetailScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TicketDetailScreenRouteArgs>(
+          orElse: () => TicketDetailScreenRouteArgs(
+              candidateId: pathParams.optString('id')));
       return MaterialPageX<String>(
         routeData: routeData,
-        child: const TicketDetailScreen(),
+        child: TicketDetailScreen(
+          key: args.key,
+          candidateId: args.candidateId,
+        ),
       );
     },
     SignUpScreenRoute.name: (routeData) {
@@ -145,14 +152,38 @@ class CreateTicketScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TicketDetailScreen]
-class TicketDetailScreenRoute extends PageRouteInfo<void> {
-  const TicketDetailScreenRoute()
-      : super(
+class TicketDetailScreenRoute
+    extends PageRouteInfo<TicketDetailScreenRouteArgs> {
+  TicketDetailScreenRoute({
+    Key? key,
+    String? candidateId,
+  }) : super(
           TicketDetailScreenRoute.name,
           path: '/tickets/:id',
+          args: TicketDetailScreenRouteArgs(
+            key: key,
+            candidateId: candidateId,
+          ),
+          rawPathParams: {'id': candidateId},
         );
 
   static const String name = 'TicketDetailScreenRoute';
+}
+
+class TicketDetailScreenRouteArgs {
+  const TicketDetailScreenRouteArgs({
+    this.key,
+    this.candidateId,
+  });
+
+  final Key? key;
+
+  final String? candidateId;
+
+  @override
+  String toString() {
+    return 'TicketDetailScreenRouteArgs{key: $key, candidateId: $candidateId}';
+  }
 }
 
 /// generated route for

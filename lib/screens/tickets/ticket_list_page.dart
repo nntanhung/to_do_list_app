@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:todo_list/routers/route_keys.dart';
 import 'package:todo_list/widgets/ticket_card.dart';
 
 import '../../blocs/tickets/ticket_list_bloc.dart';
@@ -12,7 +14,7 @@ import '../../styles/dimens.dart';
 import '../../themes/theme.dart';
 import '../../widgets/base_cubit_stateful_widget.dart';
 import '../../widgets/commons/common.dart';
-import '../../widgets/commons/text_field_input.dart';
+import '../../widgets/date_picker.dart';
 
 class TicketListScreen extends BaseCubitStatefulWidget {
   const TicketListScreen({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class _TicketListPageState
   var titleController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +45,8 @@ class _TicketListPageState
     final theme = Theme.of(context).textTheme;
     var scaffoldKey = GlobalKey<ScaffoldState>();
     var formKey = GlobalKey<FormState>();
+
+    var now = DateTime.now();
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -85,7 +90,12 @@ class _TicketListPageState
                       child: SlideAnimation(
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
-                          child: TicketCard(),
+                          child: TicketCard(onTap: () {
+                            print('ddggdggdgdggdgdg');
+                            AutoRouter.of(context).pushNamed(
+                                RouteKey.ticketDetail.replaceAll(
+                                    ':id', '$index candidate.candidateId'));
+                          }),
                         ),
                       ),
                     );
@@ -153,9 +163,12 @@ class _TicketListPageState
     );
   }
 }
- _buildBottomSheet(BuildContext context) {
-  final theme = Theme.of(context).textTheme;
 
+_buildBottomSheet(BuildContext context) {
+  final theme = Theme.of(context).textTheme;
+  final h = MediaQuery.of(context).size.height;
+
+  var now = DateTime.now();
   final _formKey = GlobalKey<FormBuilderState>();
   return showModalBottomSheet(
       isScrollControlled: true,
@@ -171,7 +184,7 @@ class _TicketListPageState
         return FormBuilder(
           key: _formKey,
           child: Container(
-            height: MediaQuery.of(context).size.height - 100,
+            height: h - 100,
             padding: const EdgeInsets.only(
                 left: Dimens.size24,
                 top: Dimens.size16,
@@ -215,22 +228,25 @@ class _TicketListPageState
                   const SizedBox(
                     height: Dimens.size16,
                   ),
-                  TextFieldInput(
-                    name: 'deadline_optional',
-                    hintText: 'deadline_optional'.tr(),
-                    // focusNode: emailFocusNode,
-                    // controller: widget.confirmPasswordController,
-                    refreshAfterBuild: true,
-                    validateOnFocusChange: true,
-                    onChanged: (value) {},
-                    colorText: AppColors.primaryWhite,
-                    validator: (value) {},
-                    keyboardType: TextInputType.datetime,
+                  CustomDatePicker(
+                    isEditable: true,
+                    key: ValueKey('issue' +
+                        'widget.model.transaction.idIssueDate.toString()'),
+                    initialDate: now,
+                    hintText: tr('deadline_optional'),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    suffixIcon: SvgPicture.asset(
-                      ImageAssetPath.calendarIcon,
-                      color: AppColors.primaryWhite,
-                    ),
+                    firstDate: DateTime(now.year - 100, now.month, now.day),
+                    lastDate: DateTime(now.year + 100, now.month, now.day),
+                    errorMaxLines: 2,
+                    colorField: AppColors.primaryWhite,
+                    errorInvalidText: tr('issue_day_error'),
+                    // validator: (value) => widget.onFieldValidators(CandidateKeys.idIssueDate,value),
+                    onChanged: (value) {
+                      if (value != null) {
+                        // widget.model.transaction.idIssueDate = value;
+                        // widget.onIssueDateChange(value);
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: Dimens.size16,
@@ -247,6 +263,8 @@ class _TicketListPageState
                     suffixIcon: SvgPicture.asset(
                       ImageAssetPath.imageIcon,
                       color: AppColors.primaryWhite,
+                      height: Dimens.size22,
+                      width: Dimens.size22,
                     ),
                     colorText: AppColors.primaryWhite,
                     autovalidateMode: AutovalidateMode.onUserInteraction,

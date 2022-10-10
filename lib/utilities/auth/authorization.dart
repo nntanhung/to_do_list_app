@@ -1,28 +1,28 @@
 class AppRole {
-  static const String basic = 'MEGA_PRODUCER';
-  static const String leader = 'MEGA_LEADER';
-  static const String admin = 'MEGA_SYS_ADMIN';
-  static const String content = 'MEGA_CONTENT';
-  static const String reportActivity = 'MEGA_REPORT_ACTIVITY';
-  static const String reportMeeting = 'MEGA_REPORT_MEETING';
-  static const String aiaoneLogin = 'AIAONE_LOGIN';
+  static const String basic = 'TODO_PRODUCER';
+  static const String leader = 'TODO_LEADER';
+  static const String admin = 'TODO_SYS_ADMIN';
+  static const String content = 'TODO_CONTENT';
+  static const String reportActivity = 'TODO_REPORT_ACTIVITY';
+  static const String reportMeeting = 'TODO_REPORT_MEETING';
+  static const String todoLogin = 'TODO_LOGIN';
 }
 
 class AppPermission {
-  static const String filter = 'MEGA_TEAM_MEMBER_FILTER_CONTROL_VIEW';
-  static const String news = 'MEGA_NEWS_VIEW';
-  static const String teamActivity = 'MEGA_SALES_REVIEW_TEAM_ACTIVITY_VIEW';
-  static const String sale = 'MEGA_SALES_PIPELINE_VIEW';
+  static const String filter = 'TODO_TEAM_MEMBER_FILTER_CONTROL_VIEW';
+  static const String news = 'TODO_NEWS_VIEW';
+  static const String teamActivity = 'TODO_SALES_REVIEW_TEAM_ACTIVITY_VIEW';
+  static const String sale = 'TODO_SALES_PIPELINE_VIEW';
 
   static const String calendar = 'CALENDAR_READ';
-  static const String meetingCreate = 'MEGA_ONLINE_MEETING_CREATE';
-  static const String meetingCancel = 'MEGA_ONLINE_MEETING_CANCEL';
-  static const String meetingUpdate = 'MEGA_ONLINE_MEETING_UPDATE';
-  static const String meetingJoin = 'MEGA_ONLINE_MEETING_JOIN';
-  static const String meetingRead = 'MEGA_ONLINE_MEETING_READ';
-  static const String meetingNoteRead = 'MEGA_ONLINE_MEETING_NOTE_READ';
-  static const String meetingNoteCreate = 'MEGA_ONLINE_MEETING_NOTE_CREATE';
-  static const String meetingNoteUpdate = 'MEGA_ONLINE_MEETING_NOTE_UPDATE';
+  static const String meetingCreate = 'TODO_ONLINE_MEETING_CREATE';
+  static const String meetingCancel = 'TODO_ONLINE_MEETING_CANCEL';
+  static const String meetingUpdate = 'TODO_ONLINE_MEETING_UPDATE';
+  static const String meetingJoin = 'TODO_ONLINE_MEETING_JOIN';
+  static const String meetingRead = 'TODO_ONLINE_MEETING_READ';
+  static const String meetingNoteRead = 'TODO_ONLINE_MEETING_NOTE_READ';
+  static const String meetingNoteCreate = 'TODO_ONLINE_MEETING_NOTE_CREATE';
+  static const String meetingNoteUpdate = 'TODO_ONLINE_MEETING_NOTE_UPDATE';
 }
 
 class Authorization {

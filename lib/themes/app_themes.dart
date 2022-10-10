@@ -6,7 +6,7 @@ import 'app_colors.dart';
 class AppTheme {
   AppTheme._();
 
-  static String get _fontFamily => 'OpenSans';
+  static String get _fontFamily => 'BebasNeue';
   static PageTransitionsTheme get _pageTransitions =>
       const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -27,6 +27,10 @@ class AppTheme {
           elevation: Dimens.elevation,
           centerTitle: true,
           color: AppColors.primaryWhite,
+        ),
+
+        iconTheme: IconThemeData(
+          color: AppColors.primaryBlack80,
         ),
         
         textTheme: const TextTheme(
@@ -86,7 +90,7 @@ class AppTheme {
           ),
 
           headline4: TextStyle(
-            color: AppColors.primaryWhite,
+            color: AppColors.primaryBlack,
             fontSize: Dimens.size26,
             fontWeight: FontWeight.w400,
             fontFamily: 'BebasNeue'
