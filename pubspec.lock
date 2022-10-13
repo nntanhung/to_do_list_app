@@ -364,6 +364,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  gato:
+    dependency: transitive
+    description:
+      name: gato
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5+1"
   get_it:
     dependency: "direct main"
     description:
@@ -378,6 +385,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  global_configs:
+    dependency: "direct main"
+    description:
+      name: global_configs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   graphs:
     dependency: transitive
     description:
@@ -435,7 +449,7 @@ packages:
     source: hosted
     version: "0.6.4"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"

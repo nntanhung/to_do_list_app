@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'base_state.dart';
+
 abstract class BaseCubit<S> extends Cubit<S> {
   final StreamController<bool> _loadingController =
       StreamController<bool>.broadcast();
@@ -16,6 +18,13 @@ abstract class BaseCubit<S> extends Cubit<S> {
 
   BaseCubit(S state) : super(state);
 
+  LoadedState? get latestLoadedState {
+    if (state is LoadedState) {
+      return state as LoadedState;
+    }
+    return null;
+  }
+  
   void initState() {}
 
   void didChangeDependencies() {}

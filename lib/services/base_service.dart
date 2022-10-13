@@ -1,0 +1,9 @@
+import '../app_dependencies.dart';
+import '../utilities/app_configuration.dart';
+import '../utilities/network/rest_utility.dart';
+
+abstract class BaseService {
+  final rest = AppDependencies.injector.get<RestUtils>();
+  final config = AppDependencies.injector.get<AppConfiguration>();
+} 
+

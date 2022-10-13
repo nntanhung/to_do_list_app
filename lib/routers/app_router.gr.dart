@@ -28,47 +28,41 @@ class _$AppRouter extends RootStackRouter {
         child: const SignInScreen(),
       );
     },
-    TicketListScreenRoute.name: (routeData) {
+    TicketListPageRoute.name: (routeData) {
       return MaterialPageX<String>(
         routeData: routeData,
-        child: const TicketListScreen(),
-      );
-    },
-    CreateTicketScreenRoute.name: (routeData) {
-      return MaterialPageX<String>(
-        routeData: routeData,
-        child: const CreateTicketScreen(),
+        child: const TicketListPage(),
       );
     },
     TicketDetailScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<TicketDetailScreenRouteArgs>(
           orElse: () => TicketDetailScreenRouteArgs(
-              candidateId: pathParams.optString('id')));
+              ticketId: pathParams.optString('id')));
       return MaterialPageX<String>(
         routeData: routeData,
         child: TicketDetailScreen(
           key: args.key,
-          candidateId: args.candidateId,
+          ticketId: args.ticketId,
         ),
       );
     },
     SignUpScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<SignUpScreenRouteArgs>(
-          orElse: () => const SignUpScreenRouteArgs());
       return MaterialPageX<String>(
         routeData: routeData,
-        child: SignUpScreen(
-          predemType: args.predemType,
-          predemCode: args.predemCode,
-          phone: args.phone,
-        ),
+        child: const SignUpScreen(),
       );
     },
     ForgotPasswordRoute.name: (routeData) {
       return MaterialPageX<String>(
         routeData: routeData,
         child: const ForgotPassword(),
+      );
+    },
+    CreateTicketScreenRoute.name: (routeData) {
+      return MaterialPageX<String>(
+        routeData: routeData,
+        child: const CreateTicketScreen(),
       );
     },
   };
@@ -80,12 +74,8 @@ class _$AppRouter extends RootStackRouter {
           path: '/sign-in',
         ),
         RouteConfig(
-          TicketListScreenRoute.name,
+          TicketListPageRoute.name,
           path: '/tickets',
-        ),
-        RouteConfig(
-          CreateTicketScreenRoute.name,
-          path: '/create-ticket',
           guards: [authGuard],
         ),
         RouteConfig(
@@ -104,6 +94,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           ForgotPasswordRoute.name,
           path: '/forgot-password',
+        ),
+        RouteConfig(
+          CreateTicketScreenRoute.name,
+          path: '/create-ticket',
         ),
         RouteConfig(
           '*#redirect',
@@ -127,27 +121,15 @@ class SignInScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TicketListScreen]
-class TicketListScreenRoute extends PageRouteInfo<void> {
-  const TicketListScreenRoute()
+/// [TicketListPage]
+class TicketListPageRoute extends PageRouteInfo<void> {
+  const TicketListPageRoute()
       : super(
-          TicketListScreenRoute.name,
+          TicketListPageRoute.name,
           path: '/tickets',
         );
 
-  static const String name = 'TicketListScreenRoute';
-}
-
-/// generated route for
-/// [CreateTicketScreen]
-class CreateTicketScreenRoute extends PageRouteInfo<void> {
-  const CreateTicketScreenRoute()
-      : super(
-          CreateTicketScreenRoute.name,
-          path: '/create-ticket',
-        );
-
-  static const String name = 'CreateTicketScreenRoute';
+  static const String name = 'TicketListPageRoute';
 }
 
 /// generated route for
@@ -156,15 +138,15 @@ class TicketDetailScreenRoute
     extends PageRouteInfo<TicketDetailScreenRouteArgs> {
   TicketDetailScreenRoute({
     Key? key,
-    String? candidateId,
+    String? ticketId,
   }) : super(
           TicketDetailScreenRoute.name,
           path: '/tickets/:id',
           args: TicketDetailScreenRouteArgs(
             key: key,
-            candidateId: candidateId,
+            ticketId: ticketId,
           ),
-          rawPathParams: {'id': candidateId},
+          rawPathParams: {'id': ticketId},
         );
 
   static const String name = 'TicketDetailScreenRoute';
@@ -173,56 +155,29 @@ class TicketDetailScreenRoute
 class TicketDetailScreenRouteArgs {
   const TicketDetailScreenRouteArgs({
     this.key,
-    this.candidateId,
+    this.ticketId,
   });
 
   final Key? key;
 
-  final String? candidateId;
+  final String? ticketId;
 
   @override
   String toString() {
-    return 'TicketDetailScreenRouteArgs{key: $key, candidateId: $candidateId}';
+    return 'TicketDetailScreenRouteArgs{key: $key, ticketId: $ticketId}';
   }
 }
 
 /// generated route for
 /// [SignUpScreen]
-class SignUpScreenRoute extends PageRouteInfo<SignUpScreenRouteArgs> {
-  SignUpScreenRoute({
-    String? predemType,
-    String? predemCode,
-    String? phone,
-  }) : super(
+class SignUpScreenRoute extends PageRouteInfo<void> {
+  const SignUpScreenRoute()
+      : super(
           SignUpScreenRoute.name,
           path: '/sign-up',
-          args: SignUpScreenRouteArgs(
-            predemType: predemType,
-            predemCode: predemCode,
-            phone: phone,
-          ),
         );
 
   static const String name = 'SignUpScreenRoute';
-}
-
-class SignUpScreenRouteArgs {
-  const SignUpScreenRouteArgs({
-    this.predemType,
-    this.predemCode,
-    this.phone,
-  });
-
-  final String? predemType;
-
-  final String? predemCode;
-
-  final String? phone;
-
-  @override
-  String toString() {
-    return 'SignUpScreenRouteArgs{predemType: $predemType, predemCode: $predemCode, phone: $phone}';
-  }
 }
 
 /// generated route for
@@ -235,4 +190,16 @@ class ForgotPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ForgotPasswordRoute';
+}
+
+/// generated route for
+/// [CreateTicketScreen]
+class CreateTicketScreenRoute extends PageRouteInfo<void> {
+  const CreateTicketScreenRoute()
+      : super(
+          CreateTicketScreenRoute.name,
+          path: '/create-ticket',
+        );
+
+  static const String name = 'CreateTicketScreenRoute';
 }

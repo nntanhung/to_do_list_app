@@ -1,26 +1,23 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_flavor/flutter_flavor.dart';
+import 'package:global_configs/global_configs.dart';
 
-// import 'mem_cache.dart';
+class AppConfiguration {
+  Future init() async {
+    await GlobalConfigs()
+        .loadJsonFromdir('assets/cfg/config_base.json');
+  }
 
-// class AppConfiguration {
-//   Future<void> loadConfig() async {
-//     switch (MemCache.env) {
-//       case 'DEV':
-//         FlavorConfig(
-//             name: 'DEV', variables: {'baseUrl': '', 'authBaseUrl': ''});
-//         break;
-//       case 'UAT':
-//         FlavorConfig(
-//             name: 'UAT',
-//             color: const Color(0xFF1F78AD),
-//             variables: {'baseUrl': '', 'authBaseUrl': ''});
-//         break;
-//       default:
-//         FlavorConfig(variables: {'baseUrl': '', 'authBaseUrl': ''});
-//     }
-//   }
+  int getInt(String key) {
+    var num = GlobalConfigs().get(key);
+    if (num is int) return num;
+    return num?.toInt();
+  }
 
-//   String get baseUrl => FlavorConfig.instance.variables['baseUrl'];
-//   String get authBaseUrl => FlavorConfig.instance.variables['authBaseUrl'];
-// }
+  String getString(String key) {
+    return GlobalConfigs().get<String?>(key) ?? '';
+  }
+
+  int get timeLimit => getInt('timeLimit');
+  String get baseUrl => getString('base_url');
+
+  
+}

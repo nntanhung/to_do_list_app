@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 
 import 'network.dart';
 import '../../app_dependencies.dart';
@@ -98,7 +97,7 @@ class TokenInterceptor extends QueuedInterceptor {
 class DefaultHeaderInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['User-Agent'] = 'AIA/2022';
+    options.headers['User-Agent'] = 'todo/2022';
     super.onRequest(options, handler);
   }
 }

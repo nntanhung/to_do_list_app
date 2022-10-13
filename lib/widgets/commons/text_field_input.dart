@@ -43,7 +43,6 @@ class TextFieldInput extends StatefulWidget {
   final bool removeDisableHorizontalPadding;
   final TextEditingController? controller;
   final Color colorText;
-  // final Color suffixIconColor;
 
   /// [name] is required, the placeholder value is just for avoiding mass conflict
   const TextFieldInput({
@@ -82,7 +81,6 @@ class TextFieldInput extends StatefulWidget {
     this.removeDisableHorizontalPadding = false,
     this.controller,
     this.colorText = AppColors.primaryBlack80,
-    // this.suffixIconColor = AppColors.primaryBlack80
   }) : super(key: key);
 
   @override
@@ -224,7 +222,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                     : null,
                 errorText: widget.errorText,
                 errorStyle:
-                    textTheme.bodyText2?.copyWith(color: AppColors.accentColor),
+                    textTheme.subtitle2?.copyWith(color: AppColors.accentColor),
                 errorMaxLines: widget.errorMaxLines,
                 filled: widget.backgroundColor != null || !widget.enabled
                     ? true
@@ -249,7 +247,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 hoverColor: Colors.transparent,
                 counterText: '',
                 prefix: widget.prefix,
-                hintStyle: textTheme.headline6
+                hintStyle: textTheme.subtitle2
                     ?.copyWith(color: widget.colorText),
                 hintText: widget.hintText),
           ),

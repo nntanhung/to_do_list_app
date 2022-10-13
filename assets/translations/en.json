@@ -27,5 +27,12 @@
     "title": "Title",
     "error_validate_format_datetime": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy hh:mm.",
     "common_date_help": "Trợ giúp",
+    "email_validate_error": "Vui lòng nhập địa chỉ email đúng định dạng.",
+    "repeat_password_validate_error": "Mật khẩu xác nhận không khớp với mật khẩu được nhập ở trên. Vui lòng nhập lại.",
+    "fullname_validate_error": "Vui lòng nhập đầy đủ Họ và tên với tối đa 30 ký tự.",
+    "password_validate_error": "Mật khẩu phải chứa ít nhất 06 kí tự.",
+    "issue_day_error": "Vui lòng nhập ngày tháng",
+    "error_validate_format_day": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy.",
+
     "end_json": ""
 }

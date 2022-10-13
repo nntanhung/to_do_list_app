@@ -8,8 +8,8 @@ import '../../../styles/dimens.dart';
 import '../../../themes/app_colors.dart';
 
 class TicketDetailScreen extends StatelessWidget {
-  final String? candidateId;
-  const TicketDetailScreen({Key? key, @PathParam('id') this.candidateId})
+  final String? ticketId;
+  const TicketDetailScreen({Key? key, @PathParam('id') this.ticketId})
       : super(key: key);
 
   @override
@@ -57,7 +57,7 @@ class TicketDetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                tr('@.upper:Icon Button jnjgjgj'),
+                 'Icon Button jnjgjgj'.toUpperCase(),
                 style: theme.headline4,
               ),
               const SizedBox(height: Dimens.size24),

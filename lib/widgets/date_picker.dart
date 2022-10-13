@@ -253,7 +253,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                 widget.errorInvalidText ?? tr('error_validate_format_day'),
             errorFormatText:
                 widget.errorFormatText ?? tr('error_validate_format_day'),
-            fieldHintText: tr('common_date_format'),
+            fieldHintText: DataFormat.ddMMyyyy,
             lastDate: lastDate);
       case DatePickerType.timeOnly:
         final time = await showTimePicker(

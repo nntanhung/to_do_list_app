@@ -31,12 +31,13 @@ class ForgotPassword extends StatelessWidget {
               hintText: 'password'.tr(),
               // controller: widget.passwordController,
               isPassword: true,
-              refreshAfterBuild: true,
               validateOnFocusChange: true,
               onChanged: (value) {
                 // _bloc.model.email = value;
               },
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(
@@ -46,14 +47,13 @@ class ForgotPassword extends StatelessWidget {
               name: 'confirm_password',
               hintText: 'confirm_password'.tr(),
               // focusNode: emailFocusNode,
-              // controller: widget.confirmPasswordController,
               isPassword: true,
-              refreshAfterBuild: true,
               validateOnFocusChange: true,
               onChanged: (value) {
-                // _bloc.model.email = value;
               },
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(

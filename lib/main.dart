@@ -22,7 +22,10 @@ Future<bool> initApp() async {
   try {
     final bool result = await AppDependencies.initialize();
     return result;
+    
   } catch (e) {
     return false;
   }
 }
+
+

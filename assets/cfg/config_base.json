@@ -1,0 +1,4 @@
+{
+  "timeLimit": 1500,
+  "base_url": "https://api.todoist.com/rest/v2"
+}

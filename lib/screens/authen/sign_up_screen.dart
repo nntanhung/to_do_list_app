@@ -1,68 +1,97 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:todo_list/routers/route_keys.dart';
 
 import '../../styles/dimens.dart';
 import '../../widgets/widget.dart';
 
 class SignUpScreen extends StatefulWidget {
-  final String? predemCode;
-  final String? predemType;
-  final String? phone;
-
-  SignUpScreen({this.predemType, this.predemCode, this.phone});
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  SignUpScreenState createState() => SignUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
-  @override
+class _SignUpScreenState extends State<SignUpScreen> {
+  final fullNameFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final confirmPasswordFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+final GlobalKey<FormBuilderState> _formKey =
+      GlobalKey<FormBuilderState>(debugLabel: 'GlobalFormKey #SignUp ');  @override
   void initState() {
     super.initState();
   }
 
   @override
   void dispose() {
-    _fullNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
+    fullNameFocusNode.dispose();
+    passwordFocusNode.dispose();
+    confirmPasswordFocusNode.dispose();
+    emailFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.size24),
-        child: BodyAuthen(
-          emailController: _emailController,
-          fullNameController: _fullNameController,
-          passwordController: _passwordController,
-          confirmPasswordController: _confirmPasswordController,
-          textAccount: tr('have_an_account'),
-          textAccount1: tr('sign_in'),
-          textButton: 'sign_up'.tr(),
-          onTextClick: () {
-            AutoRouter.of(context).pop(RouteKey.signIn);
-          },
-          onTapped: () {
-            AutoRouter.of(context).pushNamed(RouteKey.tickets);
-            // _bloc.model.isSubmitting = true;
-            // if (_formKey.currentState!.validate()) {
-            //   _bloc.add(RequestSignUpEvent());
-            // }
-          },
-        ),
+        body:
+            //  BlocProvider(
+            // create: (context) => bloc,
+            // child: BlocListener<SignUpBloc, BaseState>(
+            //   listener: (context, state) {
+            //     // if (state is LoginSuccess) {
+            //     //   if (state.nextPage != null) {
+            //     //     _router.pushNamed(state.nextPage!);
+            //     //   } else {
+            //     //     BaseDialog.show(
+            //     //       context,
+            //     //       builder: (context) => const ChooseClubPage(),
+            //     //     );
+            //     //   }
+            //     // } else if (state is LoginFail) {
+            //     //   ToastUtility.showError([state.errorMessage]);
+            //     //   if (state.code == ConfigBE.changePassword) {
+            //     //     BaseDialog.show(
+            //     //       context,
+            //     //       builder: (context) => ChangePasswordPage(userName: _userName),
+            //     //     );
+            //     //   }
+            //     // }
+            //   },
+            // child:
+            Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Dimens.size24),
+      child: BodyAuthen(
+        key: _formKey,
+        fullNameFocusNode: fullNameFocusNode,
+        emailFocusNode: emailFocusNode,
+        passwordFocusNode: passwordFocusNode,
+        confirmPasswordFocusNode: confirmPasswordFocusNode,
+        textAccount: tr('have_an_account'),
+        textAccount1: tr('sign_in'),
+        textButton: 'sign_up'.tr(),
+        onTextClick: () {
+          AutoRouter.of(context).pop(RouteKey.signIn);
+        },
+        onTapped: () {
+          _onLoginClick();
+        },
       ),
-    );
+      //   ),
+      // ),
+    ));
   }
+
+  void _onLoginClick() {
+    if (_formKey.currentState!.validate()) {
+      AutoRouter.of(context).pushNamed(RouteKey.tickets);
+      //   bloc.signUp(
+      //       email: _emailController.text, password: _passwordController.text);
+    }
+  }
+
+  // void _onForgotPasswordClick() {}
 }
