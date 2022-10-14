@@ -193,7 +193,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
             focusNode: focusNode,
             name: widget.name,
             autovalidateMode: widget.autovalidateMode,
-            style: textTheme.bodyText1?.copyWith(color: widget.colorText),
+            style: textTheme.bodyText2?.copyWith(color: widget.colorText),
             controller: controller,
             enabled: widget.enabled,
             obscureText: obscureText,
@@ -247,7 +247,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 hoverColor: Colors.transparent,
                 counterText: '',
                 prefix: widget.prefix,
-                hintStyle: textTheme.subtitle2
+                hintStyle: textTheme.bodyText2
                     ?.copyWith(color: widget.colorText),
                 hintText: widget.hintText),
           ),

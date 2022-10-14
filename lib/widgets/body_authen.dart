@@ -66,10 +66,11 @@ class _BodyAuthenState extends State<BodyAuthen> {
             name: 'email',
             hintText: 'email'.tr(),
             focusNode: widget.emailFocusNode,
-            // controller: widget.emailController,
             refreshAfterBuild: true,
             validateOnFocusChange: true,
-            onChanged: (value) {},
+            onChanged: (value) {
+              
+            },
             validator: (value) {
               if (widget.emailFocusNode!.hasFocus) {
                 return _signUpValidator.validateEmail(value);

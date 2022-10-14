@@ -1,25 +1,17 @@
-import 'dart:html';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_list/routers/route_keys.dart';
 import 'package:todo_list/widgets/ticket_card.dart';
 
 import '../../blocs/bloc.dart';
-import '../../blocs/tickets/ticket_list_state.dart';
 import '../../constants.dart';
 
-import '../../models/services/service_model.dart';
 import '../../styles/dimens.dart';
-import '../../themes/theme.dart';
 import '../../widgets/base_cubit_stateful_widget.dart';
-import '../../widgets/commons/common.dart';
-import '../../widgets/date_picker.dart';
 
 class TicketListPage extends BaseCubitStatefulWidget {
   const TicketListPage({Key? key}) : super(key: key);
@@ -82,13 +74,27 @@ class _TicketListPageState
                   bloc: bloc,
                   builder: (context, TicketListState state) {
                     return state.maybeWhen(
+                      // orElse: () => Container(
+                      //   height: 120,
+                      //   child: TicketCard(
+                      //     title: 'item.content',
+                      //     dateTime: DateTime.now(),
+                      //     description: 'item.description',
+                      //     onTap: () {
+                      //       AutoRouter.of(context).pushNamed(
+                      //         RouteKey.ticketDetail
+                      //             .replaceAll(':id', 'item.id'),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                       orElse: () => Container(
                         color: Colors.amber,
                         height: 200,
                         width: 400,
-                        child: Text('fghfhgfhfh'),
+                        child: Text('OrElse'),
                       ),
-                      success: ( ticketList) => AnimationLimiter(
+                      success: (ticketList) => AnimationLimiter(
                         child: ListView.builder(
                           itemCount: ticketList?.length ?? 1,
                           padding: EdgeInsets.only(bottom: Dimens.size16),
@@ -109,7 +115,6 @@ class _TicketListPageState
                                           RouteKey.ticketDetail.replaceAll(
                                               ':id',
                                               item.id ?? '123456789'
-                                              // '$index candidate.candidateId',
                                               ),
                                             );
                                     },

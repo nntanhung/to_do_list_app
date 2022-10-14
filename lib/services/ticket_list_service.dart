@@ -14,7 +14,7 @@ class TicketListService extends BaseService {
     return rest.request<TicketListResponse>(
       Method.get,
       APIConfigPath.tasks,
-      data: request?.toJson(),
+      queryParameters: request!.toJson(),
     );
   }
   

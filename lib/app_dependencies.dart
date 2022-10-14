@@ -8,6 +8,7 @@ import 'routers/app_router.dart';
 import 'routers/authen_guard.dart';
 import 'services/service_dependencies.dart';
 import 'utilities/app_configuration.dart';
+import 'utilities/network/network.dart';
 import 'validator/validator_dependencies.dart';
 
 class AppDependencies {
@@ -15,12 +16,13 @@ class AppDependencies {
 
   static Future<bool> initialize() async {
     injector.registerLazySingleton<AppConfiguration>(() => AppConfiguration());
-    // final AppConfiguration config =
-    //     AppDependencies.injector.get<AppConfiguration>();
+    final AppConfiguration config =
+        AppDependencies.injector.get<AppConfiguration>();
     // await config.init();
-    // injector.registerLazySingleton<RestUtils>(
-    //     () => RestUtils(config.baseUrl, interceptors: [LoggingInterceptor()]),
-    //     instanceName: 'AUTHEN');
+    injector.registerLazySingleton<RestUtils>(
+        () => RestUtils(config.baseUrl, interceptors: [LoggingInterceptor()]),
+        instanceName: 'AUTHEN');
+
 
     injector.registerLazySingleton<AuthGuard>(() => AuthGuard());
 

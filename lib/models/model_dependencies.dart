@@ -11,7 +11,5 @@ class ModelDependencies {
     injector.registerLazySingleton<TicketListModel>(() => TicketListModel());
     injector.registerLazySingleton<TicketResult>(() => TicketResult());
     injector.registerLazySingleton<TicketResultResponse>(() => TicketResultResponse());
-    injector.registerLazySingleton<DueResponse>(() => DueResponse());
-    injector.registerLazySingleton<DueRequest>(() => DueRequest());
   }
 }

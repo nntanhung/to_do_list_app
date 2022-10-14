@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../utilities/network/network.dart';
+import 'ticket_list.dart';
 
 part 'create_ticket.g.dart';
 
@@ -13,11 +14,6 @@ class CreateTicketResponse extends BaseResponseModel {
   bool? isShared;
   int? order;
   bool? isFavorite;
-  bool? isInboxProject;
-  bool? isTeamInbox;
-  String? viewStyle;
-  String? url;
-  String? parentId;
 
   
   @override
@@ -35,7 +31,9 @@ class CreateTicketRequest extends BaseRequestModel {
   @JsonKey(includeIfNull: false)
   String? description;
   @JsonKey(includeIfNull: false)
-  String? due;
+  Due? due;
+  @JsonKey(includeIfNull: false)
+  String? projectId;
   @JsonKey(includeIfNull: false)
   String? id;
 

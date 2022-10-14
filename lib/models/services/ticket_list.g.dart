@@ -37,7 +37,7 @@ TicketResultResponse _$TicketResultResponseFromJson(
       description: json['description'] as String?,
       due: json['due'] == null
           ? null
-          : DueResponse.fromJson(json['due'] as Map<String, dynamic>),
+          : Due.fromJson(json['due'] as Map<String, dynamic>),
       id: json['id'] as String?,
       labels:
           (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -76,34 +76,14 @@ Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
   return val;
 }
 
-DueResponse _$DueResponseFromJson(Map<String, dynamic> json) => DueResponse()
-  ..date = json['date'] as String?
-  ..datetime = json['datetime'] as String?;
+Due _$DueFromJson(Map<String, dynamic> json) => Due(
+      json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      json['datetime'] == null
+          ? null
+          : DateTime.parse(json['datetime'] as String),
+    );
 
-Map<String, dynamic> _$DueResponseToJson(DueResponse instance) =>
-    <String, dynamic>{
-      'date': instance.date,
-      'datetime': instance.datetime,
+Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
+      'date': instance.date?.toIso8601String(),
+      'datetime': instance.datetime?.toIso8601String(),
     };
-
-DueRequest _$DueRequestFromJson(Map<String, dynamic> json) => DueRequest()
-  ..date = json['date'] as String?
-  ..isRecurring = json['isRecurring'] as String?
-  ..datetime = json['datetime'] as String?
-  ..timezone = json['timezone'] as String?;
-
-Map<String, dynamic> _$DueRequestToJson(DueRequest instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('date', instance.date);
-  writeNotNull('isRecurring', instance.isRecurring);
-  writeNotNull('datetime', instance.datetime);
-  writeNotNull('timezone', instance.timezone);
-  return val;
-}

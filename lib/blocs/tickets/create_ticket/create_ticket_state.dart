@@ -5,10 +5,10 @@ part 'create_ticket_state.freezed.dart';
 
 @freezed
 class CreateTicketState with _$CreateTicketState {
-  const factory CreateTicketState.initial({CreateTicketResponse? createTicketResponse}) = _Initial;
+  const factory CreateTicketState.initial({CreateTicketResponse? createTicketResponse}) = CreateTicketInitial;
   const factory CreateTicketState.success(
-      { CreateTicketResponse? createModel}) = Success;
+      { CreateTicketResponse? createModel}) = CreateTicketSuccess;
 
   const factory CreateTicketState.error(
-      { CreateTicketResponse? createModel, required String message}) = Error;
+      { CreateTicketResponse? createModel, required String message}) = CreateTicketError;
 }

@@ -42,23 +42,23 @@ mixin _$CreateTicketState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(CreateTicketInitial value) initial,
+    required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,28 +82,29 @@ class _$CreateTicketStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$CreateTicketInitialCopyWith<$Res> {
+  factory _$$CreateTicketInitialCopyWith(_$CreateTicketInitial value,
+          $Res Function(_$CreateTicketInitial) then) =
+      __$$CreateTicketInitialCopyWithImpl<$Res>;
   $Res call({CreateTicketResponse? createTicketResponse});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
+class __$$CreateTicketInitialCopyWithImpl<$Res>
     extends _$CreateTicketStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+    implements _$$CreateTicketInitialCopyWith<$Res> {
+  __$$CreateTicketInitialCopyWithImpl(
+      _$CreateTicketInitial _value, $Res Function(_$CreateTicketInitial) _then)
+      : super(_value, (v) => _then(v as _$CreateTicketInitial));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _$CreateTicketInitial get _value => super._value as _$CreateTicketInitial;
 
   @override
   $Res call({
     Object? createTicketResponse = freezed,
   }) {
-    return _then(_$_Initial(
+    return _then(_$CreateTicketInitial(
       createTicketResponse: createTicketResponse == freezed
           ? _value.createTicketResponse
           : createTicketResponse // ignore: cast_nullable_to_non_nullable
@@ -114,8 +115,8 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial({this.createTicketResponse});
+class _$CreateTicketInitial implements CreateTicketInitial {
+  const _$CreateTicketInitial({this.createTicketResponse});
 
   @override
   final CreateTicketResponse? createTicketResponse;
@@ -129,7 +130,7 @@ class _$_Initial implements _Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$CreateTicketInitial &&
             const DeepCollectionEquality()
                 .equals(other.createTicketResponse, createTicketResponse));
   }
@@ -140,8 +141,9 @@ class _$_Initial implements _Initial {
 
   @JsonKey(ignore: true)
   @override
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$CreateTicketInitialCopyWith<_$CreateTicketInitial> get copyWith =>
+      __$$CreateTicketInitialCopyWithImpl<_$CreateTicketInitial>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -182,9 +184,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(CreateTicketInitial value) initial,
+    required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketError value) error,
   }) {
     return initial(this);
   }
@@ -192,9 +194,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -202,9 +204,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -214,38 +216,41 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements CreateTicketState {
-  const factory _Initial({final CreateTicketResponse? createTicketResponse}) =
-      _$_Initial;
+abstract class CreateTicketInitial implements CreateTicketState {
+  const factory CreateTicketInitial(
+          {final CreateTicketResponse? createTicketResponse}) =
+      _$CreateTicketInitial;
 
   CreateTicketResponse? get createTicketResponse;
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$CreateTicketInitialCopyWith<_$CreateTicketInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SuccessCopyWith<$Res> {
-  factory _$$SuccessCopyWith(_$Success value, $Res Function(_$Success) then) =
-      __$$SuccessCopyWithImpl<$Res>;
+abstract class _$$CreateTicketSuccessCopyWith<$Res> {
+  factory _$$CreateTicketSuccessCopyWith(_$CreateTicketSuccess value,
+          $Res Function(_$CreateTicketSuccess) then) =
+      __$$CreateTicketSuccessCopyWithImpl<$Res>;
   $Res call({CreateTicketResponse? createModel});
 }
 
 /// @nodoc
-class __$$SuccessCopyWithImpl<$Res>
+class __$$CreateTicketSuccessCopyWithImpl<$Res>
     extends _$CreateTicketStateCopyWithImpl<$Res>
-    implements _$$SuccessCopyWith<$Res> {
-  __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then)
-      : super(_value, (v) => _then(v as _$Success));
+    implements _$$CreateTicketSuccessCopyWith<$Res> {
+  __$$CreateTicketSuccessCopyWithImpl(
+      _$CreateTicketSuccess _value, $Res Function(_$CreateTicketSuccess) _then)
+      : super(_value, (v) => _then(v as _$CreateTicketSuccess));
 
   @override
-  _$Success get _value => super._value as _$Success;
+  _$CreateTicketSuccess get _value => super._value as _$CreateTicketSuccess;
 
   @override
   $Res call({
     Object? createModel = freezed,
   }) {
-    return _then(_$Success(
+    return _then(_$CreateTicketSuccess(
       createModel: createModel == freezed
           ? _value.createModel
           : createModel // ignore: cast_nullable_to_non_nullable
@@ -256,8 +261,8 @@ class __$$SuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success({this.createModel});
+class _$CreateTicketSuccess implements CreateTicketSuccess {
+  const _$CreateTicketSuccess({this.createModel});
 
   @override
   final CreateTicketResponse? createModel;
@@ -271,7 +276,7 @@ class _$Success implements Success {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Success &&
+            other is _$CreateTicketSuccess &&
             const DeepCollectionEquality()
                 .equals(other.createModel, createModel));
   }
@@ -282,8 +287,9 @@ class _$Success implements Success {
 
   @JsonKey(ignore: true)
   @override
-  _$$SuccessCopyWith<_$Success> get copyWith =>
-      __$$SuccessCopyWithImpl<_$Success>(this, _$identity);
+  _$$CreateTicketSuccessCopyWith<_$CreateTicketSuccess> get copyWith =>
+      __$$CreateTicketSuccessCopyWithImpl<_$CreateTicketSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -324,9 +330,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(CreateTicketInitial value) initial,
+    required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketError value) error,
   }) {
     return success(this);
   }
@@ -334,9 +340,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
   }) {
     return success?.call(this);
   }
@@ -344,9 +350,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -356,37 +362,41 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements CreateTicketState {
-  const factory Success({final CreateTicketResponse? createModel}) = _$Success;
+abstract class CreateTicketSuccess implements CreateTicketState {
+  const factory CreateTicketSuccess({final CreateTicketResponse? createModel}) =
+      _$CreateTicketSuccess;
 
   CreateTicketResponse? get createModel;
   @JsonKey(ignore: true)
-  _$$SuccessCopyWith<_$Success> get copyWith =>
+  _$$CreateTicketSuccessCopyWith<_$CreateTicketSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorCopyWith<$Res> {
-  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
-      __$$ErrorCopyWithImpl<$Res>;
+abstract class _$$CreateTicketErrorCopyWith<$Res> {
+  factory _$$CreateTicketErrorCopyWith(
+          _$CreateTicketError value, $Res Function(_$CreateTicketError) then) =
+      __$$CreateTicketErrorCopyWithImpl<$Res>;
   $Res call({CreateTicketResponse? createModel, String message});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res> extends _$CreateTicketStateCopyWithImpl<$Res>
-    implements _$$ErrorCopyWith<$Res> {
-  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
-      : super(_value, (v) => _then(v as _$Error));
+class __$$CreateTicketErrorCopyWithImpl<$Res>
+    extends _$CreateTicketStateCopyWithImpl<$Res>
+    implements _$$CreateTicketErrorCopyWith<$Res> {
+  __$$CreateTicketErrorCopyWithImpl(
+      _$CreateTicketError _value, $Res Function(_$CreateTicketError) _then)
+      : super(_value, (v) => _then(v as _$CreateTicketError));
 
   @override
-  _$Error get _value => super._value as _$Error;
+  _$CreateTicketError get _value => super._value as _$CreateTicketError;
 
   @override
   $Res call({
     Object? createModel = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$Error(
+    return _then(_$CreateTicketError(
       createModel: createModel == freezed
           ? _value.createModel
           : createModel // ignore: cast_nullable_to_non_nullable
@@ -401,8 +411,8 @@ class __$$ErrorCopyWithImpl<$Res> extends _$CreateTicketStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
-  const _$Error({this.createModel, required this.message});
+class _$CreateTicketError implements CreateTicketError {
+  const _$CreateTicketError({this.createModel, required this.message});
 
   @override
   final CreateTicketResponse? createModel;
@@ -418,7 +428,7 @@ class _$Error implements Error {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error &&
+            other is _$CreateTicketError &&
             const DeepCollectionEquality()
                 .equals(other.createModel, createModel) &&
             const DeepCollectionEquality().equals(other.message, message));
@@ -432,8 +442,8 @@ class _$Error implements Error {
 
   @JsonKey(ignore: true)
   @override
-  _$$ErrorCopyWith<_$Error> get copyWith =>
-      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
+  _$$CreateTicketErrorCopyWith<_$CreateTicketError> get copyWith =>
+      __$$CreateTicketErrorCopyWithImpl<_$CreateTicketError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -474,9 +484,9 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(CreateTicketInitial value) initial,
+    required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketError value) error,
   }) {
     return error(this);
   }
@@ -484,9 +494,9 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
   }) {
     return error?.call(this);
   }
@@ -494,9 +504,9 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -506,13 +516,14 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements CreateTicketState {
-  const factory Error(
+abstract class CreateTicketError implements CreateTicketState {
+  const factory CreateTicketError(
       {final CreateTicketResponse? createModel,
-      required final String message}) = _$Error;
+      required final String message}) = _$CreateTicketError;
 
   CreateTicketResponse? get createModel;
   String get message;
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
+  _$$CreateTicketErrorCopyWith<_$CreateTicketError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

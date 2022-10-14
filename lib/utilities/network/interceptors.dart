@@ -97,7 +97,7 @@ class TokenInterceptor extends QueuedInterceptor {
 class DefaultHeaderInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['User-Agent'] = 'todo/2022';
+      options.headers['Authorization'] = 'Bearer ${MemCache.accessToken}';
     super.onRequest(options, handler);
   }
 }

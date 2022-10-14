@@ -33,6 +33,6 @@
     "password_validate_error": "Mật khẩu phải chứa ít nhất 06 kí tự.",
     "issue_day_error": "Vui lòng nhập ngày tháng",
     "error_validate_format_day": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy.",
-
+    "required_field": "Required field",
     "end_json": ""
 }

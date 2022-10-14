@@ -29,7 +29,7 @@ class TicketResultResponse {
   bool? isCompleted;
   String? content;
   String? description;
-  DueResponse? due;
+  Due? due;
   String? id;
   List<String>? labels;
   String? projectId;
@@ -67,31 +67,15 @@ class TicketListRequest extends BaseRequestModel {
 }
 
 @JsonSerializable()
-class DueResponse {
-  String? date;
-  String? datetime;
+class Due {
+  DateTime? date;
+  DateTime? datetime;
 
-  DueResponse( );
+  Due(this.date, this.datetime);
 
   @override
-  factory DueResponse.fromJson(Map<String, dynamic> json) =>
-      _$DueResponseFromJson(json);
+  factory Due.fromJson(Map<String, dynamic> json) =>
+      _$DueFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DueResponseToJson(this);
-}
-
-@JsonSerializable()
-class DueRequest extends BaseRequestModel {
-  @JsonKey(includeIfNull: false)
-  String? date;
-  @JsonKey(includeIfNull: false)
-  String? isRecurring;
-  @JsonKey(includeIfNull: false)
-  String? datetime;
-  @JsonKey(includeIfNull: false)
-  String? timezone;
-
-  DueRequest();
-  @override
-  Map<String, dynamic> toJson() => _$DueRequestToJson(this);
+  Map<String, dynamic> toJson() => _$DueToJson(this);
 }

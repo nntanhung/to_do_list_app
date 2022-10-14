@@ -11,7 +11,7 @@ class ServiceDependencies {
     injector.registerLazySingleton<RestUtils>(() => RestUtils(config.baseUrl),
         instanceName: 'MAIN');
     injector.registerLazySingleton<RestUtils>(() => RestUtils(config.baseUrl,
-        interceptors: [AuthInterceptor(), TokenInterceptor('')]));
+        interceptors: [AuthInterceptor(), TokenInterceptor('MAIN')]));
     injector.registerLazySingleton<CreateTicketService>(() => CreateTicketService());
     injector.registerLazySingleton<TicketListService>(() => TicketListService());
   }

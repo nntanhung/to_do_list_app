@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:todo_list/helpers/helper.dart';
 import '../constants.dart';
 
 import '../styles/style.dart';
@@ -10,7 +11,7 @@ class TicketCard extends StatelessWidget {
   final Function()? onTap;
   final String? title;
   final String? description;
-  final String? dateTime;
+  final DateTime? dateTime;
   const TicketCard({
     super.key,
     this.onTap,
@@ -61,7 +62,7 @@ class TicketCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const Spacer(),
-            Text(tr('created_at', args: [dateTime!]), style: theme.subtitle2),
+            Text(tr('created_at', args: [dateTime!.toHHmmDate()]), style: theme.subtitle2),
           ],
         ),
       ),

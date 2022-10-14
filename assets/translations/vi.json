@@ -32,5 +32,6 @@
     "fullname_validate_error": "Vui lòng nhập đầy đủ Họ và tên với tối đa 30 ký tự.",
     "password_validate_error": "Mật khẩu phải chứa ít nhất 06 ký tự.",
     "issue_day_error": "Vui lòng nhập ngày tháng",
+    "required_field": "Đây là trường bắt buộc",
     "end_json": ""
 }

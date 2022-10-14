@@ -6,4 +6,5 @@ part 'sign_in_cubit.freezed.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInState.initial());
+  
 }

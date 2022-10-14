@@ -41,7 +41,7 @@ class RestUtils {
     );
     dio = Dio(_options);
     /// Add default header interceptor
-    dio.interceptors.add(DefaultHeaderInterceptor());
+    // dio.interceptors.add(DefaultHeaderInterceptor());
 
     void addInterceptor(Interceptor interceptor) {
       dio.interceptors.add(interceptor);

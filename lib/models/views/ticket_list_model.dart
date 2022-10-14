@@ -8,7 +8,7 @@ class TicketListModel extends Mapper<TicketResultResponse, TicketListModel> {
   bool? isCompleted;
   String? content;
   String? description;
-  DueResponse? due;
+  Due? due;
   String? id;
   List<String>? labels;
   String? projectId;
@@ -34,7 +34,7 @@ class TicketListModel extends Mapper<TicketResultResponse, TicketListModel> {
       isCompleted: object.isCompleted,
       content: object.content,
       description: object.description,
-      due: object.due,
+      due: Due(object.due?.date, object.due?.datetime) ,
       id: object.id,
       labels: object.labels,
       projectId: object.projectId,

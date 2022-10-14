@@ -15,12 +15,7 @@ CreateTicketResponse _$CreateTicketResponseFromJson(
       ..color = json['color'] as String?
       ..isShared = json['isShared'] as bool?
       ..order = json['order'] as int?
-      ..isFavorite = json['isFavorite'] as bool?
-      ..isInboxProject = json['isInboxProject'] as bool?
-      ..isTeamInbox = json['isTeamInbox'] as bool?
-      ..viewStyle = json['viewStyle'] as String?
-      ..url = json['url'] as String?
-      ..parentId = json['parentId'] as String?;
+      ..isFavorite = json['isFavorite'] as bool?;
 
 Map<String, dynamic> _$CreateTicketResponseToJson(
         CreateTicketResponse instance) =>
@@ -32,18 +27,16 @@ Map<String, dynamic> _$CreateTicketResponseToJson(
       'isShared': instance.isShared,
       'order': instance.order,
       'isFavorite': instance.isFavorite,
-      'isInboxProject': instance.isInboxProject,
-      'isTeamInbox': instance.isTeamInbox,
-      'viewStyle': instance.viewStyle,
-      'url': instance.url,
-      'parentId': instance.parentId,
     };
 
 CreateTicketRequest _$CreateTicketRequestFromJson(Map<String, dynamic> json) =>
     CreateTicketRequest()
       ..content = json['content'] as String?
       ..description = json['description'] as String?
-      ..due = json['due'] as String?
+      ..due = json['due'] == null
+          ? null
+          : Due.fromJson(json['due'] as Map<String, dynamic>)
+      ..projectId = json['projectId'] as String?
       ..id = json['id'] as String?;
 
 Map<String, dynamic> _$CreateTicketRequestToJson(CreateTicketRequest instance) {
@@ -58,6 +51,7 @@ Map<String, dynamic> _$CreateTicketRequestToJson(CreateTicketRequest instance) {
   writeNotNull('content', instance.content);
   writeNotNull('description', instance.description);
   writeNotNull('due', instance.due);
+  writeNotNull('projectId', instance.projectId);
   writeNotNull('id', instance.id);
   return val;
 }

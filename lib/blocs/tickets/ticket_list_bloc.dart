@@ -7,24 +7,25 @@ import 'ticket_list_state.dart';
 
 class TicketListBloc extends BaseCubit<TicketListState> {
   final TicketListService? ticketListService;
-  late List<TicketListModel> _listItem;
+  late List<TicketResultResponse> _listItem;
 
   TicketListBloc(this.ticketListService) : super(TicketListState.initial());
 
-
   Future<void> requestTicketListData() async {
-    final request = TicketListRequest()..id ='2300287753';
+    final request = TicketListRequest()..id = '2300287753';
     try {
       final res = await ticketListService?.getTaskList(request);
-      print('---------------------- $res');
-      if (res!.isSuccess) {
-        final list = res.data!.dataResponse.result!.listItem;
-        emit(TicketListState.success(ticketList: list));
+      final a = res!.data!.dataResponse.result!.listItem!;
+      print('----------------------ticketLsit $_listItem');
+      if (res.isSuccess) {
+        emit(TicketListState.success(ticketList: a));
       } else {
         emit(TicketListState.error(message: 'message faild'));
       }
+    
     } catch (e) {
       return emit(TicketListState.error(message: 'message faild'));
     }
+     
   }
 }

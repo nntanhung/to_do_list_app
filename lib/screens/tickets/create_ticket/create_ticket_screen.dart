@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/models/services/service_model.dart';
+import 'package:todo_list/models/services/ticket_list.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
+import '../../../models/views/ticket_list_model.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
 import '../../../widgets/base_cubit_stateful_widget.dart';
@@ -25,64 +26,77 @@ class CreateTicketScreen extends BaseCubitStatefulWidget {
 
 class _CreateTicketScreenState
     extends BaseCubitStateFulWidgetState<CreateTicketBloc, CreateTicketScreen> {
+  final contentFocusNode = FocusNode();
+
   @override
   void initState() {
-    bloc.requestData();
+    bloc.requestData(content: null);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    contentFocusNode.dispose();
+    contentFocusNode.unfocus();
+    super.dispose();
   }
 
   @override
   Widget buildBody(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    final h = MediaQuery.of(context).size.height;
     final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(
         debugLabel: 'GlobalFormKey #Create Ticket ');
     var now = DateTime.now();
 
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => bloc,
-        child: BlocBuilder(
-          bloc: bloc,
-          builder: (context, CreateTicketState state) {
-            return state.maybeWhen(
-              orElse: () => Container(
-                color: Colors.blueAccent,
-                height: 400,
-                width: 400,
-              ),
-              initial: (createModel) => Container(
-                color: Colors.blueAccent,
-                height: 400,
-                width: 400,
-              ),
-              success: (createModel) => FormBuilder(
-                key: _formKey,
-                child: Container(
-                  color: AppColors.appColor,
-                  // height: h - 150,
-                  padding: const EdgeInsets.only(
-                      left: Dimens.size24,
-                      top: Dimens.size16,
-                      right: Dimens.size24,
-                      bottom: Dimens.size24),
-                  child: SingleChildScrollView(
+      backgroundColor: AppColors.appColor,
+      body: Padding(
+        padding: const EdgeInsets.only(
+            left: Dimens.size24,
+            top: Dimens.size16,
+            right: Dimens.size24,
+            bottom: Dimens.size24),
+        child: FormBuilder(
+          key: _formKey,
+          child: BlocProvider(
+            create: (context) => bloc,
+            child: BlocBuilder(
+              bloc: bloc,
+              builder: (context, CreateTicketState state) {
+                return state.maybeWhen(
+                  orElse: () => Container(
+                    color: Colors.blueAccent,
+                    height: 400,
+                    width: 400,
+                  ),
+                  initial: (_) => Container(
+                    color: Colors.green,
+                    height: 400,
+                    width: 400,
+                  ),
+                  success: (createModel) => SingleChildScrollView(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(ImageAssetPath.line),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        // SvgPicture.asset(ImageAssetPath.line),
+                        // const SizedBox(
+                        //   height: 20,
+                        // ),
                         TextFieldInput(
                           name: 'title',
                           hintText: 'title'.tr(),
-                          // focusNode: emailFocusNode,
                           refreshAfterBuild: true,
                           validateOnFocusChange: true,
+                          focusNode: contentFocusNode,
                           onChanged: (value) {
                             bloc.ticketItem.content = value;
                           },
-                          validator: (value) {},
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return tr('required_field');
+                            }
+                            return null;
+                          },
                           colorText: AppColors.primaryWhite,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
@@ -92,7 +106,6 @@ class _CreateTicketScreenState
                         TextFieldInput(
                           name: 'description',
                           hintText: 'description'.tr(),
-                          // focusNode: emailFocusNode,
                           refreshAfterBuild: true,
                           validateOnFocusChange: true,
                           onChanged: (value) {
@@ -110,24 +123,21 @@ class _CreateTicketScreenState
                         ),
                         CustomDatePicker(
                           isEditable: true,
-                          key: ValueKey('issue' +
-                              'widget.model.transaction.idIssueDate.toString()'),
-                          initialDate: now,
+                          key: ValueKey('issue'),
                           hintText: tr('deadline_optional'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          firstDate:
-                              DateTime(now.year - 100, now.month, now.day),
-                          lastDate:
-                              DateTime(now.year + 100, now.month, now.day),
+                          firstDate: DateTime(now.year, now.month, now.day),
+                          lastDate: DateTime(now.year + 100, now.month, now.day),
                           errorMaxLines: 2,
                           colorField: AppColors.primaryWhite,
                           errorInvalidText: tr('issue_day_error'),
-                          // validator: (value) => widget.onFieldValidators(CandidateKeys.idIssueDate,value),
                           onChanged: (value) {
+                            print('----- value $value');
                             if (value != null) {
-                              bloc.ticketItem.due?.datetime = value.toString();
-                              // widget.model.transaction.idIssueDate = value;
-                              // widget.onIssueDateChange(value);
+                              bloc.ticketItem.due?.date = value;
+                              bloc.ticketItem.due?.datetime = value;
+                              // print('----- value date ${bloc.ticketItem.due?.date}');
+                              // print('----- valuedatetime ${bloc.ticketItem.due?.datetime}');
                             }
                           },
                         ),
@@ -137,7 +147,6 @@ class _CreateTicketScreenState
                         TextFieldInput(
                           name: 'add_image_optional',
                           hintText: 'add_image_optional'.tr(),
-                          // focusNode: emailFocusNode,
                           refreshAfterBuild: true,
                           validateOnFocusChange: true,
                           onChanged: (value) {},
@@ -163,24 +172,34 @@ class _CreateTicketScreenState
                           borderRadius: Dimens.size12,
                           backgroundColor: AppColors.primaryWhite,
                           onTapped: () async {
-                            await bloc.requestData(
-                              content:
-                                  bloc.ticketItem.content ?? 'content pikachu',
-                              id: bloc.ticketItem.id,
-                              due: DateTime.now().toString(),
-                              description: bloc.ticketItem.description ??
-                                  'Leader_  AutoRouter.of(context).pushNamed(level05',
-                            );
-                            AutoRouter.of(context).pop();
+                            if (_formKey.currentState!.validate()) {
+                              await bloc.requestData(
+                                content:
+                                    bloc.ticketItem.content ?? 'content pikachu',
+                                id: bloc.ticketItem.id,
+                                due: Due(bloc.ticketItem.due?.date,
+                                    bloc.ticketItem.due?.datetime),
+                                description: bloc.ticketItem.description ??
+                                    'Leader_  AutoRouter.of(context).pushNamed(level05',
+                              );
+                              print(
+                                  '----- value date ${bloc.ticketItem.due?.date}');
+                              print(
+                                  '----- valuedatetime ${bloc.ticketItem.due?.datetime}');
+                              AutoRouter.of(context).pop();
+                            }
                           },
+                        ),
+                        const SizedBox(
+                          height: Dimens.size76,
                         ),
                       ],
                     ),
                   ),
-                ),
-              ),
-            );
-          },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

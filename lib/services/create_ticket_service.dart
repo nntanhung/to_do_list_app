@@ -9,7 +9,6 @@ import 'base_service.dart';
 class CreateTicketService extends BaseService {
   Future<DataResult<DataResponse<CreateTicketResponse>>> getCreateTask(
       CreateTicketRequest request) async {
-    print('-------------------- $rest');
     return rest.request<CreateTicketResponse>(
       Method.post,
       APIConfigPath.tasks,

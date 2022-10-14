@@ -29,12 +29,9 @@ class ForgotPassword extends StatelessWidget {
             TextFieldInput(
               name: 'password',
               hintText: 'password'.tr(),
-              // controller: widget.passwordController,
               isPassword: true,
               validateOnFocusChange: true,
-              onChanged: (value) {
-                // _bloc.model.email = value;
-              },
+              onChanged: (value) {},
               validator: (value) {
                 return null;
               },
@@ -46,7 +43,6 @@ class ForgotPassword extends StatelessWidget {
             TextFieldInput(
               name: 'confirm_password',
               hintText: 'confirm_password'.tr(),
-              // focusNode: emailFocusNode,
               isPassword: true,
               validateOnFocusChange: true,
               onChanged: (value) {
@@ -63,12 +59,7 @@ class ForgotPassword extends StatelessWidget {
               text: tr('change_password').toUpperCase(),
               borderRadius: Dimens.size12,
               backgroundColor: AppColors.appColor,
-              onTapped: () {
-                // _bloc.model.isSubmitting = true;
-                // if (_formKey.currentState!.validate()) {
-                //   _bloc.add(RequestSignUpEvent());
-                // }
-              },
+              onTapped: () {},
             ),
             const SizedBox(
               height: Dimens.size76,

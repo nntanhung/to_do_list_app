@@ -14,7 +14,7 @@ void main() async {
       // startLocale: const Locale('vi'),
       // fallbackLocale: const Locale('vi'),
       child: TodoListApp(
-        isInitialCompleted: true,
+        isInitialCompleted: isInitialCompleted,
       )));
 }
 
