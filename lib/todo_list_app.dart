@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'app_dependencies.dart';
 import 'routers/app_router.dart';
@@ -26,6 +27,7 @@ class TodoListApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
+      builder: EasyLoading.init(),
     );
   }
 }

@@ -10,8 +10,8 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
   CreateTicketBloc(this._service) : super(const CreateTicketState.initial())
   {
    ticketItem = TicketListModel()
-   ..due = Due(DateTime.now(), DateTime.now())
-   ..content ='Complete task';
+   ..projectId = '2300287753'
+   ..content ='Completebcbcbcbcb task';
   }
   late TicketListModel ticketItem = TicketListModel();
 
@@ -19,12 +19,11 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       {String? content, String? id, Due? due, String? description}) async {
     final request = CreateTicketRequest()
       ..content = ticketItem.content ?? ''
-      ..due = Due(ticketItem.due?.date, ticketItem.due?.datetime) 
+      ..due = Due(ticketItem.due?.date, ticketItem.due?.datetime)
       ..description = ticketItem.description;
 
     try {
       final res = await _service?.getCreateTask(request);
-      // print('---------------------- create ticket $res');
       if (res!.isSuccess) {
         emit(CreateTicketState.success(createModel: res.data!.dataResponse));
       } else {

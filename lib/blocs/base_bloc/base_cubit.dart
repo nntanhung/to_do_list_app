@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'base_state.dart';
 
@@ -37,6 +38,11 @@ abstract class BaseCubit<S> extends Cubit<S> {
 
   void onInactive() {}
 
+  void showLoading() => EasyLoading.show();
+
+  Future<void> dismissLoading() async {
+    await EasyLoading.dismiss();
+  }
   @mustCallSuper
   @override
   Future<void> close() async {

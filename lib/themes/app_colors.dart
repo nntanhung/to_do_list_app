@@ -21,5 +21,15 @@ class AppColors {
   static const greenLight = Color(0xFFE7FFE5);
 
   ///END -- New UI COLOR
+static const Color materialOrange = Color.fromRGBO(255, 171, 64, 1);
+  static const Color materialPink = Color.fromRGBO(255, 64, 129, 1);
+  static List<List<Color>> dotLoadingColor = [
+    [materialOrange, materialOrange],
+    [materialOrange, materialPink],
+    [materialOrange, materialPink],
+    [materialOrange, materialPink],
+    [materialOrange, materialPink],
+    [materialPink, materialPink]
+  ];
 
 }

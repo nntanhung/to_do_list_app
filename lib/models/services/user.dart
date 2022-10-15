@@ -6,11 +6,10 @@ part 'user.g.dart';
 @immutable
 @JsonSerializable()
 class User {
-  final String? name;
-  final String? email;
-  final String? address;
+  late  String? email;
+  late  String? password;
 
-  User({this.name, this.email, this.address});
+  User({this.email, this.password});
 
   factory User.fromJson(Map<String, dynamic> json) =>
       _$UserFromJson(json);

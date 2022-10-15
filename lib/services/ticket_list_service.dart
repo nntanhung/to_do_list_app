@@ -12,7 +12,7 @@ class TicketListService extends BaseService {
   Future<DataResult<DataResponse<TicketListResponse>>> getTaskList(
       TicketListRequest? request) async {
     return rest.request<TicketListResponse>(
-      Method.get,
+      Method.post,
       APIConfigPath.tasks,
       queryParameters: request!.toJson(),
     );

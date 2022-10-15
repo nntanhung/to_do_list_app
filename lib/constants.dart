@@ -4,6 +4,14 @@ class Constants {
   static const redAsterisk = ' *';
   static const double iconSize = 24.0;
   static const int maxPassword = 24;
+    static List<List<double>> dotStop = [
+    [0.0, 1.0],
+    [0.0, 0.98],
+    [0.0, 0.65],
+    [0.0, 0.45],
+    [0.0, 0.25],
+    [0.0, 1.0],
+  ];
 }
 
 class ImageAssetPath {

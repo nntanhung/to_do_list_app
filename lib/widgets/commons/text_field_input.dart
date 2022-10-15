@@ -178,12 +178,12 @@ class _TextFieldInputState extends State<TextFieldInput> {
               ? Container()
               : RichText(
                   text: TextSpan(
-                    style: textTheme.headline4,
+                    style: textTheme.bodyText2,
                     children: <TextSpan>[
                       TextSpan(text: widget.labelText ?? ''),
                       TextSpan(
                           text: widget.isRequired ? Constants.redAsterisk : '',
-                          style: textTheme.headline4
+                          style: textTheme.bodyText2
                               ?.copyWith(color: AppColors.red2)),
                     ],
                   ),

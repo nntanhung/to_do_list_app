@@ -18,25 +18,23 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateTicketState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateTicketResponse? createTicketResponse)
-        initial,
+    required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
-    required TResult Function(CreateTicketResponse? createModel, String message)
-        error,
+    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +84,6 @@ abstract class _$$CreateTicketInitialCopyWith<$Res> {
   factory _$$CreateTicketInitialCopyWith(_$CreateTicketInitial value,
           $Res Function(_$CreateTicketInitial) then) =
       __$$CreateTicketInitialCopyWithImpl<$Res>;
-  $Res call({CreateTicketResponse? createTicketResponse});
 }
 
 /// @nodoc
@@ -99,84 +96,57 @@ class __$$CreateTicketInitialCopyWithImpl<$Res>
 
   @override
   _$CreateTicketInitial get _value => super._value as _$CreateTicketInitial;
-
-  @override
-  $Res call({
-    Object? createTicketResponse = freezed,
-  }) {
-    return _then(_$CreateTicketInitial(
-      createTicketResponse: createTicketResponse == freezed
-          ? _value.createTicketResponse
-          : createTicketResponse // ignore: cast_nullable_to_non_nullable
-              as CreateTicketResponse?,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$CreateTicketInitial implements CreateTicketInitial {
-  const _$CreateTicketInitial({this.createTicketResponse});
-
-  @override
-  final CreateTicketResponse? createTicketResponse;
+  const _$CreateTicketInitial();
 
   @override
   String toString() {
-    return 'CreateTicketState.initial(createTicketResponse: $createTicketResponse)';
+    return 'CreateTicketState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateTicketInitial &&
-            const DeepCollectionEquality()
-                .equals(other.createTicketResponse, createTicketResponse));
+        (other.runtimeType == runtimeType && other is _$CreateTicketInitial);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(createTicketResponse));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$CreateTicketInitialCopyWith<_$CreateTicketInitial> get copyWith =>
-      __$$CreateTicketInitialCopyWithImpl<_$CreateTicketInitial>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateTicketResponse? createTicketResponse)
-        initial,
+    required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
-    required TResult Function(CreateTicketResponse? createModel, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
-    return initial(createTicketResponse);
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
   }) {
-    return initial?.call(createTicketResponse);
+    return initial?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(createTicketResponse);
+      return initial();
     }
     return orElse();
   }
@@ -217,14 +187,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
 }
 
 abstract class CreateTicketInitial implements CreateTicketState {
-  const factory CreateTicketInitial(
-          {final CreateTicketResponse? createTicketResponse}) =
-      _$CreateTicketInitial;
-
-  CreateTicketResponse? get createTicketResponse;
-  @JsonKey(ignore: true)
-  _$$CreateTicketInitialCopyWith<_$CreateTicketInitial> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory CreateTicketInitial() = _$CreateTicketInitial;
 }
 
 /// @nodoc
@@ -294,11 +257,9 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateTicketResponse? createTicketResponse)
-        initial,
+    required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
-    required TResult Function(CreateTicketResponse? createModel, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
     return success(createModel);
   }
@@ -306,9 +267,9 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
   }) {
     return success?.call(createModel);
   }
@@ -316,9 +277,9 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -377,7 +338,7 @@ abstract class _$$CreateTicketErrorCopyWith<$Res> {
   factory _$$CreateTicketErrorCopyWith(
           _$CreateTicketError value, $Res Function(_$CreateTicketError) then) =
       __$$CreateTicketErrorCopyWithImpl<$Res>;
-  $Res call({CreateTicketResponse? createModel, String message});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -393,14 +354,9 @@ class __$$CreateTicketErrorCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? createModel = freezed,
     Object? message = freezed,
   }) {
     return _then(_$CreateTicketError(
-      createModel: createModel == freezed
-          ? _value.createModel
-          : createModel // ignore: cast_nullable_to_non_nullable
-              as CreateTicketResponse?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -412,16 +368,14 @@ class __$$CreateTicketErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateTicketError implements CreateTicketError {
-  const _$CreateTicketError({this.createModel, required this.message});
+  const _$CreateTicketError({required this.message});
 
-  @override
-  final CreateTicketResponse? createModel;
   @override
   final String message;
 
   @override
   String toString() {
-    return 'CreateTicketState.error(createModel: $createModel, message: $message)';
+    return 'CreateTicketState.error(message: $message)';
   }
 
   @override
@@ -429,16 +383,12 @@ class _$CreateTicketError implements CreateTicketError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateTicketError &&
-            const DeepCollectionEquality()
-                .equals(other.createModel, createModel) &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(createModel),
-      const DeepCollectionEquality().hash(message));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -448,35 +398,33 @@ class _$CreateTicketError implements CreateTicketError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CreateTicketResponse? createTicketResponse)
-        initial,
+    required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
-    required TResult Function(CreateTicketResponse? createModel, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
-    return error(createModel, message);
+    return error(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
   }) {
-    return error?.call(createModel, message);
+    return error?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CreateTicketResponse? createTicketResponse)? initial,
+    TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
-    TResult Function(CreateTicketResponse? createModel, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(createModel, message);
+      return error(message);
     }
     return orElse();
   }
@@ -517,11 +465,9 @@ class _$CreateTicketError implements CreateTicketError {
 }
 
 abstract class CreateTicketError implements CreateTicketState {
-  const factory CreateTicketError(
-      {final CreateTicketResponse? createModel,
-      required final String message}) = _$CreateTicketError;
+  const factory CreateTicketError({required final String message}) =
+      _$CreateTicketError;
 
-  CreateTicketResponse? get createModel;
   String get message;
   @JsonKey(ignore: true)
   _$$CreateTicketErrorCopyWith<_$CreateTicketError> get copyWith =>

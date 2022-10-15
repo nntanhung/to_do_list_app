@@ -124,13 +124,13 @@ class CustomDatePickerState extends State<CustomDatePicker> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            widget.title != null ? Text(widget.title!, style: textTheme.headline4) :const SizedBox(),
+            widget.title != null ? Text(widget.title!, style: textTheme.bodyText2) :const SizedBox(),
             if (widget.isRequired)
               Padding(
                 padding: const EdgeInsets.only(left: 4.0),
                 child: Text(Constants.redAsterisk,
                     style:
-                        textTheme.headline4?.copyWith(color: AppColors.red2)),
+                        textTheme.bodyText2?.copyWith(color: AppColors.red2)),
               )
           ],
         ),
@@ -153,7 +153,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
             style: textTheme.bodyText2?.copyWith(color: widget.colorText),
             decoration: InputDecoration(
                 //labelText: null,
-                //labelStyle: textTheme.headline4,
+                //labelStyle: textTheme.bodyText2,
                 //hintStyle: textTheme.bodyText2?.copyWith(
                 //    color: AppColors.darkBlue2,
                 //    fontStyle: FontStyle.italic),
@@ -190,7 +190,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                       )
                     : null,
                 hintStyle:
-                    textTheme.headline6?.copyWith(color: widget.colorField),
+                    textTheme.bodyText2?.copyWith(color: widget.colorField),
                 hintText: widget.hintText,
                 errorBorder: inputBorder(AppColors.red2),
                 focusedErrorBorder: inputBorder(AppColors.red2),

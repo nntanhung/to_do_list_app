@@ -18,6 +18,7 @@ class AppConfiguration {
 
   int get timeLimit => getInt('timeLimit');
   String get baseUrl => getString('base_url');
+  String get accessToken => getString('access_oken');
 
   
 }

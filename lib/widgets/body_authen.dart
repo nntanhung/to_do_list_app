@@ -46,6 +46,7 @@ class BodyAuthen extends StatefulWidget {
 
 class _BodyAuthenState extends State<BodyAuthen> {
   final _signUpValidator = AppDependencies.injector.get<SignUpValidator>();
+  String? _email = '';
   String? _password = '';
   @override
   Widget build(BuildContext context) {
@@ -69,12 +70,12 @@ class _BodyAuthenState extends State<BodyAuthen> {
             refreshAfterBuild: true,
             validateOnFocusChange: true,
             onChanged: (value) {
-              
+              _email = value;
             },
             validator: (value) {
-              if (widget.emailFocusNode!.hasFocus) {
-                return _signUpValidator.validateEmail(value);
-              }
+              // if (widget.emailFocusNode!.hasFocus) {
+              //   return _signUpValidator.validateEmail(value);
+              // }
 
               if (StringUtils.isNotNullOrEmpty(value)) {
                 return _signUpValidator.validateEmail(value);

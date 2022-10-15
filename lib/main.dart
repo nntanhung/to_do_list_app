@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'app_dependencies.dart';
 import 'todo_list_app.dart';
+import 'utilities/dialog_utility.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   final isInitialCompleted = await initApp();
+  EasyLoading.configLoading();
   runApp(EasyLocalization(
       path: 'assets/translations',
       supportedLocales: const [Locale('vi'), Locale('en')],

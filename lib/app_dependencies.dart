@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'blocs/bloc_dependencies.dart';
 import 'businesses/business_deependencies.dart';
 import 'models/model_dependencies.dart';
+import 'preference/user_preference.dart';
 import 'repositories/repository_dependencies.dart';
 import 'routers/app_router.dart';
 import 'routers/authen_guard.dart';
@@ -23,6 +24,7 @@ class AppDependencies {
         () => RestUtils(config.baseUrl, interceptors: [LoggingInterceptor()]),
         instanceName: 'AUTHEN');
 
+    injector.registerLazySingleton<UserPreference>(() => UserPreference());
 
     injector.registerLazySingleton<AuthGuard>(() => AuthGuard());
 

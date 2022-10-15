@@ -8,7 +8,6 @@ import 'package:todo_list/models/services/ticket_list.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
-import '../../../models/views/ticket_list_model.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
 import '../../../widgets/base_cubit_stateful_widget.dart';
@@ -30,7 +29,8 @@ class _CreateTicketScreenState
 
   @override
   void initState() {
-    bloc.requestData(content: null);
+    bloc.requestData();
+
     super.initState();
   }
 
@@ -60,7 +60,7 @@ class _CreateTicketScreenState
           key: _formKey,
           child: BlocProvider(
             create: (context) => bloc,
-            child: BlocBuilder(
+            child: BlocBuilder<CreateTicketBloc, CreateTicketState>(
               bloc: bloc,
               builder: (context, CreateTicketState state) {
                 return state.maybeWhen(
@@ -69,14 +69,17 @@ class _CreateTicketScreenState
                     height: 400,
                     width: 400,
                   ),
-                  initial: (_) => Container(
+                  initial: () => Container(
                     color: Colors.green,
                     height: 400,
                     width: 400,
                   ),
+                  
+                  
                   success: (createModel) => SingleChildScrollView(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         // SvgPicture.asset(ImageAssetPath.line),
                         // const SizedBox(
@@ -127,7 +130,8 @@ class _CreateTicketScreenState
                           hintText: tr('deadline_optional'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           firstDate: DateTime(now.year, now.month, now.day),
-                          lastDate: DateTime(now.year + 100, now.month, now.day),
+                          lastDate:
+                              DateTime(now.year + 100, now.month, now.day),
                           errorMaxLines: 2,
                           colorField: AppColors.primaryWhite,
                           errorInvalidText: tr('issue_day_error'),
@@ -174,8 +178,8 @@ class _CreateTicketScreenState
                           onTapped: () async {
                             if (_formKey.currentState!.validate()) {
                               await bloc.requestData(
-                                content:
-                                    bloc.ticketItem.content ?? 'content pikachu',
+                                content: bloc.ticketItem.content ??
+                                    'content pikachu',
                                 id: bloc.ticketItem.id,
                                 due: Due(bloc.ticketItem.due?.date,
                                     bloc.ticketItem.due?.datetime),
