@@ -21,7 +21,7 @@ class AppDependencies {
         AppDependencies.injector.get<AppConfiguration>();
     // await config.init();
     injector.registerLazySingleton<RestUtils>(
-        () => RestUtils(config.baseUrl, interceptors: [LoggingInterceptor()]),
+        () => RestUtils(config.baseUrl),
         instanceName: 'AUTHEN');
 
     injector.registerLazySingleton<UserPreference>(() => UserPreference());

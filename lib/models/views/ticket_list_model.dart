@@ -1,44 +1,35 @@
-import 'package:todo_list/models/services/service_model.dart';
+import '../services/service_model.dart';
 
-import 'model_mapper.dart';
-
-class TicketListModel extends Mapper<TicketResultResponse, TicketListModel> {
-  String? creatorId;
-  String? createdAt;
-  bool? isCompleted;
+class TicketListModel {
+  String? id;
+  String? projectId;
   String? content;
   String? description;
-  Due? due;
-  String? id;
+  bool? isCompleted;
   List<String>? labels;
-  String? projectId;
-  String? parentId;
-  TicketListModel({
-    this.creatorId,
-    this.createdAt,
-    this.isCompleted,
-    this.content,
-    this.description,
-    this.due,
-    this.id,
-    this.labels,
-    this.projectId,
-    this.parentId,
-  });
+  int? priority;
+  String? creatorId;
+  DateTime? createdAt;
+  Due? due;
+  String? url;
 
-  @override
-  TicketListModel call(TicketResultResponse object) {
-    return TicketListModel(
-      creatorId: object.creatorId,
-      createdAt: object.createdAt,
-      isCompleted: object.isCompleted,
-      content: object.content,
-      description: object.description,
-      due: Due(object.due?.date, object.due?.datetime) ,
-      id: object.id,
-      labels: object.labels,
-      projectId: object.projectId,
-      parentId: object.parentId,
-    );
-  }
+  TicketListModel(
+      {this.id,
+      this.projectId,
+      this.content,
+      this.description,
+      this.isCompleted,
+      this.labels,
+      this.priority,
+      this.creatorId,
+      this.createdAt,
+      this.due,
+      this.url});
+}
+
+class ListItem {
+  List<TicketListModel> listItem;
+  ListItem({
+    required this.listItem,
+  });
 }

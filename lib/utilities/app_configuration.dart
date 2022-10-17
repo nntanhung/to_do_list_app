@@ -2,8 +2,7 @@ import 'package:global_configs/global_configs.dart';
 
 class AppConfiguration {
   Future init() async {
-    await GlobalConfigs()
-        .loadJsonFromdir('assets/cfg/config_base.json');
+    await GlobalConfigs().loadJsonFromdir('assets/cfg/config_base.json');
   }
 
   int getInt(String key) {
@@ -19,6 +18,4 @@ class AppConfiguration {
   int get timeLimit => getInt('timeLimit');
   String get baseUrl => getString('base_url');
   String get accessToken => getString('access_oken');
-
-  
 }

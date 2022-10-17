@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../app_dependencies.dart';
+import '../../preference/user_preference.dart';
 import 'base_state.dart';
 
 abstract class BaseCubit<S> extends Cubit<S> {
@@ -12,6 +14,8 @@ abstract class BaseCubit<S> extends Cubit<S> {
   StreamSink<bool> get loadingSink => _loadingController.sink;
   Stream<bool> get loadingStream => _loadingController.stream;
 
+
+  final pref = AppDependencies.injector.get<UserPreference>();
   final StreamController<String> _errorController =
       StreamController<String>.broadcast();
   StreamSink<String> get errorSink => _errorController.sink;

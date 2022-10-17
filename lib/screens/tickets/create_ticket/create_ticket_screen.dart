@@ -67,15 +67,7 @@ class _CreateTicketScreenState
                   orElse: () => Container(
                     color: Colors.blueAccent,
                     height: 400,
-                    width: 400,
                   ),
-                  initial: () => Container(
-                    color: Colors.green,
-                    height: 400,
-                    width: 400,
-                  ),
-                  
-                  
                   success: (createModel) => SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -136,12 +128,8 @@ class _CreateTicketScreenState
                           colorField: AppColors.primaryWhite,
                           errorInvalidText: tr('issue_day_error'),
                           onChanged: (value) {
-                            print('----- value $value');
                             if (value != null) {
-                              bloc.ticketItem.due?.date = value;
                               bloc.ticketItem.due?.datetime = value;
-                              // print('----- value date ${bloc.ticketItem.due?.date}');
-                              // print('----- valuedatetime ${bloc.ticketItem.due?.datetime}');
                             }
                           },
                         ),
@@ -151,9 +139,6 @@ class _CreateTicketScreenState
                         TextFieldInput(
                           name: 'add_image_optional',
                           hintText: 'add_image_optional'.tr(),
-                          refreshAfterBuild: true,
-                          validateOnFocusChange: true,
-                          onChanged: (value) {},
                           validator: (value) {
                             return null;
                           },
@@ -181,16 +166,13 @@ class _CreateTicketScreenState
                                 content: bloc.ticketItem.content ??
                                     'content pikachu',
                                 id: bloc.ticketItem.id,
-                                due: Due(bloc.ticketItem.due?.date,
-                                    bloc.ticketItem.due?.datetime),
+                                due: Due(bloc.ticketItem.due?.datetime),
                                 description: bloc.ticketItem.description ??
                                     'Leader_  AutoRouter.of(context).pushNamed(level05',
                               );
                               print(
                                   '----- value date ${bloc.ticketItem.due?.date}');
-                              print(
-                                  '----- valuedatetime ${bloc.ticketItem.due?.datetime}');
-                              AutoRouter.of(context).pop();
+                              AutoRouter.of(context).pop(true);
                             }
                           },
                         ),

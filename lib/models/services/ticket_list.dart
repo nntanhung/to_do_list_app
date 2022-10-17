@@ -6,8 +6,8 @@ part 'ticket_list.g.dart';
 
 @JsonSerializable()
 class TicketListResponse extends BaseResponseModel {
-  TicketListResponse();
-  TicketResult? result;
+  TicketListResponse({this.result});
+  List<TicketResultResponse>? result;
 
   @override
   TicketListResponse fromJson(Map<String, dynamic> json) =>
@@ -15,17 +15,9 @@ class TicketListResponse extends BaseResponseModel {
 }
 
 @JsonSerializable()
-class TicketResult {
-  TicketResult();
-  List<TicketResultResponse>? listItem;
-  factory TicketResult.fromJson(Map<String, dynamic> json) =>
-      _$TicketResultFromJson(json);
-}
-
-@JsonSerializable()
-class TicketResultResponse {
+class TicketResultResponse{
   String? creatorId;
-  String? createdAt;
+  DateTime? createdAt;
   bool? isCompleted;
   String? content;
   String? description;
@@ -49,11 +41,10 @@ class TicketResultResponse {
   factory TicketResultResponse.fromJson(Map<String, dynamic> json) =>
       _$TicketResultResponseFromJson(json);
 
-  // @override
-  // TicketResultResponse fromJson(Map<String, dynamic> json) =>
-  //     _$TicketResultResponseFromJson(json);
+  TicketResultResponse fromJson(Map<String, dynamic> json) =>
+      _$TicketResultResponseFromJson(json);
 
-  // Map<String, dynamic> toJson() => _$TicketResultResponseToJson(this);
+  Map<String, dynamic> toJson() => _$TicketResultResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -66,16 +57,19 @@ class TicketListRequest extends BaseRequestModel {
   Map<String, dynamic> toJson() => _$TicketListRequestToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Due {
-  DateTime? date;
+  String? date;
   DateTime? datetime;
+  String? lang;
+  String? string;
+  bool? isRecurring;
+  
 
-  Due(this.date, this.datetime);
+  Due(this.datetime, {this.date, this.lang, this.string, this.isRecurring});
 
   @override
-  factory Due.fromJson(Map<String, dynamic> json) =>
-      _$DueFromJson(json);
+  factory Due.fromJson(Map<String, dynamic> json) => _$DueFromJson(json);
 
   Map<String, dynamic> toJson() => _$DueToJson(this);
 }

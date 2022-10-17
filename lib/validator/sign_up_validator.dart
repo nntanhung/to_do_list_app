@@ -18,11 +18,11 @@ class SignUpValidator {
     return null;
   }
 
-  /// có từ 8-64 kí tự.
+  /// có từ 6 kí tự trở lên.
   bool _isPasswordValid(String password) =>
       password != '' &&
-          (RegExp('^([A-Za-z0-9]).{6,32}\$')
-              .hasMatch(password) || (RegExp('^(A-Za-z0-9]).{6,32}\$')
+          (RegExp(r'^[A-Za-z0-9]{6,}$')
+              .hasMatch(password) || (RegExp('^(A-Za-z0-9]).{6,}\$')
               .hasMatch(password) && password.contains(r'\')));
 
   String? validatePassword(String? password) {

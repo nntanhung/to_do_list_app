@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/models/services/create_ticket.dart';
 
 @immutable
-abstract class BaseState extends Equatable {}
+abstract class BaseState  {}
 
 class LoadedState<TData> extends BaseState {
   final TData? data;

@@ -6,56 +6,6 @@ import '../themes/theme.dart';
 import '../widgets/commons/common.dart';
 import 'logger.dart';
 
-// class DialogUtility {
-//   bool isShowing = false;
-
-//   void showLoading(BuildContext context) {
-//     showDialog(
-//         context: context,
-//         builder: (context) {
-//           return const JumpingLoading();
-//         });
-//     isShowing = true;
-//   }
-
-//   void showJumpingLoading({required BuildContext context, String? content}) {
-//     showDialog(
-//         context: context,
-//         barrierDismissible: false,
-//         builder: (context) => Dialog(
-//               backgroundColor: MyColors.whiteColor,
-//               shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(5.0)),
-//               child: SizedBox(
-//                   width: 450,
-//                   height: 300,
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       const JumpingLoading(),
-//                       const SizedBox(
-//                         height: 24.0,
-//                       ),
-//                       Text(
-//                         content ?? '',
-//                         textAlign: TextAlign.center,
-//                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
-//                             color: MyColors.primaryColor, height: 2.0),
-//                       )
-//                     ],
-//                   )),
-//             ));
-//     isShowing = true;
-//   }
-
-//   void hide(BuildContext context) {
-//     if (isShowing) {
-//       Navigator.pop(context);
-//       isShowing = false;
-//     }
-//   }
-// }
-
 class EasyLoading {
   EasyLoading._();
   // static OverlayEntry? _overlayEntry;
@@ -80,23 +30,6 @@ class EasyLoading {
       isShow = true;
     }
 
-    // dismiss();
-    // if (!_isShow) {
-    //   _isShow = true;
-    //   final overlay = Overlay.of(context);
-    //   _overlayEntry = OverlayEntry(
-    //     builder: (context) => Container(
-    //       color: Colors.white38,
-    //       alignment: Alignment.center,
-    //       child: const LoadingIndicator(),
-    //     ),
-    //   );
-    //   if (overlay != null) {
-    //     WidgetsBinding.instance!.addPostFrameCallback((_) {
-    //       overlay.insert(_overlayEntry!);
-    //     });
-    //   }
-    // }
   }
 
   static Future<void> dismiss() async {

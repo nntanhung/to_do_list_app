@@ -17,7 +17,6 @@ class TextFieldInput extends StatefulWidget {
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String?>? onChanged;
-  final ValueChanged<String?>? onFieldSubmitted;
   final FormFieldValidator<String>? validator;
   final GestureTapCallback? onTap;
   final FormFieldSetter<String>? onSaved;
@@ -52,7 +51,6 @@ class TextFieldInput extends StatefulWidget {
     this.labelText,
     this.errorText,
     this.onChanged,
-    this.onFieldSubmitted,
     this.validator,
     this.onTap,
     this.onSaved,
@@ -201,8 +199,6 @@ class _TextFieldInputState extends State<TextFieldInput> {
             maxLines: widget.maxLines,
             maxLength: widget.maxLength,
             onChanged: widget.onChanged,
-            onSubmitted: widget.onFieldSubmitted,
-            // onFieldSubmitted: widget.onFieldSubmitted,
             onTap: widget.onTap,
             validator: widget.validator,
             onSaved: widget.onSaved,

@@ -2,19 +2,26 @@ import 'dart:convert';
 
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:todo_list/routers/route_keys.dart';
 
+import '../../preference/user_preference.dart';
 import 'network.dart';
 import '../../app_dependencies.dart';
 import '../logger.dart';
 import '../mem_cache.dart';
 
 class AuthInterceptor extends Interceptor {
+  final _preference = AppDependencies.injector.get<UserPreference>();
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (MemCache.accessToken.isNotEmpty) {
-      options.headers['Authorization'] = 'Bearer ${MemCache.accessToken}';
+    final String accessToken = await _preference.accessToken ?? '';
+    if (accessToken.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $accessToken';
     }
+    //     print('------------ preference ${await _preference.accessToken}');
+    // print('---------------- $accessToken}');
     super.onRequest(options, handler);
   }
 }
@@ -23,23 +30,21 @@ class TokenInterceptor extends QueuedInterceptor {
   final String _mainInstanceName;
 
   TokenInterceptor(this._mainInstanceName);
-
+  final _preference = AppDependencies.injector.get<UserPreference>();
+  
   Future<Map<String, dynamic>?> getToken() async {
     final Map<String, String> params = <String, String>{};
+    final String accessToken = await _preference.accessToken ?? ''; 
     final tokenDio =
-        AppDependencies.injector.get<RestUtils>(instanceName: 'AUTHEN');
+        AppDependencies.injector.get<RestUtils>(instanceName: 'MAIN');
     params['refreshToken'] = MemCache.refreshToken;
     params['clientId'] = MemCache.clientId;
     try {
       final Response response =
-          await tokenDio.dio.post<dynamic>('/refreshToken', data: params);
+          await tokenDio.dio.post<dynamic>(RouteKey.tickets, data: params);
       if (response.statusCode == ExceptionHandle.success) {
         return (json.decode(response.data.toString()) as Map<String, dynamic>);
       } else if (response.statusCode == ExceptionHandle.unauthorized) {
-        // final AuthGuard authenGuard = AppDependencies.injector.get<AuthGuard>();
-        // await authenGuard.clearDataLocal();
-        // final AppRouter appRouter = AppDependencies.injector.get<AppRouter>();
-        // await appRouter.replaceAll([const LoginRoute()]);
       }
     } catch (e) {
       LoggerUtils.e('Error: ${e.toString()}');
@@ -55,9 +60,9 @@ class TokenInterceptor extends QueuedInterceptor {
       LoggerUtils.d('-----------Request Token------------');
       final RestUtils restUtils = AppDependencies.injector
           .get<RestUtils>(instanceName: _mainInstanceName);
-      final Map<String, dynamic>? token = await getToken();
-      final String? accessToken = token?['access_token'];
-      final String? refreshToken = token?['refresh_token'];
+      // final Map<String, dynamic>? token = await getToken();
+      final String? accessToken = 'f09da0692d671f4a3dde13a43f7c316bbc8e693b';
+      final String? refreshToken = 'f09da0692d671f4a3dde13a43f7c316bbc8e693b';
       LoggerUtils.d(
           '-----------New AccessToken: $accessToken ------------New RefreshToken: $refreshToken');
       MemCache.accessToken = accessToken ?? '';
@@ -67,13 +72,12 @@ class TokenInterceptor extends QueuedInterceptor {
         final Dio dio = Dio();
         dio.options = restUtils.dio.options;
         final RequestOptions request = response.requestOptions;
-        request.headers['Authorization'] = 'Bearer $accessToken';
+        request.headers['Authorization'] = 'Bearer f09da0692d671f4a3dde13a43f7c316bbc8e693b';
 
         final Options options = Options(
           headers: request.headers,
           method: request.method,
         );
-
         try {
           LoggerUtils.d('----------- Re-Request API ------------');
           final Response response = await dio.request<dynamic>(
@@ -94,52 +98,3 @@ class TokenInterceptor extends QueuedInterceptor {
   }
 }
 
-class DefaultHeaderInterceptor extends Interceptor {
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-      options.headers['Authorization'] = 'Bearer ${MemCache.accessToken}';
-    super.onRequest(options, handler);
-  }
-}
-
-class LoggingInterceptor extends Interceptor {
-  late DateTime _startTime;
-  late DateTime _endTime;
-
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    _startTime = DateTime.now();
-    LoggerUtils.d('----------Start----------');
-    if (options.queryParameters.isEmpty) {
-      LoggerUtils.d('RequestUrl: ${options.baseUrl}${options.path}');
-    } else {
-      LoggerUtils.d(
-          'RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
-    }
-    LoggerUtils.d('RequestMethod: ${options.method}');
-    LoggerUtils.d('RequestHeaders:${options.headers}');
-    LoggerUtils.d('RequestContentType: ${options.contentType}');
-    LoggerUtils.d('RequestData: ${options.data.toString()}');
-    super.onRequest(options, handler);
-  }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    _endTime = DateTime.now();
-    final int duration = _endTime.difference(_startTime).inMilliseconds;
-    if (response.statusCode == ExceptionHandle.success) {
-      LoggerUtils.d('ResponseCode: ${response.statusCode}');
-    } else {
-      LoggerUtils.e('ResponseCode: ${response.statusCode}');
-    }
-    LoggerUtils.d('ResponseData: ${response.data.toString()}');
-    LoggerUtils.d('----------End: $duration millisecond----------');
-    super.onResponse(response, handler);
-  }
-
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    LoggerUtils.e('Error: ${err.message}');
-    super.onError(err, handler);
-  }
-}

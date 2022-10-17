@@ -6,11 +6,13 @@ import 'create_ticket_state.dart';
 
 class CreateTicketBloc extends BaseCubit<CreateTicketState> {
   final CreateTicketService? _service;
+    var now = DateTime.now();
 
   CreateTicketBloc(this._service) : super(const CreateTicketState.initial())
   {
    ticketItem = TicketListModel()
    ..projectId = '2300287753'
+   ..createdAt = DateTime(now.year + 100, now.month, now.day)
    ..content ='Completebcbcbcbcb task';
   }
   late TicketListModel ticketItem = TicketListModel();
@@ -19,7 +21,8 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       {String? content, String? id, Due? due, String? description}) async {
     final request = CreateTicketRequest()
       ..content = ticketItem.content ?? ''
-      ..due = Due(ticketItem.due?.date, ticketItem.due?.datetime)
+      ..due = Due(ticketItem.due?.datetime)
+      ..createdAt = DateTime.now()
       ..description = ticketItem.description;
 
     try {

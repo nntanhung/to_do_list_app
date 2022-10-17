@@ -44,7 +44,7 @@ class TicketDetailScreen extends StatelessWidget {
         color: AppColors.primaryWhite,
         padding: const EdgeInsets.only(top: Dimens.size12, bottom: Dimens.size16),
         child: Text(
-          tr('created_at', args: ['3/10/2022']),
+          tr('created_at', args: [DateTime.now().toString()]),
           textAlign: TextAlign.center,
           style: theme.headline6,
         ),

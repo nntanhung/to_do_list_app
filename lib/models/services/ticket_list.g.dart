@@ -7,31 +7,24 @@ part of 'ticket_list.dart';
 // **************************************************************************
 
 TicketListResponse _$TicketListResponseFromJson(Map<String, dynamic> json) =>
-    TicketListResponse()
-      ..result = json['result'] == null
-          ? null
-          : TicketResult.fromJson(json['result'] as Map<String, dynamic>);
+    TicketListResponse(
+      result: (json['result'] as List<dynamic>?)
+          ?.map((e) => TicketResultResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$TicketListResponseToJson(TicketListResponse instance) =>
     <String, dynamic>{
       'result': instance.result,
     };
 
-TicketResult _$TicketResultFromJson(Map<String, dynamic> json) => TicketResult()
-  ..listItem = (json['listItem'] as List<dynamic>?)
-      ?.map((e) => TicketResultResponse.fromJson(e as Map<String, dynamic>))
-      .toList();
-
-Map<String, dynamic> _$TicketResultToJson(TicketResult instance) =>
-    <String, dynamic>{
-      'listItem': instance.listItem,
-    };
-
 TicketResultResponse _$TicketResultResponseFromJson(
         Map<String, dynamic> json) =>
     TicketResultResponse(
-      creatorId: json['creatorId'] as String?,
-      createdAt: json['createdAt'] as String?,
+      creatorId: json['creator_id'] as String?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
       isCompleted: json['isCompleted'] as bool?,
       content: json['content'] as String?,
       description: json['description'] as String?,
@@ -41,7 +34,7 @@ TicketResultResponse _$TicketResultResponseFromJson(
       id: json['id'] as String?,
       labels:
           (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      projectId: json['projectId'] as String?,
+      projectId: json['project_id'] as String?,
       parentId: json['parentId'] as String?,
     );
 
@@ -49,7 +42,7 @@ Map<String, dynamic> _$TicketResultResponseToJson(
         TicketResultResponse instance) =>
     <String, dynamic>{
       'creatorId': instance.creatorId,
-      'createdAt': instance.createdAt,
+      'createdAt': instance.createdAt?.toIso8601String(),
       'isCompleted': instance.isCompleted,
       'content': instance.content,
       'description': instance.description,
@@ -77,13 +70,19 @@ Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
 }
 
 Due _$DueFromJson(Map<String, dynamic> json) => Due(
-      json['date'] == null ? null : DateTime.parse(json['date'] as String),
       json['datetime'] == null
           ? null
           : DateTime.parse(json['datetime'] as String),
+      date: json['date'] as String?,
+      lang: json['lang'] as String?,
+      string: json['string'] as String?,
+      isRecurring: json['isRecurring'] as bool?,
     );
 
 Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
-      'date': instance.date?.toIso8601String(),
+      'date': instance.date,
       'datetime': instance.datetime?.toIso8601String(),
+      'lang': instance.lang,
+      'string': instance.string,
+      'isRecurring': instance.isRecurring,
     };

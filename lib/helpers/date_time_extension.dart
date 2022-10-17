@@ -5,7 +5,7 @@ import 'package:todo_list/constants.dart';
 
 extension DateTimeExtension on DateTime {
 
-  String toHHmmDate() {
+  String toddMMMMyDate() {
     return DateFormat(DataFormat.ddMMMMy).format(this);
   }
 }

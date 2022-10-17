@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_list/routers/route_keys.dart';
+import 'package:todo_list/widgets/commons/common.dart';
 import 'package:todo_list/widgets/ticket_card.dart';
 
 import '../../blocs/bloc.dart';
@@ -74,32 +75,13 @@ class _TicketListPageState
                   bloc: bloc,
                   builder: (context, TicketListState state) {
                     return state.maybeWhen(
-                      // orElse: () => Container(
-                      //   height: 120,
-                      //   child: TicketCard(
-                      //     title: 'item.content',
-                      //     dateTime: DateTime.now(),
-                      //     description: 'item.description',
-                      //     onTap: () {
-                      //       AutoRouter.of(context).pushNamed(
-                      //         RouteKey.ticketDetail
-                      //             .replaceAll(':id', 'item.id'),
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
-                      orElse: () => Container(
-                        color: Colors.amber,
-                        height: 200,
-                        width: 400,
-                        child: Text('OrElse'),
-                      ),
+                      orElse: () => const LoadingStateWidget(),
                       success: (ticketList) => AnimationLimiter(
                         child: ListView.builder(
                           itemCount: ticketList?.length ?? 1,
                           padding: EdgeInsets.only(bottom: Dimens.size16),
                           itemBuilder: (context, index) {
-                          final item  =  ticketList![index];
+                          final item = ticketList![index];
                             return AnimationConfiguration.staggeredList(
                               position: index,
                               duration: const Duration(milliseconds: 1000),
@@ -108,7 +90,7 @@ class _TicketListPageState
                                 child: FadeInAnimation(
                                   child: TicketCard(
                                     title: item.content,
-                                    dateTime: item.due?.datetime,
+                                    createdAt: item.createdAt,
                                     description: item.description,
                                     onTap: () {
                                       AutoRouter.of(context).pushNamed(

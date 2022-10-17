@@ -20,22 +20,21 @@ mixin _$TicketListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(List<TicketResultResponse>? ticketList) success,
-    required TResult Function(List<TicketListModel>? ticketList, String message)
-        error,
+    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,8 +122,7 @@ class _$TicketListInitial implements TicketListInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(List<TicketResultResponse>? ticketList) success,
-    required TResult Function(List<TicketListModel>? ticketList, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
     return initial();
   }
@@ -134,7 +132,7 @@ class _$TicketListInitial implements TicketListInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
   }) {
     return initial?.call();
   }
@@ -144,7 +142,7 @@ class _$TicketListInitial implements TicketListInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -267,8 +265,7 @@ class _$TicketListSuccess implements TicketListSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(List<TicketResultResponse>? ticketList) success,
-    required TResult Function(List<TicketListModel>? ticketList, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
     return success(ticketList);
   }
@@ -278,7 +275,7 @@ class _$TicketListSuccess implements TicketListSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
   }) {
     return success?.call(ticketList);
   }
@@ -288,7 +285,7 @@ class _$TicketListSuccess implements TicketListSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -347,7 +344,7 @@ abstract class _$$TicketListErrorCopyWith<$Res> {
   factory _$$TicketListErrorCopyWith(
           _$TicketListError value, $Res Function(_$TicketListError) then) =
       __$$TicketListErrorCopyWithImpl<$Res>;
-  $Res call({List<TicketListModel>? ticketList, String message});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -363,14 +360,9 @@ class __$$TicketListErrorCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? ticketList = freezed,
     Object? message = freezed,
   }) {
     return _then(_$TicketListError(
-      ticketList: ticketList == freezed
-          ? _value._ticketList
-          : ticketList // ignore: cast_nullable_to_non_nullable
-              as List<TicketListModel>?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -382,25 +374,14 @@ class __$$TicketListErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TicketListError implements TicketListError {
-  const _$TicketListError(
-      {final List<TicketListModel>? ticketList, required this.message})
-      : _ticketList = ticketList;
-
-  final List<TicketListModel>? _ticketList;
-  @override
-  List<TicketListModel>? get ticketList {
-    final value = _ticketList;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  const _$TicketListError({required this.message});
 
   @override
   final String message;
 
   @override
   String toString() {
-    return 'TicketListState.error(ticketList: $ticketList, message: $message)';
+    return 'TicketListState.error(message: $message)';
   }
 
   @override
@@ -408,16 +389,12 @@ class _$TicketListError implements TicketListError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TicketListError &&
-            const DeepCollectionEquality()
-                .equals(other._ticketList, _ticketList) &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_ticketList),
-      const DeepCollectionEquality().hash(message));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -429,10 +406,9 @@ class _$TicketListError implements TicketListError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(List<TicketResultResponse>? ticketList) success,
-    required TResult Function(List<TicketListModel>? ticketList, String message)
-        error,
+    required TResult Function(String message) error,
   }) {
-    return error(ticketList, message);
+    return error(message);
   }
 
   @override
@@ -440,9 +416,9 @@ class _$TicketListError implements TicketListError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
   }) {
-    return error?.call(ticketList, message);
+    return error?.call(message);
   }
 
   @override
@@ -450,11 +426,11 @@ class _$TicketListError implements TicketListError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(List<TicketResultResponse>? ticketList)? success,
-    TResult Function(List<TicketListModel>? ticketList, String message)? error,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(ticketList, message);
+      return error(message);
     }
     return orElse();
   }
@@ -495,11 +471,9 @@ class _$TicketListError implements TicketListError {
 }
 
 abstract class TicketListError implements TicketListState {
-  const factory TicketListError(
-      {final List<TicketListModel>? ticketList,
-      required final String message}) = _$TicketListError;
+  const factory TicketListError({required final String message}) =
+      _$TicketListError;
 
-  List<TicketListModel>? get ticketList;
   String get message;
   @JsonKey(ignore: true)
   _$$TicketListErrorCopyWith<_$TicketListError> get copyWith =>

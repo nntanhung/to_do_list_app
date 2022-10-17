@@ -17,14 +17,10 @@ class SignInSuccess extends BaseState {
 
   SignInSuccess({this.nextPage});
   
-  @override
-  List<Object?> get props => throw UnimplementedError();
 }
 
 class SignInFail extends BaseState {
   final String errorMessage;
   SignInFail({required this.errorMessage});
   
-  @override
-  List<Object?> get props => throw UnimplementedError();
 }

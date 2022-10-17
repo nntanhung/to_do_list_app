@@ -37,32 +37,7 @@ final GlobalKey<FormBuilderState> _formKey =
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:
-            //  BlocProvider(
-            // create: (context) => bloc,
-            // child: BlocListener<SignUpBloc, BaseState>(
-            //   listener: (context, state) {
-            //     // if (state is LoginSuccess) {
-            //     //   if (state.nextPage != null) {
-            //     //     _router.pushNamed(state.nextPage!);
-            //     //   } else {
-            //     //     BaseDialog.show(
-            //     //       context,
-            //     //       builder: (context) => const ChooseClubPage(),
-            //     //     );
-            //     //   }
-            //     // } else if (state is LoginFail) {
-            //     //   ToastUtility.showError([state.errorMessage]);
-            //     //   if (state.code == ConfigBE.changePassword) {
-            //     //     BaseDialog.show(
-            //     //       context,
-            //     //       builder: (context) => ChangePasswordPage(userName: _userName),
-            //     //     );
-            //     //   }
-            //     // }
-            //   },
-            // child:
-            Padding(
+      body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: Dimens.size24),
       child: BodyAuthen(
         key: _formKey,

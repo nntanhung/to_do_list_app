@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'app_dependencies.dart';
+import 'preference/user_preference.dart';
 import 'todo_list_app.dart';
 import 'utilities/dialog_utility.dart';
 
@@ -23,6 +24,9 @@ void main() async {
 Future<bool> initApp() async {
   try {
     final bool result = await AppDependencies.initialize();
+    
+  final pref = AppDependencies.injector.get<UserPreference>();
+   await pref.setStatic();
     return result;
     
   } catch (e) {

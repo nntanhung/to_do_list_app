@@ -11,13 +11,13 @@ class TicketCard extends StatelessWidget {
   final Function()? onTap;
   final String? title;
   final String? description;
-  final DateTime? dateTime;
+  final DateTime? createdAt;
   const TicketCard({
     super.key,
     this.onTap,
     this.title,
     this.description,
-    this.dateTime,
+    this.createdAt,
   });
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,12 @@ class TicketCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const Spacer(),
-            Text(tr('created_at', args: [dateTime!.toHHmmDate()]), style: theme.subtitle2),
+            Text(
+                tr('created_at', args: [
+                 createdAt?.add(Duration(hours: 7)).toddMMMMyDate()
+                      ?? DateTime.now().toddMMMMyDate(),
+                ],),
+                style: theme.subtitle2),
           ],
         ),
       ),

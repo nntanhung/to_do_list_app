@@ -4,12 +4,13 @@ import 'dart:convert';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:todo_list/models/services/service_model.dart';
+import 'package:todo_list/models/views/ticket_list_model.dart';
 import '../logger.dart';
 import '../utility.dart';
 import 'base_response.dart';
 import 'data_result.dart';
 import 'error_handler.dart';
-
 
 int _connectTimeout = 30000;
 int _receiveTimeout = 30000;
@@ -40,6 +41,7 @@ class RestUtils {
       baseUrl: baseUrl,
     );
     dio = Dio(_options);
+
     /// Add default header interceptor
     // dio.interceptors.add(DefaultHeaderInterceptor());
 
@@ -69,7 +71,10 @@ class RestUtils {
         cancelToken: cancelToken,
       );
       final statusCode = response.statusCode;
-      final String dataResponse = response.data ?? '';
+      final String dataResponse = "{\n\"result\":\n${response.data}\n}";
+      // final String dataResponse = response.data ?? '';
+
+      print('--------- dataresponse \n$dataResponse');
       if (statusCode != null &&
           statusCode >= ExceptionHandle.success &&
           statusCode < ExceptionHandle.multipleChoice) {

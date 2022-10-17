@@ -36,6 +36,10 @@ class CreateTicketRequest extends BaseRequestModel {
   String? projectId;
   @JsonKey(includeIfNull: false)
   String? id;
+  @JsonKey(includeIfNull: false)
+  DateTime? createdAt;
+  @JsonKey(includeIfNull: false)
+  String? creatorId;
 
   CreateTicketRequest();
   @override

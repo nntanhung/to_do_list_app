@@ -33,7 +33,6 @@ class _SignInScreenState
   final passwordFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final _router = AppDependencies.injector.get<AppRouter>();
-  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
   final _signUpValidator = AppDependencies.injector.get<SignUpValidator>();
 
   final GlobalKey<FormBuilderState> _formKey =
@@ -51,71 +50,10 @@ class _SignInScreenState
     super.dispose();
   }
 
-  // @override
-  // Widget buildBody(BuildContext context) {
-  //   return Scaffold(
-  //     body: BlocConsumer(
-  //         bloc: bloc,
-  //         // create: (context) => bloc,
-  //         listener: (context, state) async {
-  //           if (state is SignInStateSuccess) {
-  //             if (state.nextPage != null) {
-  //               _router.pushNamed(state.nextPage!);
-  //               AutoRouter.of(context).pushNamed(RouteKey.tickets);
-  //               // } else {
-  //               //   BaseDialog.show(
-  //               //     context,
-  //               //     builder: (context) => const ChooseClubPage(),
-  //               //   );
-  //             }
-  //           } else if (state is SignInStateError) {
-  //             // ToastUtility.showError([state.errorMessage]);
-  //             // if (state.code == ConfigBE.changePassword) {
-  //             //   BaseDialog.show(
-  //             //     context,
-  //             //     builder: (context) => ChangePasswordPage(userName: _userName),
-  //             //   );
-  //             // }
-  //           }
-  //         },
-  //         builder: (context, SignInState state) {
-  //           return state.maybeWhen(
-  //             orElse: () => Container(
-  //               color: Colors.amber,
-  //             ),
-  //             success: (nextPage) => Padding(
-  //               padding: const EdgeInsets.symmetric(horizontal: Dimens.size24),
-  //               child: BodyAuthen(
-  //                 key: _formKey,
-  //                 emailFocusNode: emailFocusNode,
-  //                 passwordFocusNode: passwordFocusNode,
-  //                 signIn: true,
-  //                 textAccount: tr('dont_have_an_account'),
-  //                 textAccount1: tr('sign_up'),
-  //                 textButton: 'sign_in'.tr(),
-  //                 onTextClick: () {
-  //                   AutoRouter.of(context).pushNamed(RouteKey.signUp);
-  //                 },
-  //                 onTapped: () {
-  //                   if (_formKey.currentState!.validate()) {
-  //                     bloc.login(
-  //                         email: 'nntanhung@gmail.com', password: '12345678');
-  //                     // AutoRouter.of(context).pushNamed(RouteKey.tickets);
-  //                   }
-  //                 },
-  //               ),
-  //             ),
-  //           );
-  //         }),
-  //     // ),
-  //   );
-  // }
-
   @override
   Widget buildBody(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-      key: _messangerKey,
       body: BlocProvider(
         create: (context) => bloc,
         child: BlocListener<SignInBloc, BaseState>(
@@ -123,40 +61,17 @@ class _SignInScreenState
             if (state is SignInSuccess) {
               if (state.nextPage != null) {
                 _router.pushNamed(state.nextPage!);
-                _messangerKey.currentState!
-                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text('Login Success')));
               }
             } else if (state is SignInFail) {
-              _messangerKey.currentState!.showSnackBar(
-                  SnackBar(content: Text('trfykygh,gj,h.hjkkn.kj.kj. Data')));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text('Login Fail')));
             }
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimens.size24),
-            child:
-
-                // BodyAuthen(
-                //   key: _formKey,
-                //   emailFocusNode: emailFocusNode,
-                //   passwordFocusNode: passwordFocusNode,
-                //   signIn: true,
-                //   textAccount: tr('dont_have_an_account'),
-                //   textAccount1: tr('sign_up'),
-                //   textButton: 'sign_in'.tr(),
-                //   onTextClick: () {
-                //     AutoRouter.of(context).pushNamed(RouteKey.signUp);
-                //   },
-                //   onTapped: () {
-                //     if (_formKey.currentState!.validate()) {
-                //       bloc.login(
-                //           email: bloc.users!.email, password: bloc.users!.password);
-                //       // AutoRouter.of(context).pushNamed(RouteKey.tickets);
-                //       //   _bloc.add(RequestSignUpEvent());
-                //     }
-                //   },
-                // ),
-
-              FormBuilder(
+            child: FormBuilder(
               key: _formKey,
               child: Column(
                 children: [
@@ -168,14 +83,12 @@ class _SignInScreenState
                     ),
                   ),
                   TextFieldInput(
-                    name: 'email',
-                    hintText: 'email'.tr(),
+                    name: tr('email'),
+                    hintText: tr('email'),
                     focusNode: emailFocusNode,
                     refreshAfterBuild: true,
-                    validateOnFocusChange: true,
-                    inputFormatters: [
-                            LengthLimitingTextInputFormatter(30)
-                        ],
+                    // validateOnFocusChange: true,
+                    inputFormatters: [LengthLimitingTextInputFormatter(30)],
                     onChanged: (value) {
                       bloc.users!.email = value;
                     },
@@ -184,10 +97,10 @@ class _SignInScreenState
                         return _signUpValidator.validateEmail(value);
                       }
 
-                      if (bloc.users!.email!.isNotEmpty && StringUtils.isNotNullOrEmpty(value)) {
-                         return _signUpValidator.validateEmail(value);
+                      if (StringUtils.isNotNullOrEmpty(value)) {
+                        return _signUpValidator.validateEmail(value);
                       }
-
+                      print('------------ value $value');
                       return null;
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -197,15 +110,13 @@ class _SignInScreenState
                     height: Dimens.size16,
                   ),
                   TextFieldInput(
-                    name: 'password',
-                    hintText: 'password'.tr(),
+                    name: tr('password'),
+                    hintText: tr('password'),
                     focusNode: passwordFocusNode,
                     isPassword: true,
                     refreshAfterBuild: false,
                     validateOnFocusChange: true,
-                    inputFormatters: [
-                            LengthLimitingTextInputFormatter(30)
-                        ],
+                    inputFormatters: [LengthLimitingTextInputFormatter(30)],
                     onChanged: (value) {
                       bloc.users!.password = value;
                     },
@@ -213,7 +124,7 @@ class _SignInScreenState
                       if (passwordFocusNode.hasFocus) {
                         return _signUpValidator.validatePassword(value);
                       }
-                      if (bloc.users!.password!.isNotEmpty && StringUtils.isNotNullOrEmpty(value)) {
+                      if (StringUtils.isNotNullOrEmpty(value)) {
                         return _signUpValidator.validatePassword(value);
                       }
                       return null;
@@ -239,19 +150,25 @@ class _SignInScreenState
                         )),
                   ),
                   SingleButton(
-                      text: 'sign_in'.tr().toUpperCase(),
-                      borderRadius: Dimens.size12,
-                      backgroundColor: AppColors.appColor,
-                      onTapped: () {
-                        if (_formKey.currentState!.validate()) {
-                          bloc.login(
-                              email: bloc.users!.email,
-                              password: bloc.users!.password);
-                          // AutoRouter.of(context).pushNamed(RouteKey.tickets);
-                          print(bloc.users!.email);
-                          print(bloc.users!.password);
-                        }
-                      },),
+                    text: 'sign_in'.tr().toUpperCase(),
+                    borderRadius: Dimens.size12,
+                    backgroundColor: AppColors.appColor,
+                    onTapped: () {
+                      if (bloc.users!.email != null &&
+                          bloc.users!.password != null &&
+                          _formKey.currentState!.validate()) {
+                        bloc.login(
+                            email: bloc.users!.email,
+                            password: bloc.users!.password);
+                        // print(
+                        //     '---------------------- email ${bloc.users!.email}');
+                        // print(
+                        //     '---------------------- password ${bloc.users!.password}');
+                      } else {
+                        print("Not Validated");
+                      }
+                    },
+                  ),
                   const SizedBox(
                     height: Dimens.size16,
                   ),

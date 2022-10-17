@@ -15,15 +15,18 @@ class SignInBloc extends BaseCubit<BaseState> {
 
   Future<void> login({String? email, String? password}) async {
     showLoading();
-    UserAuth response =
-        await _authService!.login(email: email!, password: password!);
-    if (response.accessToken == MemCache.accessToken) {
-      emit(SignInSuccess(nextPage: RouteKey.tickets));
-    } else {
-      emit(SignInFail(
-        errorMessage: 'errorMessage',
-      ));
+    try {
+      UserAuth response = await _authService!
+          .login(email: email!.trim().toLowerCase(), password: password!);
+      if (response.accessToken == MemCache.accessToken) {
+        emit(SignInSuccess(nextPage: RouteKey.tickets));
+      } else {
+        emit(SignInFail(errorMessage: 'errorMessage'));
+      }
+      await dismissLoading();
+    } catch (e) {
+      emit(SignInFail(errorMessage: 'message faild'));
+      await dismissLoading();
     }
-    await dismissLoading();
   }
 }
