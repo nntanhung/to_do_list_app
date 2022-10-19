@@ -4,8 +4,9 @@ import 'package:datetime_picker_formfield_new/datetime_picker_formfield_new.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/styles/dimens.dart';
+
 import '../constants.dart';
+import '../styles/style.dart';
 import '../themes/theme.dart';
 import 'customize_date_time_picker.dart' as date;
 

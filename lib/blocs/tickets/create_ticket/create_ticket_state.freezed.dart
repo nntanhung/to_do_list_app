@@ -20,6 +20,7 @@ mixin _$CreateTicketState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
+    required TResult Function(CreateTicketResponse? createModel) load,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$CreateTicketState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$CreateTicketState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$CreateTicketState {
   TResult map<TResult extends Object?>({
     required TResult Function(CreateTicketInitial value) initial,
     required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketLoad value) load,
     required TResult Function(CreateTicketError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$CreateTicketState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$CreateTicketState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) =>
@@ -122,6 +128,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
+    required TResult Function(CreateTicketResponse? createModel) load,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -132,6 +139,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
   }) {
     return initial?.call();
@@ -142,6 +150,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -156,6 +165,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(CreateTicketInitial value) initial,
     required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketLoad value) load,
     required TResult Function(CreateTicketError value) error,
   }) {
     return initial(this);
@@ -166,6 +176,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
   }) {
     return initial?.call(this);
@@ -176,6 +187,7 @@ class _$CreateTicketInitial implements CreateTicketInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {
@@ -259,6 +271,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
+    required TResult Function(CreateTicketResponse? createModel) load,
     required TResult Function(String message) error,
   }) {
     return success(createModel);
@@ -269,6 +282,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
   }) {
     return success?.call(createModel);
@@ -279,6 +293,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -293,6 +308,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(CreateTicketInitial value) initial,
     required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketLoad value) load,
     required TResult Function(CreateTicketError value) error,
   }) {
     return success(this);
@@ -303,6 +319,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
   }) {
     return success?.call(this);
@@ -313,6 +330,7 @@ class _$CreateTicketSuccess implements CreateTicketSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {
@@ -330,6 +348,154 @@ abstract class CreateTicketSuccess implements CreateTicketState {
   CreateTicketResponse? get createModel;
   @JsonKey(ignore: true)
   _$$CreateTicketSuccessCopyWith<_$CreateTicketSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateTicketLoadCopyWith<$Res> {
+  factory _$$CreateTicketLoadCopyWith(
+          _$CreateTicketLoad value, $Res Function(_$CreateTicketLoad) then) =
+      __$$CreateTicketLoadCopyWithImpl<$Res>;
+  $Res call({CreateTicketResponse? createModel});
+}
+
+/// @nodoc
+class __$$CreateTicketLoadCopyWithImpl<$Res>
+    extends _$CreateTicketStateCopyWithImpl<$Res>
+    implements _$$CreateTicketLoadCopyWith<$Res> {
+  __$$CreateTicketLoadCopyWithImpl(
+      _$CreateTicketLoad _value, $Res Function(_$CreateTicketLoad) _then)
+      : super(_value, (v) => _then(v as _$CreateTicketLoad));
+
+  @override
+  _$CreateTicketLoad get _value => super._value as _$CreateTicketLoad;
+
+  @override
+  $Res call({
+    Object? createModel = freezed,
+  }) {
+    return _then(_$CreateTicketLoad(
+      createModel: createModel == freezed
+          ? _value.createModel
+          : createModel // ignore: cast_nullable_to_non_nullable
+              as CreateTicketResponse?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateTicketLoad implements CreateTicketLoad {
+  const _$CreateTicketLoad({this.createModel});
+
+  @override
+  final CreateTicketResponse? createModel;
+
+  @override
+  String toString() {
+    return 'CreateTicketState.load(createModel: $createModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateTicketLoad &&
+            const DeepCollectionEquality()
+                .equals(other.createModel, createModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(createModel));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$CreateTicketLoadCopyWith<_$CreateTicketLoad> get copyWith =>
+      __$$CreateTicketLoadCopyWithImpl<_$CreateTicketLoad>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(CreateTicketResponse? createModel) success,
+    required TResult Function(CreateTicketResponse? createModel) load,
+    required TResult Function(String message) error,
+  }) {
+    return load(createModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
+    TResult Function(String message)? error,
+  }) {
+    return load?.call(createModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(createModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateTicketInitial value) initial,
+    required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketLoad value) load,
+    required TResult Function(CreateTicketError value) error,
+  }) {
+    return load(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
+    TResult Function(CreateTicketError value)? error,
+  }) {
+    return load?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateTicketInitial value)? initial,
+    TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
+    TResult Function(CreateTicketError value)? error,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateTicketLoad implements CreateTicketState {
+  const factory CreateTicketLoad({final CreateTicketResponse? createModel}) =
+      _$CreateTicketLoad;
+
+  CreateTicketResponse? get createModel;
+  @JsonKey(ignore: true)
+  _$$CreateTicketLoadCopyWith<_$CreateTicketLoad> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -400,6 +566,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(CreateTicketResponse? createModel) success,
+    required TResult Function(CreateTicketResponse? createModel) load,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -410,6 +577,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -420,6 +588,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(CreateTicketResponse? createModel)? success,
+    TResult Function(CreateTicketResponse? createModel)? load,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -434,6 +603,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult map<TResult extends Object?>({
     required TResult Function(CreateTicketInitial value) initial,
     required TResult Function(CreateTicketSuccess value) success,
+    required TResult Function(CreateTicketLoad value) load,
     required TResult Function(CreateTicketError value) error,
   }) {
     return error(this);
@@ -444,6 +614,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
   }) {
     return error?.call(this);
@@ -454,6 +625,7 @@ class _$CreateTicketError implements CreateTicketError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateTicketInitial value)? initial,
     TResult Function(CreateTicketSuccess value)? success,
+    TResult Function(CreateTicketLoad value)? load,
     TResult Function(CreateTicketError value)? error,
     required TResult orElse(),
   }) {

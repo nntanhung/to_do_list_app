@@ -1,4 +1,3 @@
-
 class Constants {
   static const String emptyString = '';
   static const redAsterisk = ' *';
@@ -46,6 +45,7 @@ class ImageAssetPath {
   static const String line = 'assets/images/line.svg';
   static const String imageIcon = 'assets/images/image_ic.svg';
   static const String backIcon = 'assets/images/back_ic.svg';
+  static const String logout = 'assets/images/logout.svg';
 }
 class DataFormat {
   static const String ddMMyyyy = 'dd/MM/yyyy';

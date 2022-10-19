@@ -65,6 +65,12 @@ class _$AppRouter extends RootStackRouter {
         child: const CreateTicketScreen(),
       );
     },
+    LogOutScreenRoute.name: (routeData) {
+      return MaterialPageX<String>(
+        routeData: routeData,
+        child: const LogOutScreen(),
+      );
+    },
   };
 
   @override
@@ -98,6 +104,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           CreateTicketScreenRoute.name,
           path: '/create-ticket',
+        ),
+        RouteConfig(
+          LogOutScreenRoute.name,
+          path: '/log-out',
         ),
         RouteConfig(
           '*#redirect',
@@ -202,4 +212,16 @@ class CreateTicketScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CreateTicketScreenRoute';
+}
+
+/// generated route for
+/// [LogOutScreen]
+class LogOutScreenRoute extends PageRouteInfo<void> {
+  const LogOutScreenRoute()
+      : super(
+          LogOutScreenRoute.name,
+          path: '/log-out',
+        );
+
+  static const String name = 'LogOutScreenRoute';
 }

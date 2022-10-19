@@ -50,7 +50,7 @@ class _CustomAnimation extends easyLoading.EasyLoadingAnimation {
     AlignmentGeometry alignment,
   ) {
     return const SizedBox(
-      child: LoadingIndicator(),
+      child: LoadingStateWidget(),
       height: Dimens.size100,
       width: Dimens.size100,
     );

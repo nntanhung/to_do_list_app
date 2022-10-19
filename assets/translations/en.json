@@ -34,5 +34,8 @@
     "issue_day_error": "Vui lòng nhập ngày tháng",
     "error_validate_format_day": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy.",
     "required_field": "Required field",
+    "nnth": "NGÔ NGUYỄN TẤN HƯNG",
+    "exit_app": "Do you want to exit app?",
+    "yes": "Yes",
     "end_json": ""
 }

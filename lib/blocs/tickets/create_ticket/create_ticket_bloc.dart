@@ -1,20 +1,14 @@
 import '../../../models/services/service_model.dart';
-import '../../../models/views/ticket_list_model.dart';
+import '../../../models/views/view_model.dart';
 import '../../../services/create_ticket_service.dart';
-import '../../base_bloc/bloc.dart';
+import '../../base_bloc/base_bloc.dart';
 import 'create_ticket_state.dart';
 
 class CreateTicketBloc extends BaseCubit<CreateTicketState> {
   final CreateTicketService? _service;
-    var now = DateTime.now();
+  var now = DateTime.now();
 
-  CreateTicketBloc(this._service) : super(const CreateTicketState.initial())
-  {
-   ticketItem = TicketListModel()
-   ..projectId = '2300287753'
-   ..createdAt = DateTime(now.year + 100, now.month, now.day)
-   ..content ='Completebcbcbcbcb task';
-  }
+  CreateTicketBloc(this._service) : super(const CreateTicketState.initial());
   late TicketListModel ticketItem = TicketListModel();
 
   Future<void> requestData(
@@ -22,7 +16,7 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
     final request = CreateTicketRequest()
       ..content = ticketItem.content ?? ''
       ..due = Due(ticketItem.due?.datetime)
-      ..createdAt = DateTime.now()
+      ..createdAt = DateTime(now.year + 100, now.month, now.day)
       ..description = ticketItem.description;
 
     try {

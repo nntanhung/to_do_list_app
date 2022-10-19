@@ -15,7 +15,7 @@ class TicketListResponse extends BaseResponseModel {
 }
 
 @JsonSerializable()
-class TicketResultResponse{
+class TicketResultResponse extends BaseResponseModel{
   String? creatorId;
   DateTime? createdAt;
   bool? isCompleted;

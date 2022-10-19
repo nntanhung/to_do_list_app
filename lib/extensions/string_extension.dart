@@ -8,5 +8,4 @@ class ConvertUtility {
       return format.format(dateTime);
     }
   }
-
 }

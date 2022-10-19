@@ -25,7 +25,7 @@ TicketResultResponse _$TicketResultResponseFromJson(
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
-      isCompleted: json['isCompleted'] as bool?,
+      isCompleted: json['is_completed'] as bool?,
       content: json['content'] as String?,
       description: json['description'] as String?,
       due: json['due'] == null
@@ -35,22 +35,22 @@ TicketResultResponse _$TicketResultResponseFromJson(
       labels:
           (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList(),
       projectId: json['project_id'] as String?,
-      parentId: json['parentId'] as String?,
+      parentId: json['parent_id'] as String?,
     );
 
 Map<String, dynamic> _$TicketResultResponseToJson(
         TicketResultResponse instance) =>
     <String, dynamic>{
-      'creatorId': instance.creatorId,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'isCompleted': instance.isCompleted,
+      'creator_id': instance.creatorId,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'is_completed': instance.isCompleted,
       'content': instance.content,
       'description': instance.description,
       'due': instance.due,
       'id': instance.id,
       'labels': instance.labels,
-      'projectId': instance.projectId,
-      'parentId': instance.parentId,
+      'project_id': instance.projectId,
+      'parent_id': instance.parentId,
     };
 
 TicketListRequest _$TicketListRequestFromJson(Map<String, dynamic> json) =>
@@ -76,7 +76,7 @@ Due _$DueFromJson(Map<String, dynamic> json) => Due(
       date: json['date'] as String?,
       lang: json['lang'] as String?,
       string: json['string'] as String?,
-      isRecurring: json['isRecurring'] as bool?,
+      isRecurring: json['is_recurring'] as bool?,
     );
 
 Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
@@ -84,5 +84,5 @@ Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
       'datetime': instance.datetime?.toIso8601String(),
       'lang': instance.lang,
       'string': instance.string,
-      'isRecurring': instance.isRecurring,
+      'is_recurring': instance.isRecurring,
     };

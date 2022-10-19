@@ -5,13 +5,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/validator/sign_up_validator.dart';
 
 import '../app_dependencies.dart';
 import '../constants.dart';
 import '../routers/route_keys.dart';
 import '../styles/style.dart';
 import '../themes/theme.dart';
+import '../validator/sign_up_validator.dart';
 import 'commons/common.dart';
 
 class BodyAuthen extends StatefulWidget {

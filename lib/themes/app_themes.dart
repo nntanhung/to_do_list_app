@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../styles/dimens.dart';
 
+import '../../styles/dimens.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -48,7 +48,7 @@ class AppTheme {
           ),
 
           bodyText1: TextStyle(
-            color: AppColors.primaryBlack,
+            color: AppColors.appColor,
             fontSize: 16.0,
             fontWeight: FontWeight.w400,
             fontFamily: 'Montserrat'

@@ -1,9 +1,6 @@
-import 'package:todo_list/helpers/api_config_path.dart';
-
+import '../helpers/helper.dart';
 import '../models/services/create_ticket.dart';
-import '../utilities/network/base_response.dart';
-import '../utilities/network/data_result.dart';
-import '../utilities/network/rest_utility.dart';
+import '../utilities/network/network.dart';
 import 'base_service.dart';
 
 class CreateTicketService extends BaseService {

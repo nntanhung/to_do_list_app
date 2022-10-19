@@ -1,4 +1,3 @@
-
 import 'package:flutter/services.dart';
 
 class NoLeadingSpaceFormatter extends TextInputFormatter {

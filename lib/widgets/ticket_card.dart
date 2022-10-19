@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/helpers/helper.dart';
-import '../constants.dart';
 
+import '../constants.dart';
+import '../helpers/helper.dart';
 import '../styles/style.dart';
 import '../themes/theme.dart';
 
@@ -44,7 +44,13 @@ class TicketCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title!, style: theme.headline5),
+                Expanded(
+                  child: Text(title!, style: theme.headline5,
+                  overflow: TextOverflow.ellipsis,),
+                ),
+                 const SizedBox(
+              width: Dimens.size8,
+            ),
                 SvgPicture.asset(
                   ImageAssetPath.clockSmallIcon,
                   color: AppColors.primaryWhite,

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_list/styles/dimens.dart';
-import 'package:todo_list/themes/app_colors.dart';
 
 import '../../constants.dart';
+import '../../styles/style.dart';
+import '../../themes/theme.dart';
 import '../../utilities/formater_text_input.dart';
 
 class TextFieldInput extends StatefulWidget {

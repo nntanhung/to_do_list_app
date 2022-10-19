@@ -7,5 +7,6 @@ class BlocDependencies {
     injector.registerFactory<CreateTicketBloc>(() => CreateTicketBloc(injector()));
     injector.registerFactory<TicketListBloc>(() => TicketListBloc(injector()));
     injector.registerFactory<SignInBloc>(() => SignInBloc(injector(), injector()));
+    injector.registerFactory<TicketDetailBloc>(() => TicketDetailBloc(injector()));
   }
 }

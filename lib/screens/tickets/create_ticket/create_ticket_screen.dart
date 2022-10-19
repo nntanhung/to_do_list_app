@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/models/services/ticket_list.dart';
+import 'package:todo_list/routers/route_keys.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
+import '../../../models/services/service_model.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
 import '../../../widgets/base_cubit_stateful_widget.dart';
@@ -43,150 +44,169 @@ class _CreateTicketScreenState
 
   @override
   Widget buildBody(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(
         debugLabel: 'GlobalFormKey #Create Ticket ');
-    var now = DateTime.now();
 
     return Scaffold(
       backgroundColor: AppColors.appColor,
-      body: Padding(
-        padding: const EdgeInsets.only(
-            left: Dimens.size24,
-            top: Dimens.size16,
-            right: Dimens.size24,
-            bottom: Dimens.size24),
-        child: FormBuilder(
-          key: _formKey,
-          child: BlocProvider(
-            create: (context) => bloc,
-            child: BlocBuilder<CreateTicketBloc, CreateTicketState>(
-              bloc: bloc,
-              builder: (context, CreateTicketState state) {
-                return state.maybeWhen(
-                  orElse: () => Container(
-                    color: Colors.blueAccent,
-                    height: 400,
-                  ),
-                  success: (createModel) => SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        // SvgPicture.asset(ImageAssetPath.line),
-                        // const SizedBox(
-                        //   height: 20,
-                        // ),
-                        TextFieldInput(
-                          name: 'title',
-                          hintText: 'title'.tr(),
-                          refreshAfterBuild: true,
-                          validateOnFocusChange: true,
-                          focusNode: contentFocusNode,
-                          onChanged: (value) {
-                            bloc.ticketItem.content = value;
-                          },
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return tr('required_field');
-                            }
-                            return null;
-                          },
-                          colorText: AppColors.primaryWhite,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                        ),
-                        const SizedBox(
-                          height: Dimens.size16,
-                        ),
-                        TextFieldInput(
-                          name: 'description',
-                          hintText: 'description'.tr(),
-                          refreshAfterBuild: true,
-                          validateOnFocusChange: true,
-                          onChanged: (value) {
-                            bloc.ticketItem.description = value;
-                          },
-                          validator: (value) {
-                            return null;
-                          },
-                          maxLines: 13,
-                          colorText: AppColors.primaryWhite,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                        ),
-                        const SizedBox(
-                          height: Dimens.size16,
-                        ),
-                        CustomDatePicker(
-                          isEditable: true,
-                          key: ValueKey('issue'),
-                          hintText: tr('deadline_optional'),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          firstDate: DateTime(now.year, now.month, now.day),
-                          lastDate:
-                              DateTime(now.year + 100, now.month, now.day),
-                          errorMaxLines: 2,
-                          colorField: AppColors.primaryWhite,
-                          errorInvalidText: tr('issue_day_error'),
-                          onChanged: (value) {
-                            if (value != null) {
-                              bloc.ticketItem.due?.datetime = value;
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          height: Dimens.size16,
-                        ),
-                        TextFieldInput(
-                          name: 'add_image_optional',
-                          hintText: 'add_image_optional'.tr(),
-                          validator: (value) {
-                            return null;
-                          },
-                          suffixIcon: SvgPicture.asset(
-                            ImageAssetPath.imageIcon,
-                            color: AppColors.primaryWhite,
-                            height: Dimens.size22,
-                            width: Dimens.size22,
-                          ),
-                          colorText: AppColors.primaryWhite,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                        ),
-                        const SizedBox(
-                          height: Dimens.size16,
-                        ),
-                        SingleButton(
-                          text: tr('add_todo'),
-                          textStyle:
-                              theme.button!.copyWith(color: AppColors.appColor),
-                          borderRadius: Dimens.size12,
-                          backgroundColor: AppColors.primaryWhite,
-                          onTapped: () async {
-                            if (_formKey.currentState!.validate()) {
-                              await bloc.requestData(
-                                content: bloc.ticketItem.content ??
-                                    'content pikachu',
-                                id: bloc.ticketItem.id,
-                                due: Due(bloc.ticketItem.due?.datetime),
-                                description: bloc.ticketItem.description ??
-                                    'Leader_  AutoRouter.of(context).pushNamed(level05',
-                              );
-                              print(
-                                  '----- value date ${bloc.ticketItem.due?.date}');
-                              AutoRouter.of(context).pop(true);
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          height: Dimens.size76,
-                        ),
-                      ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(
+              left: Dimens.size24,
+              top: Dimens.size16,
+              right: Dimens.size24,
+              bottom: Dimens.size24),
+          child: FormBuilder(
+            key: _formKey,
+            child: BlocProvider(
+              create: (context) => bloc,
+              child: BlocBuilder<CreateTicketBloc, CreateTicketState>(
+                bloc: bloc,
+                builder: (context, CreateTicketState state) {
+                  return state.maybeWhen(
+                    orElse: () => FormCreateTask(
+                      contentFocusNode: contentFocusNode,
+                      bloc: bloc,
+                      formKey: _formKey,
                     ),
-                  ),
-                );
-              },
+                    initial: () => const LoadingStateWidget(color: AppColors.primaryWhite,),
+                    success: (createModel) => FormCreateTask(
+                      contentFocusNode: contentFocusNode,
+                      bloc: bloc,
+                      formKey: _formKey,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FormCreateTask extends StatelessWidget {
+  const FormCreateTask(
+      {Key? key, this.contentFocusNode, this.bloc, this.formKey})
+      : super(key: key);
+
+  final FocusNode? contentFocusNode;
+  final CreateTicketBloc? bloc;
+  final GlobalKey<FormBuilderState>? formKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    var now = DateTime.now();
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // SvgPicture.asset(ImageAssetPath.line),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          TextFieldInput(
+            name: 'title',
+            hintText: 'title'.tr(),
+            refreshAfterBuild: true,
+            validateOnFocusChange: true,
+            focusNode: contentFocusNode,
+            onChanged: (value) {
+              bloc?.ticketItem.content = value;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return tr('required_field');
+              }
+              return null;
+            },
+            colorText: AppColors.primaryWhite,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+          const SizedBox(
+            height: Dimens.size16,
+          ),
+          TextFieldInput(
+            name: 'description',
+            hintText: 'description'.tr(),
+            refreshAfterBuild: true,
+            validateOnFocusChange: true,
+            onChanged: (value) {
+              bloc?.ticketItem.description = value;
+            },
+            validator: (value) {
+              return null;
+            },
+            maxLines: 13,
+            colorText: AppColors.primaryWhite,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+          const SizedBox(
+            height: Dimens.size16,
+          ),
+          CustomDatePicker(
+            isEditable: true,
+            key: ValueKey('issue'),
+            hintText: tr('deadline_optional'),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            firstDate: DateTime(now.year, now.month, now.day),
+            lastDate: DateTime(now.year + 100, now.month, now.day),
+            errorMaxLines: 2,
+            colorField: AppColors.primaryWhite,
+            errorInvalidText: tr('issue_day_error'),
+            onChanged: (value) {
+              if (value != null) {
+                bloc?.ticketItem.due?.datetime = value;
+              }
+            },
+          ),
+          const SizedBox(
+            height: Dimens.size16,
+          ),
+          TextFieldInput(
+            name: 'add_image_optional',
+            hintText: 'add_image_optional'.tr(),
+            validator: (value) {
+              return null;
+            },
+            suffixIcon: SvgPicture.asset(
+              ImageAssetPath.imageIcon,
+              color: AppColors.primaryWhite,
+              height: Dimens.size22,
+              width: Dimens.size22,
+            ),
+            colorText: AppColors.primaryWhite,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+          const SizedBox(
+            height: Dimens.size16,
+          ),
+          SingleButton(
+            text: tr('add_todo'),
+            textStyle: theme.button!.copyWith(color: AppColors.appColor),
+            borderRadius: Dimens.size12,
+            backgroundColor: AppColors.primaryWhite,
+            onTapped: () async {
+              if (formKey!.currentState!.validate()) {
+                await bloc?.requestData(
+                  content: bloc?.ticketItem.content ?? 'content pikachu',
+                  id: bloc?.ticketItem.id,
+                  due: Due(bloc?.ticketItem.due?.datetime),
+                  description: bloc?.ticketItem.description ??
+                      'Leader_  AutoRouter.of(context).pushNamed(level05',
+                );
+                print('----- value date ${bloc?.ticketItem.due?.date}');
+                AutoRouter.of(context).pushNamed(RouteKey.tickets);
+              }
+            },
+          ),
+          const SizedBox(
+            height: Dimens.size76,
+          ),
+        ],
       ),
     );
   }

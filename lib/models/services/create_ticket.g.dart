@@ -55,9 +55,9 @@ Map<String, dynamic> _$CreateTicketRequestToJson(CreateTicketRequest instance) {
   writeNotNull('content', instance.content);
   writeNotNull('description', instance.description);
   writeNotNull('due', instance.due);
-  writeNotNull('projectId', instance.projectId);
+  writeNotNull('project_id', instance.projectId);
   writeNotNull('id', instance.id);
-  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
-  writeNotNull('creatorId', instance.creatorId);
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  writeNotNull('creator_id', instance.creatorId);
   return val;
 }

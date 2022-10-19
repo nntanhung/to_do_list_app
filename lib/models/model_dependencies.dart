@@ -1,10 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:todo_list/models/services/user.dart';
-import 'package:todo_list/models/services/user_auth.dart';
-import 'package:todo_list/models/views/ticket_list_model.dart';
 
-import 'services/create_ticket.dart';
-import 'services/ticket_list.dart';
+import 'services/service_model.dart';
+import 'views/view_model.dart';
+
 
 class ModelDependencies {
   static void init(GetIt injector) {

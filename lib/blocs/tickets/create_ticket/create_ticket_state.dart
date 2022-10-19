@@ -8,6 +8,8 @@ class CreateTicketState with _$CreateTicketState {
   const factory CreateTicketState.initial() = CreateTicketInitial;
   const factory CreateTicketState.success({CreateTicketResponse? createModel}) =
       CreateTicketSuccess;
+  const factory CreateTicketState.load({CreateTicketResponse? createModel}) =
+      CreateTicketLoad;
 
   const factory CreateTicketState.error({required String message}) =
       CreateTicketError;

@@ -14,6 +14,7 @@ class ServiceDependencies {
         interceptors: [AuthInterceptor(), TokenInterceptor('MAIN')]));
     injector.registerLazySingleton<CreateTicketService>(() => CreateTicketService());
     injector.registerLazySingleton<TicketListService>(() => TicketListService());
+    injector.registerLazySingleton<TicketDetailService>(() => TicketDetailService());
     injector.registerLazySingleton<AuthenticateService>(() => AuthenticateService());
   }
 }

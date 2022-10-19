@@ -7,15 +7,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/blocs/authen/sign_in/sign_in_bloc.dart';
-import 'package:todo_list/routers/route_keys.dart';
-import 'package:todo_list/styles/dimens.dart';
 
 import '../../app_dependencies.dart';
+import '../../blocs/authen/sign_in/sign_in_bloc.dart';
 import '../../blocs/authen/sign_in/sign_in_state.dart';
 import '../../blocs/base_bloc/base_state.dart';
 import '../../constants.dart';
 import '../../routers/app_router.dart';
+import '../../routers/route_keys.dart';
+import '../../styles/dimens.dart';
 import '../../themes/app_colors.dart';
 import '../../validator/sign_up_validator.dart';
 import '../../widgets/base_cubit_stateful_widget.dart';
@@ -100,7 +100,6 @@ class _SignInScreenState
                       if (StringUtils.isNotNullOrEmpty(value)) {
                         return _signUpValidator.validateEmail(value);
                       }
-                      print('------------ value $value');
                       return null;
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,

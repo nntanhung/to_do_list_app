@@ -33,5 +33,8 @@
     "password_validate_error": "Mật khẩu phải chứa ít nhất 06 ký tự.",
     "issue_day_error": "Vui lòng nhập ngày tháng",
     "required_field": "Đây là trường bắt buộc",
+    "nnth": "NGÔ NGUYỄN TẤN HƯNG",
+    "exit_app": "Bạn có muốn thoát app?",
+    "yes": "Đồng ý",
     "end_json": ""
 }
