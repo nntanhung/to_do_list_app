@@ -8,12 +8,16 @@ part 'create_ticket.g.dart';
 @JsonSerializable()
 class CreateTicketResponse extends BaseResponseModel {
   String? id;
-  String? name;
-  int? commentCount;
-  String? color;
-  bool? isShared;
-  int? order;
-  bool? isFavorite;
+  String? projectId;
+  String? content;
+  String? description;
+  bool? isCompleted;
+  List<String>? labels;
+  int? priority;
+  String? creatorId;
+  DateTime? createdAt;
+  Due? due;
+  String? url;
 
   
   @override

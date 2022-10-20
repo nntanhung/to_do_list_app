@@ -36,5 +36,7 @@
     "nnth": "NGÔ NGUYỄN TẤN HƯNG",
     "exit_app": "Bạn có muốn thoát app?",
     "yes": "Đồng ý",
+    "login_success": "Đăng nhập thành công",
+    "login_fail": "Đăng nhập không thành công",
     "end_json": ""
 }

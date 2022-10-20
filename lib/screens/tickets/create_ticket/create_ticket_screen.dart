@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/routers/route_keys.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
-import '../../../models/services/service_model.dart';
+import '../../../models/views/ticket_list_model.dart';
+import '../../../routers/route_keys.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
 import '../../../widgets/base_cubit_stateful_widget.dart';
@@ -27,13 +27,6 @@ class CreateTicketScreen extends BaseCubitStatefulWidget {
 class _CreateTicketScreenState
     extends BaseCubitStateFulWidgetState<CreateTicketBloc, CreateTicketScreen> {
   final contentFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    bloc.requestData();
-
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -64,12 +57,12 @@ class _CreateTicketScreenState
                 bloc: bloc,
                 builder: (context, CreateTicketState state) {
                   return state.maybeWhen(
-                    orElse: () => FormCreateTask(
+                    orElse: () => const LoadingStateWidget(color: AppColors.primaryWhite,),
+                    initial: () => FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
                       formKey: _formKey,
                     ),
-                    initial: () => const LoadingStateWidget(color: AppColors.primaryWhite,),
                     success: (createModel) => FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
@@ -148,8 +141,8 @@ class FormCreateTask extends StatelessWidget {
             height: Dimens.size16,
           ),
           CustomDatePicker(
-            isEditable: true,
             key: ValueKey('issue'),
+            isEditable: true,
             hintText: tr('deadline_optional'),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             firstDate: DateTime(now.year, now.month, now.day),
@@ -160,6 +153,8 @@ class FormCreateTask extends StatelessWidget {
             onChanged: (value) {
               if (value != null) {
                 bloc?.ticketItem.due?.datetime = value;
+             
+                print('----- value datetime on ${bloc?.ticketItem.due?.datetime}');
               }
             },
           ),
@@ -194,11 +189,11 @@ class FormCreateTask extends StatelessWidget {
                 await bloc?.requestData(
                   content: bloc?.ticketItem.content ?? 'content pikachu',
                   id: bloc?.ticketItem.id,
-                  due: Due(bloc?.ticketItem.due?.datetime),
-                  description: bloc?.ticketItem.description ??
-                      'Leader_  AutoRouter.of(context).pushNamed(level05',
+                  due: DueModel(datetime: bloc?.ticketItem.due?.datetime ?? now, ),
+                  createdAt: now,
+                  description: bloc?.ticketItem.description,
                 );
-                print('----- value date ${bloc?.ticketItem.due?.date}');
+                print('----- value date ${bloc?.ticketItem.due?.datetime}');
                 AutoRouter.of(context).pushNamed(RouteKey.tickets);
               }
             },

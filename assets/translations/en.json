@@ -37,5 +37,7 @@
     "nnth": "NGÔ NGUYỄN TẤN HƯNG",
     "exit_app": "Do you want to exit app?",
     "yes": "Yes",
+    "login_success": "Login Success",
+    "login_fail": "Login Fail",
     "end_json": ""
 }

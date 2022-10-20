@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:todo_list/routers/route_keys.dart';
 
 import '../../../widgets/widget.dart';
 import '../../../blocs/bloc.dart';
@@ -46,17 +47,18 @@ class _TicketDetailScreenState
             onPressed: null,
             icon: SvgPicture.asset(ImageAssetPath.clockIcon),
           ),
+          
           IconButton(
-            onPressed: null,
+            onPressed: () =>  AutoRouter.of(context).pushNamed(RouteKey.createTicket),
             icon: SvgPicture.asset(ImageAssetPath.editIcon),
           ),
           IconButton(
-            onPressed: null,
+            onPressed: () => _buildBottomSheet(context),
             icon: SvgPicture.asset(ImageAssetPath.trashIcon),
           ),
         ],
       ),
-      bottomSheet:BlocProvider(
+      bottomSheet: BlocProvider(
         create: (context) => bloc,
         child: BlocBuilder(
           bloc: bloc,
@@ -68,17 +70,21 @@ class _TicketDetailScreenState
                     height: 500,
                   )),
               success: (ticketList) => Container(
-        width: double.infinity,
-        color: AppColors.primaryWhite,
-        padding:
-            const EdgeInsets.only(top: Dimens.size12, bottom: Dimens.size16),
-        child: Text(
-          tr('created_at', args: [ticketList?.createdAt!.toddMMMMyDate() ?? '']),
-          textAlign: TextAlign.center,
-          style: theme.headline6,
+                width: double.infinity,
+                color: AppColors.primaryWhite,
+                padding: const EdgeInsets.only(
+                    top: Dimens.size12, bottom: Dimens.size16),
+                child: Text(
+                  tr('created_at',
+                      args: [ticketList?.createdAt!.toddMMMMyDate() ?? '']),
+                  textAlign: TextAlign.center,
+                  style: theme.headline6,
+                ),
+              ),
+            );
+          },
         ),
-      ),);})),
-
+      ),
       body: BlocProvider(
         create: (context) => bloc,
         child: BlocBuilder(
@@ -119,52 +125,65 @@ class _TicketDetailScreenState
           },
         ),
       ),
+    );
+  }
 
-      // body: Padding(
-      //   padding: const EdgeInsets.only(left: Dimens.size24, top: Dimens.size16, right: Dimens.size24, ),
-      //   child: SingleChildScrollView(
-      //     physics: const BouncingScrollPhysics(),
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Text(
-      //            'Icon Button jnjgjgj'.toUpperCase(),
-      //           style: theme.headline4,
-      //         ),
-      //         const SizedBox(height: Dimens.size24),
-      //         Text(
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.clockSmallIcon)'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.editIcon),),'
-      //           'IconButton(onPressed: null, icon:  SvgPicture.asset(ImageAssetPath.trashIcon)'
-      //           'If theres a translation key that will always have the same concrete text as another one you can just link to it. To link to another translation key, all you have to do is to prefix its contents with an @: sign followed by the full name of the translation key including the namespace you want to link to.',
-      //           style: theme.headline6,
-      //         ),
-      //         SizedBox(height: h/2),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+  _buildBottomSheet(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (builder) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BlocProvider(
+                create: (context) => bloc,
+                child: BlocBuilder(
+                  bloc: bloc,
+                  builder: (context, TicketDetailState state) {
+                    return state.maybeWhen(
+                      orElse: () => const LoadingStateWidget(),
+                      error: ((message) => Container(
+                            color: Colors.amber,
+                            height: 500,
+                          )),
+                      success: (ticketList) => SingleButton(
+                        text: 'delete_todo'.tr(),
+                        borderRadius: Dimens.size12,
+                        textStyle: theme.bodyText1!
+                            .copyWith(color: AppColors.appColor),
+                        backgroundColor: AppColors.primaryWhite,
+                        onTapped: () async {
+                          await bloc.removeTicket(ticketList!.id);
+                          AutoRouter.of(context).pushNamed(RouteKey.tickets);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: Dimens.size24),
+              SingleButton(
+                text: 'cancel'.tr(),
+                borderRadius: Dimens.size12,
+                backgroundColor: AppColors.primaryWhite,
+                textStyle:
+                    theme.bodyText1!.copyWith(color: AppColors.greenLight),
+                onTapped: () {
+                  AutoRouter.of(context).pop();
+                },
+              ),
+              const SizedBox(height: Dimens.size55),
+            ],
+          ),
+        );
+      },
     );
   }
 }

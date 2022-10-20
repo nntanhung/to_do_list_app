@@ -27,9 +27,17 @@ class TicketListModel {
       this.url});
 }
 
-class ListItem {
-  List<TicketListModel> listItem;
-  ListItem({
-    required this.listItem,
+class DueModel {
+  String? date;
+  DateTime? datetime;
+  String? lang;
+  String? string;
+  bool? isRecurring;
+  DueModel({
+    this.date,
+    this.datetime,
+    this.lang,
+    this.string,
+    this.isRecurring,
   });
 }

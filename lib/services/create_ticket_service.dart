@@ -14,14 +14,6 @@ class CreateTicketService extends BaseService {
     );
   }
 
-  Future<DataResult<DataResponse<CreateTicketResponse>>> getUpdateTask(
-      CreateTicketRequest request) async {
-    return rest.request<CreateTicketResponse>(
-      Method.post,
-      APIConfigPath.tasks,
-      data: request.toJson(),
-    );
-  }
   Future<DataResult<DataResponse<CreateTicketResponse>>> getDeleteTask(
       CreateTicketRequest request) async {
     return rest.request<CreateTicketResponse>(

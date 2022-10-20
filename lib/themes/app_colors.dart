@@ -14,11 +14,7 @@ class AppColors {
 
   static const shadowColor = Color.fromRGBO(0, 0, 0, 0.05);
 
-
-  ///BEGIN -- New UI COLOR
-  static const gradientGreen1 = Color(0xFF2DA04B);
-  static const gradientGreen2 = Color(0xFF53C670);
-  static const greenLight = Color(0xFFE7FFE5);
+  static const greenLight = Color(0x8000FF19);
 
   ///END -- New UI COLOR
 static const Color materialOrange = Color.fromRGBO(255, 171, 64, 1);

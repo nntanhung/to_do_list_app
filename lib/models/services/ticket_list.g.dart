@@ -54,7 +54,16 @@ Map<String, dynamic> _$TicketResultResponseToJson(
     };
 
 TicketListRequest _$TicketListRequestFromJson(Map<String, dynamic> json) =>
-    TicketListRequest()..id = json['id'] as String?;
+    TicketListRequest()
+      ..content = json['content'] as String?
+      ..description = json['description'] as String?
+      ..due = json['due'] == null
+          ? null
+          : Due.fromJson(json['due'] as Map<String, dynamic>)
+      ..projectId = json['project_id'] as String?
+      ..id = json['id'] as String?
+      ..createdAt = json['created_at'] as String?
+      ..creatorId = json['creator_id'] as String?;
 
 Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
   final val = <String, dynamic>{};
@@ -65,7 +74,13 @@ Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
     }
   }
 
+  writeNotNull('content', instance.content);
+  writeNotNull('description', instance.description);
+  writeNotNull('due', instance.due);
+  writeNotNull('project_id', instance.projectId);
   writeNotNull('id', instance.id);
+  writeNotNull('created_at', instance.createdAt);
+  writeNotNull('creator_id', instance.creatorId);
   return val;
 }
 

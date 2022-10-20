@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:todo_list/helpers/helper.dart';
 
 import '../../routers/route_keys.dart';
 import '../../themes/theme.dart';
@@ -22,6 +23,7 @@ class TicketListPage extends BaseCubitStatefulWidget {
 
 class _TicketListPageState
     extends BaseCubitStateFulWidgetState<TicketListBloc, TicketListPage> {
+  var now = DateTime.now();
   @override
   void initState() {
     bloc.requestTicketListData();
@@ -50,13 +52,13 @@ class _TicketListPageState
               actions: [
                 TextButton(
                   onPressed: () {
-                    AutoRouter.of(context).pop(RouteKey.signIn);
+                    Navigator.pop(context, true);
                   },
                   child: Text(tr('yes')),
                 ),
                 TextButton(
                   onPressed: () {
-                    AutoRouter.of(context).pop();
+                     Navigator.pop(context, false);
                   },
                   child: Text(tr('cancel')),
                 ),
@@ -103,7 +105,7 @@ class _TicketListPageState
                         orElse: () => const LoadingStateWidget(),
                         success: (ticketList) => AnimationLimiter(
                           child: ListView.builder(
-                            itemCount: ticketList?.length ?? 0,
+                            itemCount: ticketList?.length ?? 1,
                             padding: EdgeInsets.only(bottom: Dimens.size16),
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -115,7 +117,8 @@ class _TicketListPageState
                                   verticalOffset: 50.0,
                                   child: FadeInAnimation(
                                     child: Dismissible(
-                                      key: Key(item.toString()),
+                                      key: Key('Item $item'),
+                                      direction: DismissDirection.endToStart,
                                       background: Container(
                                         alignment: Alignment.centerRight,
                                         margin: const EdgeInsets.only(
@@ -131,20 +134,27 @@ class _TicketListPageState
                                           color: Colors.white,
                                         ),
                                       ),
-                                      onDismissed: (direction) {
+                                      onDismissed: (direction)  async {
+                                       
                                         bloc.removeTicketListData(item.id);
-                                        setState(() {
-                                          ticketList.remove(index);
+                                            setState(()  { 
+                                                  ticketList.remove(index);
+                                        
+                                          //  await  bloc.requestTicketListData();    
                                         });
                                       },
                                       child: TicketCard(
-                                        title: item.content,
+                                        title: '$index ${item.content}',
                                         createdAt: item.createdAt,
                                         description: item.description,
+                                        color: item.due?.date ==
+                                                now.toyyyyMMddDate()
+                                            ? AppColors.primaryLightRed
+                                            : AppColors.appColor,
                                         onTap: () {
                                           AutoRouter.of(context).pushNamed(
                                             RouteKey.ticketDetail.replaceAll(
-                                                ':id', item.id ?? '123456789'),
+                                                ':id', item.id ?? ''),
                                           );
                                         },
                                       ),
@@ -166,7 +176,6 @@ class _TicketListPageState
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             AutoRouter.of(context).pushNamed(RouteKey.createTicket);
-            // _buildBottomSheet(context);
           },
           tooltip: tr('add_todo'),
           child: const Icon(

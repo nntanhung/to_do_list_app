@@ -50,8 +50,19 @@ class TicketResultResponse extends BaseResponseModel{
 @JsonSerializable()
 class TicketListRequest extends BaseRequestModel {
   @JsonKey(includeIfNull: false)
+  String? content;
+  @JsonKey(includeIfNull: false)
+  String? description;
+  @JsonKey(includeIfNull: false)
+  Due? due;
+  @JsonKey(includeIfNull: false)
+  String? projectId;
+  @JsonKey(includeIfNull: false)
   String? id;
-
+  @JsonKey(includeIfNull: false)
+  String? createdAt;
+  @JsonKey(includeIfNull: false)
+  String? creatorId;
   TicketListRequest();
   @override
   Map<String, dynamic> toJson() => _$TicketListRequestToJson(this);

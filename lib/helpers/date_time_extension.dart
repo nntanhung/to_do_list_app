@@ -8,4 +8,7 @@ extension DateTimeExtension on DateTime {
   String toddMMMMyDate() {
     return DateFormat(DataFormat.ddMMMMy).format(this);
   }
+  String toyyyyMMddDate() {
+    return DateFormat(DataFormat.yyyyMMdd).format(this);
+  }
 }

@@ -75,7 +75,7 @@ class RestUtils {
       // final String dataResponse = "{\n\"result\":\n${response.data}\n}";
       // final String dataResponse = response.data ?? '';
 
-      print('--$dataResponse--');
+      // print('--$dataResponse--');
       if (statusCode != null &&
           statusCode >= ExceptionHandle.success &&
           statusCode < ExceptionHandle.multipleChoice) {

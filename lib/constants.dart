@@ -49,6 +49,7 @@ class ImageAssetPath {
 }
 class DataFormat {
   static const String ddMMyyyy = 'dd/MM/yyyy';
+  static const String yyyyMMdd = 'yyyy-MM-dd';
   static const String hhmmddMMyyyy = 'HH:mm - dd/MM/yyyy';
   static const String hhMM = 'HH:mm';
   static const String hhMMSS = 'HH:mm:ss';

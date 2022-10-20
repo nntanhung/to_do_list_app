@@ -12,12 +12,14 @@ class TicketCard extends StatelessWidget {
   final String? title;
   final String? description;
   final DateTime? createdAt;
+  final Color? color;
   const TicketCard({
     super.key,
     this.onTap,
     this.title,
     this.description,
     this.createdAt,
+    this.color = AppColors.appColor,
   });
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class TicketCard extends StatelessWidget {
           bottom: Dimens.size5,
         ),
         decoration: BoxDecoration(
-          color: AppColors.appColor,
+          color: color,
           borderRadius: BorderRadius.circular(Dimens.size8),
         ),
         child: Column(
@@ -45,12 +47,15 @@ class TicketCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(title!, style: theme.headline5,
-                  overflow: TextOverflow.ellipsis,),
+                  child: Text(
+                    title!,
+                    style: theme.headline5,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                 const SizedBox(
-              width: Dimens.size8,
-            ),
+                const SizedBox(
+                  width: Dimens.size8,
+                ),
                 SvgPicture.asset(
                   ImageAssetPath.clockSmallIcon,
                   color: AppColors.primaryWhite,
@@ -69,10 +74,13 @@ class TicketCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-                tr('created_at', args: [
-                 createdAt?.add(Duration(hours: 7)).toddMMMMyDate()
-                      ?? DateTime.now().toddMMMMyDate(),
-                ],),
+                tr(
+                  'created_at',
+                  args: [
+                    createdAt?.add(Duration(hours: 7)).toddMMMMyDate() ??
+                        DateTime.now().toddMMMMyDate(),
+                  ],
+                ),
                 style: theme.subtitle2),
           ],
         ),

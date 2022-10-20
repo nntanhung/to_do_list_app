@@ -62,11 +62,11 @@ class _SignInScreenState
               if (state.nextPage != null) {
                 _router.pushNamed(state.nextPage!);
                 ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Login Success')));
+                    .showSnackBar(SnackBar(content: Text(tr('login_success'))));
               }
             } else if (state is SignInFail) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('Login Fail')));
+                  .showSnackBar(SnackBar(content: Text(tr('login_fail'))));
             }
           },
           child: Padding(
