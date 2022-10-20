@@ -14,18 +14,16 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
   Future<void> requestData(
       {String? content,
       String? id,
-      DueModel? due,
+      String? dueDatetime,
       String? description,
       DateTime? createdAt}) async {
     final request = CreateTicketRequest()
       ..content = ticketItem.content ?? ''
-      ..due = Due(ticketItem.due?.datetime ?? DateTime(now.year + 100, now.month, now.day),
-      date: "86866868869",
-          lang: 'vn')
+      ..dueDatetime = ticketItem.dueDatetime
       ..createdAt = DateTime(now.year + 100, now.month, now.day)
       ..description = ticketItem.description;
 
-    print('--------------request ${request.due?.toString()}');
+    print('--------------request ${request.dueDatetime?.toString()}');
     try {
       final res = await _service?.getCreateTask(request);
       if (res!.isSuccess) {

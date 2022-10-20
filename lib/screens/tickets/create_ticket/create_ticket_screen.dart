@@ -152,9 +152,9 @@ class FormCreateTask extends StatelessWidget {
             errorInvalidText: tr('issue_day_error'),
             onChanged: (value) {
               if (value != null) {
-                bloc?.ticketItem.due?.datetime = value;
+                bloc?.ticketItem.dueDatetime = value.toString();
              
-                print('----- value datetime on ${bloc?.ticketItem.due?.datetime}');
+                print('----- value datetime on ${bloc?.ticketItem.dueDatetime}');
               }
             },
           ),
@@ -189,11 +189,11 @@ class FormCreateTask extends StatelessWidget {
                 await bloc?.requestData(
                   content: bloc?.ticketItem.content ?? 'content pikachu',
                   id: bloc?.ticketItem.id,
-                  due: DueModel(datetime: bloc?.ticketItem.due?.datetime ?? now, ),
+                  dueDatetime: bloc?.ticketItem.dueDatetime,
                   createdAt: now,
                   description: bloc?.ticketItem.description,
                 );
-                print('----- value date ${bloc?.ticketItem.due?.datetime}');
+                print('----- value date ${bloc?.ticketItem.dueDatetime}');
                 AutoRouter.of(context).pushNamed(RouteKey.tickets);
               }
             },

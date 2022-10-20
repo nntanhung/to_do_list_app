@@ -54,7 +54,8 @@ CreateTicketRequest _$CreateTicketRequestFromJson(Map<String, dynamic> json) =>
       ..createdAt = json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String)
-      ..creatorId = json['creator_id'] as String?;
+      ..creatorId = json['creator_id'] as String?
+      ..dueDatetime = json['due_datetime'] as String?;
 
 Map<String, dynamic> _$CreateTicketRequestToJson(CreateTicketRequest instance) {
   final val = <String, dynamic>{};
@@ -68,9 +69,10 @@ Map<String, dynamic> _$CreateTicketRequestToJson(CreateTicketRequest instance) {
   writeNotNull('content', instance.content);
   writeNotNull('description', instance.description);
   writeNotNull('due', instance.due);
-  writeNotNull('project_id', instance.projectId);
+  writeNotNull('projectId', instance.projectId);
   writeNotNull('id', instance.id);
-  writeNotNull('created_at', instance.createdAt?.toIso8601String());
-  writeNotNull('creator_id', instance.creatorId);
+  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
+  writeNotNull('creatorId', instance.creatorId);
+  writeNotNull('due_datetime', instance.dueDatetime);
   return val;
 }

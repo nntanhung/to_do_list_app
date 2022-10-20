@@ -12,6 +12,7 @@ class TicketListModel {
   DateTime? createdAt;
   Due? due;
   String? url;
+  String? dueDatetime;
 
   TicketListModel(
       {this.id,
@@ -24,6 +25,7 @@ class TicketListModel {
       this.creatorId,
       this.createdAt,
       this.due,
+      this.dueDatetime,
       this.url});
 }
 

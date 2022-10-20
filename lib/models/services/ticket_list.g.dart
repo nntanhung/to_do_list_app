@@ -63,7 +63,8 @@ TicketListRequest _$TicketListRequestFromJson(Map<String, dynamic> json) =>
       ..projectId = json['project_id'] as String?
       ..id = json['id'] as String?
       ..createdAt = json['created_at'] as String?
-      ..creatorId = json['creator_id'] as String?;
+      ..creatorId = json['creator_id'] as String?
+      ..dueDatetime = json['due_datetime'] as String?;
 
 Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
   final val = <String, dynamic>{};
@@ -81,6 +82,7 @@ Map<String, dynamic> _$TicketListRequestToJson(TicketListRequest instance) {
   writeNotNull('id', instance.id);
   writeNotNull('created_at', instance.createdAt);
   writeNotNull('creator_id', instance.creatorId);
+  writeNotNull('due_datetime', instance.dueDatetime);
   return val;
 }
 
@@ -91,7 +93,7 @@ Due _$DueFromJson(Map<String, dynamic> json) => Due(
       date: json['date'] as String?,
       lang: json['lang'] as String?,
       string: json['string'] as String?,
-      isRecurring: json['is_recurring'] as bool?,
+      isRecurring: json['isRecurring'] as bool?,
     );
 
 Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
@@ -99,5 +101,5 @@ Map<String, dynamic> _$DueToJson(Due instance) => <String, dynamic>{
       'datetime': instance.datetime?.toIso8601String(),
       'lang': instance.lang,
       'string': instance.string,
-      'is_recurring': instance.isRecurring,
+      'isRecurring': instance.isRecurring,
     };

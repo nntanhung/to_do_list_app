@@ -117,7 +117,7 @@ class _TicketListPageState
                                   verticalOffset: 50.0,
                                   child: FadeInAnimation(
                                     child: Dismissible(
-                                      key: Key('Item $item'),
+                                      key:  ObjectKey(item),
                                       direction: DismissDirection.endToStart,
                                       background: Container(
                                         alignment: Alignment.centerRight,
@@ -137,11 +137,11 @@ class _TicketListPageState
                                       onDismissed: (direction)  async {
                                        
                                         bloc.removeTicketListData(item.id);
-                                            setState(()  { 
+                                        
                                                   ticketList.remove(index);
                                         
                                           //  await  bloc.requestTicketListData();    
-                                        });
+                                          setState(()  {   });
                                       },
                                       child: TicketCard(
                                         title: '$index ${item.content}',

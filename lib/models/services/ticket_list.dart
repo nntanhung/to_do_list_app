@@ -63,6 +63,8 @@ class TicketListRequest extends BaseRequestModel {
   String? createdAt;
   @JsonKey(includeIfNull: false)
   String? creatorId;
+  @JsonKey(includeIfNull: false)
+  String? dueDatetime;
   TicketListRequest();
   @override
   Map<String, dynamic> toJson() => _$TicketListRequestToJson(this);
