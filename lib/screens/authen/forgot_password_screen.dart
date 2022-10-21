@@ -7,8 +7,8 @@ import '../../styles/dimens.dart';
 import '../../themes/app_colors.dart';
 import '../../widgets/commons/common.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class ForgotPasswordScreen extends StatelessWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

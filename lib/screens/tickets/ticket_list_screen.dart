@@ -14,15 +14,15 @@ import '../../constants.dart';
 import '../../styles/dimens.dart';
 import '../../widgets/widget.dart';
 
-class TicketListPage extends BaseCubitStatefulWidget {
-  const TicketListPage({Key? key}) : super(key: key);
+class TicketListScreen extends BaseCubitStatefulWidget {
+  const TicketListScreen({Key? key}) : super(key: key);
 
   @override
-  State<TicketListPage> createState() => _TicketListPageState();
+  State<TicketListScreen> createState() => _TicketListPageState();
 }
 
 class _TicketListPageState
-    extends BaseCubitStateFulWidgetState<TicketListBloc, TicketListPage> {
+    extends BaseCubitStateFulWidgetState<TicketListBloc, TicketListScreen> {
   var now = DateTime.now();
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _TicketListPageState
                 ),
                 TextButton(
                   onPressed: () {
-                     Navigator.pop(context, false);
+                    Navigator.pop(context, false);
                   },
                   child: Text(tr('cancel')),
                 ),
@@ -117,7 +117,7 @@ class _TicketListPageState
                                   verticalOffset: 50.0,
                                   child: FadeInAnimation(
                                     child: Dismissible(
-                                      key:  ObjectKey(item),
+                                      key: UniqueKey(),
                                       direction: DismissDirection.endToStart,
                                       background: Container(
                                         alignment: Alignment.centerRight,
@@ -128,23 +128,21 @@ class _TicketListPageState
                                         padding: const EdgeInsets.only(
                                             right: Dimens.size16),
                                         color:
-                                            AppColors.appColor.withOpacity(0.5),
+                                            AppColors.appColor.withOpacity(0.8),
                                         child: SvgPicture.asset(
                                           ImageAssetPath.trashIcon,
                                           color: Colors.white,
                                         ),
                                       ),
-                                      onDismissed: (direction)  async {
-                                       
+                                      onDismissed: (direction) {
                                         bloc.removeTicketListData(item.id);
-                                        
-                                                  ticketList.remove(index);
-                                        
-                                          //  await  bloc.requestTicketListData();    
-                                          setState(()  {   });
+                                        setState(() {
+                                          ticketList.removeAt(index);
+                                          //  await  bloc.requestTicketListData();
+                                        });
                                       },
                                       child: TicketCard(
-                                        title: '$index ${item.content}',
+                                        title: item.content,
                                         createdAt: item.createdAt,
                                         description: item.description,
                                         color: item.due?.date ==
@@ -187,8 +185,6 @@ class _TicketListPageState
     );
   }
 }
-
-
 
 // _buildBottomSheet(BuildContext context) {
 //   final theme = Theme.of(context).textTheme;

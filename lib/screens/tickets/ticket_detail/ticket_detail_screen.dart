@@ -65,10 +65,6 @@ class _TicketDetailScreenState
           builder: (context, TicketDetailState state) {
             return state.maybeWhen(
               orElse: () => const LoadingStateWidget(),
-              error: ((message) => Container(
-                    color: Colors.amber,
-                    height: 500,
-                  )),
               success: (ticketList) => Container(
                 width: double.infinity,
                 color: AppColors.primaryWhite,
@@ -93,8 +89,8 @@ class _TicketDetailScreenState
             return state.maybeWhen(
               orElse: () => const LoadingStateWidget(),
               error: ((message) => Container(
-                    color: Colors.amber,
                     height: 500,
+                    child: Text(message)
                   )),
               success: (ticketList) => Padding(
                 padding: const EdgeInsets.only(
@@ -108,12 +104,12 @@ class _TicketDetailScreenState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        (ticketList?.content ?? 'dghdgdgdgdg').toUpperCase(),
+                        (ticketList?.content ?? '').toUpperCase(),
                         style: theme.headline4,
                       ),
                       const SizedBox(height: Dimens.size24),
                       Text(
-                        ticketList?.description ?? '13673547546788465856',
+                        ticketList?.description ?? '',
                         style: theme.headline6,
                       ),
                       SizedBox(height: h / 2),
@@ -149,10 +145,6 @@ class _TicketDetailScreenState
                   builder: (context, TicketDetailState state) {
                     return state.maybeWhen(
                       orElse: () => const LoadingStateWidget(),
-                      error: ((message) => Container(
-                            color: Colors.amber,
-                            height: 500,
-                          )),
                       success: (ticketList) => SingleButton(
                         text: 'delete_todo'.tr(),
                         borderRadius: Dimens.size12,

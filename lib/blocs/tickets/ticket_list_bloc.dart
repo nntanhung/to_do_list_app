@@ -27,11 +27,11 @@ class TicketListBloc extends BaseCubit<TicketListState> {
       final res = await ticketListService?.removeTaskList(id ?? '');
 
       if (res!.isSuccess) {
-        if (res.data?.dataResponse.result == null) {
-          final aaa = await ticketListService?.getTaskList();
-          emit(TicketListState.success(
-              ticketList: aaa?.data?.dataResponse.result ?? []));
-        }
+        // if (res.data?.dataResponse.result == null) {
+        //   final aaa = await ticketListService?.getTaskList();
+        //   emit(TicketListState.success(
+        //       ticketList: aaa?.data?.dataResponse.result ?? []));
+        // }
       } else {
         emit(TicketListState.error(message: 'Message fail'));
       }

@@ -28,10 +28,10 @@ class _$AppRouter extends RootStackRouter {
         child: const SignInScreen(),
       );
     },
-    TicketListPageRoute.name: (routeData) {
+    TicketListScreenRoute.name: (routeData) {
       return MaterialPageX<String>(
         routeData: routeData,
-        child: const TicketListPage(),
+        child: const TicketListScreen(),
       );
     },
     TicketDetailScreenRoute.name: (routeData) {
@@ -53,10 +53,10 @@ class _$AppRouter extends RootStackRouter {
         child: const SignUpScreen(),
       );
     },
-    ForgotPasswordRoute.name: (routeData) {
+    ForgotPasswordScreenRoute.name: (routeData) {
       return MaterialPageX<String>(
         routeData: routeData,
-        child: const ForgotPassword(),
+        child: const ForgotPasswordScreen(),
       );
     },
     CreateTicketScreenRoute.name: (routeData) {
@@ -80,7 +80,7 @@ class _$AppRouter extends RootStackRouter {
           path: '/sign-in',
         ),
         RouteConfig(
-          TicketListPageRoute.name,
+          TicketListScreenRoute.name,
           path: '/tickets',
           guards: [authGuard],
         ),
@@ -98,7 +98,7 @@ class _$AppRouter extends RootStackRouter {
           path: '/sign-in',
         ),
         RouteConfig(
-          ForgotPasswordRoute.name,
+          ForgotPasswordScreenRoute.name,
           path: '/forgot-password',
         ),
         RouteConfig(
@@ -131,15 +131,15 @@ class SignInScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TicketListPage]
-class TicketListPageRoute extends PageRouteInfo<void> {
-  const TicketListPageRoute()
+/// [TicketListScreen]
+class TicketListScreenRoute extends PageRouteInfo<void> {
+  const TicketListScreenRoute()
       : super(
-          TicketListPageRoute.name,
+          TicketListScreenRoute.name,
           path: '/tickets',
         );
 
-  static const String name = 'TicketListPageRoute';
+  static const String name = 'TicketListScreenRoute';
 }
 
 /// generated route for
@@ -191,15 +191,15 @@ class SignUpScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ForgotPassword]
-class ForgotPasswordRoute extends PageRouteInfo<void> {
-  const ForgotPasswordRoute()
+/// [ForgotPasswordScreen]
+class ForgotPasswordScreenRoute extends PageRouteInfo<void> {
+  const ForgotPasswordScreenRoute()
       : super(
-          ForgotPasswordRoute.name,
+          ForgotPasswordScreenRoute.name,
           path: '/forgot-password',
         );
 
-  static const String name = 'ForgotPasswordRoute';
+  static const String name = 'ForgotPasswordScreenRoute';
 }
 
 /// generated route for

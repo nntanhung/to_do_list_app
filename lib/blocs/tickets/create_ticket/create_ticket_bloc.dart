@@ -20,7 +20,6 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
     final request = CreateTicketRequest()
       ..content = ticketItem.content ?? ''
       ..dueDatetime = ticketItem.dueDatetime
-      ..createdAt = DateTime(now.year + 100, now.month, now.day)
       ..description = ticketItem.description;
 
     print('--------------request ${request.dueDatetime?.toString()}');

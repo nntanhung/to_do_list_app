@@ -16,12 +16,12 @@ part 'app_router.gr.dart';
         page: SignInScreen),
     AutoRoute<String>(
         path: RouteKey.tickets,
-        page: TicketListPage, guards: [AuthGuard]),
+        page: TicketListScreen, guards: [AuthGuard]),
     AutoRoute<String>(
         path: RouteKey.ticketDetail, page: TicketDetailScreen, guards: [AuthGuard]),
     AutoRoute<String>(path: RouteKey.signUp, page: SignUpScreen),
     AutoRoute<String>(path: RouteKey.signIn, page: SignInScreen),
-    AutoRoute<String>(path: RouteKey.forgotPassword, page: ForgotPassword),
+    AutoRoute<String>(path: RouteKey.forgotPassword, page: ForgotPasswordScreen),
     AutoRoute<String>(path: RouteKey.createTicket, page: CreateTicketScreen),
     AutoRoute<String>(path: RouteKey.logout, page: LogOutScreen),
 

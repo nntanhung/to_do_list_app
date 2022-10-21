@@ -1,5 +1,5 @@
 import '../helpers/helper.dart';
-import '../models/services/create_ticket.dart';
+import '../models/services/service_model.dart';
 import '../utilities/network/network.dart';
 import 'base_service.dart';
 
@@ -14,12 +14,11 @@ class CreateTicketService extends BaseService {
     );
   }
 
-  Future<DataResult<DataResponse<CreateTicketResponse>>> getDeleteTask(
-      CreateTicketRequest request) async {
-    return rest.request<CreateTicketResponse>(
+    Future<DataResult<DataResponse<TicketResultResponse>>> updateTask(TicketListRequest ticketListRequest) async {
+    return rest.request<TicketResultResponse>(
       Method.post,
-      APIConfigPath.tasksId,
-      data: request.toJson(),
+      APIConfigPath.tasksId.replaceAll(':id', ticketListRequest.id!),
+      data: ticketListRequest.toJson()
     );
   }
 }

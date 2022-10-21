@@ -26,6 +26,7 @@
     "description": "Mô tả",
     "title": "Tiêu đề",
     "error_validate_format_datetime": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy hh:mm.",
+    "error_validate_format_date": "Vui lòng nhập nội dung với định dạng dd/mm/yyyy.",
     "common_date_help": "Trợ giúp",
     "email_validate_error": "Vui lòng nhập địa chỉ email đúng định dạng.",
     "repeat_password_validate_error": "Mật khẩu xác nhận không khớp với mật khẩu được nhập ở trên. Vui lòng nhập lại.",

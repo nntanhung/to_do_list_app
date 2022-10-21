@@ -97,10 +97,6 @@ class FormCreateTask extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // SvgPicture.asset(ImageAssetPath.line),
-          // const SizedBox(
-          //   height: 20,
-          // ),
           TextFieldInput(
             name: 'title',
             hintText: 'title'.tr(),
@@ -149,6 +145,7 @@ class FormCreateTask extends StatelessWidget {
             lastDate: DateTime(now.year + 100, now.month, now.day),
             errorMaxLines: 2,
             colorField: AppColors.primaryWhite,
+            pickerType: DatePickerType.dateTime,
             errorInvalidText: tr('issue_day_error'),
             onChanged: (value) {
               if (value != null) {

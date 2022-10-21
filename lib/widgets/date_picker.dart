@@ -105,10 +105,9 @@ class CustomDatePickerState extends State<CustomDatePicker> {
     DateFormat defaultFormat;
     switch (widget.pickerType) {
       case DatePickerType.dateTime:
-        defaultFormat = DateFormat(DataFormat.hhMMSS);
+        defaultFormat = DateFormat(DataFormat.hhmmddMMyyyy);
         break;
       case DatePickerType.dateOnly:
-        // defaultFormat = DateFormat(DataFormat.dMMMMy);
         defaultFormat = DateFormat(DataFormat.ddMMMMy);
         break;
       case DatePickerType.timeOnly:
@@ -229,7 +228,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                 widget.errorInvalidText ?? tr('error_validate_format_datetime'),
             errorFormatText:
                 widget.errorFormatText ?? tr('error_validate_format_date'),
-            fieldHintText: tr('common_date_time_format'),
+            fieldHintText: DataFormat.hhmmddMMyyyy,
             lastDate: lastDate);
         if (datePicked != null) {
           final time = await showTimePicker(

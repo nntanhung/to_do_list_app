@@ -16,11 +16,11 @@ class TicketDetailService extends BaseService {
       APIConfigPath.tasksId.replaceAll(':id', id),
     );
   }
-    Future<DataResult<DataResponse<TicketResultResponse>>> updateTask(TicketListRequest ticketListRequest) async {
-    return rest.request<TicketResultResponse>(
-      Method.post,
-      APIConfigPath.tasksId.replaceAll(':id', ticketListRequest.id!),
-      data: ticketListRequest.toJson()
-    );
-  }
+  //   Future<DataResult<DataResponse<TicketResultResponse>>> updateTask(TicketListRequest ticketListRequest) async {
+  //   return rest.request<TicketResultResponse>(
+  //     Method.post,
+  //     APIConfigPath.tasksId.replaceAll(':id', ticketListRequest.id!),
+  //     data: ticketListRequest.toJson()
+  //   );
+  // }
 }
