@@ -4,26 +4,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants.dart';
 import '../helpers/helper.dart';
+import '../models/services/service_model.dart';
 import '../styles/style.dart';
 import '../themes/theme.dart';
 
 class TicketCard extends StatelessWidget {
   final Function()? onTap;
-  final String? title;
-  final String? description;
-  final DateTime? createdAt;
-  final Color? color;
+  final TicketResultResponse? ticketListModel;
+  // final Color? color;
   const TicketCard({
     super.key,
     this.onTap,
-    this.title,
-    this.description,
-    this.createdAt,
-    this.color = AppColors.appColor,
+    this.ticketListModel,
+    // this.color = AppColors.appColor,
   });
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
+    var now = DateTime.now();
 
     return GestureDetector(
       onTap: onTap,
@@ -37,7 +35,9 @@ class TicketCard extends StatelessWidget {
           bottom: Dimens.size5,
         ),
         decoration: BoxDecoration(
-          color: color,
+          color: ticketListModel?.due?.date == now.toyyyyMMddDate()
+              ? AppColors.primaryLightRed
+              : AppColors.appColor,
           borderRadius: BorderRadius.circular(Dimens.size8),
         ),
         child: Column(
@@ -48,7 +48,7 @@ class TicketCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    title!,
+                  ticketListModel?.content ?? '' ,
                     style: theme.headline5,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -56,17 +56,17 @@ class TicketCard extends StatelessWidget {
                 const SizedBox(
                   width: Dimens.size8,
                 ),
-                SvgPicture.asset(
+                ticketListModel?.due?.datetime != null ?  SvgPicture.asset(
                   ImageAssetPath.clockSmallIcon,
                   color: AppColors.primaryWhite,
-                ),
+                ): const SizedBox(),
               ],
             ),
             const SizedBox(
               height: Dimens.size8,
             ),
             Text(
-              description!,
+             ticketListModel?.description ?? '',
               style: theme.headline6
                   ?.copyWith(height: 1.27, color: AppColors.primaryWhite),
               maxLines: 4,
@@ -77,7 +77,7 @@ class TicketCard extends StatelessWidget {
                 tr(
                   'created_at',
                   args: [
-                    createdAt?.add(Duration(hours: 7)).toddMMMMyDate() ??
+                    ticketListModel?.createdAt?.add(Duration(hours: 7)).toddMMMMyDate() ??
                         DateTime.now().toddMMMMyDate(),
                   ],
                 ),

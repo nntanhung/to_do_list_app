@@ -128,15 +128,15 @@ class _TicketDetailScreenState
     final theme = Theme.of(context).textTheme;
 
     return showModalBottomSheet(
-      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       context: context,
       builder: (builder) {
-        return Padding(
+        return Container(
+          height: Dimens.size160,
           padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               BlocProvider(
                 create: (context) => bloc,
@@ -160,7 +160,7 @@ class _TicketDetailScreenState
                   },
                 ),
               ),
-              const SizedBox(height: Dimens.size24),
+              const SizedBox(height: Dimens.size16),
               SingleButton(
                 text: 'cancel'.tr(),
                 borderRadius: Dimens.size12,

@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
-import '../../../models/views/ticket_list_model.dart';
 import '../../../routers/route_keys.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
@@ -58,12 +57,12 @@ class _CreateTicketScreenState
                 builder: (context, CreateTicketState state) {
                   return state.maybeWhen(
                     orElse: () => const LoadingStateWidget(color: AppColors.primaryWhite,),
-                    initial: () => FormCreateTask(
+                    initial: () => _FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
                       formKey: _formKey,
                     ),
-                    success: (createModel) => FormCreateTask(
+                    success: (createModel) => _FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
                       formKey: _formKey,
@@ -79,8 +78,8 @@ class _CreateTicketScreenState
   }
 }
 
-class FormCreateTask extends StatelessWidget {
-  const FormCreateTask(
+class _FormCreateTask extends StatelessWidget {
+  const _FormCreateTask(
       {Key? key, this.contentFocusNode, this.bloc, this.formKey})
       : super(key: key);
 

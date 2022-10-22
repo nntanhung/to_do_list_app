@@ -23,7 +23,7 @@ class TicketListScreen extends BaseCubitStatefulWidget {
 
 class _TicketListPageState
     extends BaseCubitStateFulWidgetState<TicketListBloc, TicketListScreen> {
-  var now = DateTime.now();
+
   @override
   void initState() {
     bloc.requestTicketListData();
@@ -73,102 +73,104 @@ class _TicketListPageState
           preferredSize: const Size.fromHeight(Dimens.size40),
           child: AppBarCustom(),
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(ImageAssetPath.logoSimple),
-                  const SizedBox(
-                    width: Dimens.size10,
-                  ),
-                  Text(tr('list_of_todo').toUpperCase(),
-                      style: theme.headline3),
-                  const Spacer(),
-                  IconButton(
-                    icon: SvgPicture.asset(ImageAssetPath.filterIcon),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              Expanded(
-                child: BlocProvider(
-                  create: (context) => bloc,
-                  child: BlocBuilder(
-                    bloc: bloc,
-                    builder: (context, TicketListState state) {
-                      return state.maybeWhen(
-                        initial: (() => const LoadingStateWidget()),
-                        orElse: () => const LoadingStateWidget(),
-                        success: (ticketList) => AnimationLimiter(
-                          child: ListView.builder(
-                            itemCount: ticketList?.length ?? 1,
-                            padding: EdgeInsets.only(bottom: Dimens.size16),
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              final item = ticketList![index];
-                              return AnimationConfiguration.staggeredList(
-                                position: index,
-                                duration: const Duration(milliseconds: 1000),
-                                child: SlideAnimation(
-                                  verticalOffset: 50.0,
-                                  child: FadeInAnimation(
-                                    child: Dismissible(
-                                      key: UniqueKey(),
-                                      direction: DismissDirection.endToStart,
-                                      background: Container(
-                                        alignment: Alignment.centerRight,
-                                        margin: const EdgeInsets.only(
-                                          top: Dimens.size16,
-                                          bottom: Dimens.size24,
+        body: RefreshIndicator(
+        onRefresh: () => bloc.requestTicketListData(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(ImageAssetPath.logoSimple),
+                    const SizedBox(
+                      width: Dimens.size10,
+                    ),
+                    Text(tr('list_of_todo').toUpperCase(),
+                        style: theme.headline3),
+                    const Spacer(),
+                    IconButton(
+                      icon: SvgPicture.asset(ImageAssetPath.filterIcon),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: BlocProvider(
+                    create: (context) => bloc,
+                    child: BlocBuilder(
+                      bloc: bloc,
+                      builder: (context, TicketListState state) {
+                        return state.maybeWhen(
+                          initial: (() => const LoadingStateWidget()),
+                          orElse: () => const LoadingStateWidget(),
+                          success: (ticketList) => AnimationLimiter(
+                            child: ListView.builder(
+                              itemCount: ticketList?.length ?? 1,
+                              padding: EdgeInsets.only(bottom: Dimens.size16),
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                final item = ticketList![index];
+                                return AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 1000),
+                                  child: SlideAnimation(
+                                    verticalOffset: 50.0,
+                                    child: FadeInAnimation(
+                                      child: Dismissible(
+                                        key: UniqueKey(),
+                                        direction: DismissDirection.endToStart,
+                                        background: Container(
+                                          alignment: Alignment.centerRight,
+                                          margin: const EdgeInsets.only(
+                                            top: Dimens.size16,
+                                            bottom: Dimens.size24,
+                                          ),
+                                          padding: const EdgeInsets.only(
+                                              right: Dimens.size16),
+                                          color:
+                                              AppColors.appColor.withOpacity(0.8),
+                                          child: SvgPicture.asset(
+                                            ImageAssetPath.trashIcon,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                        padding: const EdgeInsets.only(
-                                            right: Dimens.size16),
-                                        color:
-                                            AppColors.appColor.withOpacity(0.8),
-                                        child: SvgPicture.asset(
-                                          ImageAssetPath.trashIcon,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      onDismissed: (direction) {
-                                        bloc.removeTicketListData(item.id);
-                                        setState(() {
-                                          ticketList.removeAt(index);
-                                          //  await  bloc.requestTicketListData();
-                                        });
-                                      },
-                                      child: TicketCard(
-                                        title: item.content,
-                                        createdAt: item.createdAt,
-                                        description: item.description,
-                                        color: item.due?.date ==
-                                                now.toyyyyMMddDate()
-                                            ? AppColors.primaryLightRed
-                                            : AppColors.appColor,
-                                        onTap: () {
-                                          AutoRouter.of(context).pushNamed(
-                                            RouteKey.ticketDetail.replaceAll(
-                                                ':id', item.id ?? ''),
-                                          );
+                                        onDismissed: (direction)async {
+                                          bloc.removeTicketListData(item.id);
+                                            // bloc.requestTicketListData();
+                                          setState(() {
+                                            ticketList.removeAt(index);
+                                            //  
+                                          });
                                         },
+                                        child: TicketCard(
+                                          ticketListModel: item,
+                                          // color: item.due?.date ==
+                                          //         now.toyyyyMMddDate()
+                                          //     ? AppColors.primaryLightRed
+                                          //     : AppColors.appColor,
+                                          onTap: () {
+                                            AutoRouter.of(context).pushNamed(
+                                              RouteKey.ticketDetail.replaceAll(
+                                                  ':id', item.id ?? ''),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(

@@ -13,7 +13,7 @@ class TicketListBloc extends BaseCubit<TicketListState> {
 
       if (res!.isSuccess) {
         emit(TicketListState.success(
-            ticketList: res.data?.dataResponse.result ?? []));
+            ticketList: res.data?.dataResponse.result?.reversed.toList() ?? []));
       } else {
         emit(TicketListState.error(message: 'Message fail'));
       }
