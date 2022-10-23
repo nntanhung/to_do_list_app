@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../routers/route_keys.dart';
-import '../../widgets/commons/common.dart';
 import '../../blocs/bloc.dart';
 import '../../constants.dart';
+import '../../routers/route_keys.dart';
 import '../../styles/dimens.dart';
+import '../../widgets/commons/common.dart';
 import '../../widgets/widget.dart';
 
 class TicketListScreen extends BaseCubitStatefulWidget {
@@ -47,7 +47,7 @@ class _TicketListPageState
       },
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(Dimens.size40),
+          preferredSize: const Size.fromHeight(Dimens.size60),
           child: AppBarCustom(),
         ),
         body: RefreshIndicator(

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:todo_list/styles/dimens.dart';
 
 import '../../constants.dart';
 import '../../routers/route_keys.dart';
@@ -12,16 +13,20 @@ class AppBarCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      titleSpacing: 24,
       title: SvgPicture.asset(ImageAssetPath.todolist),
       centerTitle: false,
       automaticallyImplyLeading: false,
       actions: [
         isShowIcon
-            ? IconButton(
-                onPressed: () {
-                  AutoRouter.of(context).pushNamed(RouteKey.logout);
-                },
-                icon: SvgPicture.asset(ImageAssetPath.setting),
+            ? Padding(
+                padding: const EdgeInsets.only(right: Dimens.size16),
+                child: IconButton(
+                  onPressed: () {
+                    AutoRouter.of(context).pushNamed(RouteKey.logout);
+                  },
+                  icon: SvgPicture.asset(ImageAssetPath.setting),
+                ),
               )
             : const SizedBox(),
       ],

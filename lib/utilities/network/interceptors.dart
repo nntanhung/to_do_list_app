@@ -30,26 +30,26 @@ class TokenInterceptor extends QueuedInterceptor {
 
   TokenInterceptor(this._mainInstanceName);
   final _preference = AppDependencies.injector.get<UserPreference>();
-  
-  Future<Map<String, dynamic>?> getToken() async {
-    final Map<String, String> params = <String, String>{};
-    final String accessToken = await _preference.accessToken ?? ''; 
-    final tokenDio =
-        AppDependencies.injector.get<RestUtils>(instanceName: 'MAIN');
-    params['refreshToken'] = MemCache.refreshToken;
-    params['clientId'] = MemCache.clientId;
-    try {
-      final Response response =
-          await tokenDio.dio.post<dynamic>(RouteKey.tickets, data: params);
-      if (response.statusCode == ExceptionHandle.success) {
-        return (json.decode(response.data.toString()) as Map<String, dynamic>);
-      } else if (response.statusCode == ExceptionHandle.unauthorized) {
-      }
-    } catch (e) {
-      LoggerUtils.e('Error: ${e.toString()}');
-    }
-    return null;
-  }
+
+  // Future<Map<String, dynamic>?> getToken() async {
+  //   final Map<String, String> params = <String, String>{};
+  //   final String accessToken = await _preference.accessToken ?? '';
+  //   final tokenDio =
+  //       AppDependencies.injector.get<RestUtils>(instanceName: 'MAIN');
+  //   params['refreshToken'] = MemCache.refreshToken;
+  //   params['clientId'] = MemCache.clientId;
+  //   try {
+  //     final Response response =
+  //         await tokenDio.dio.post<dynamic>(RouteKey.tickets, data: params);
+  //     if (response.statusCode == ExceptionHandle.success) {
+  //       return (json.decode(response.data.toString()) as Map<String, dynamic>);
+  //     } else if (response.statusCode == ExceptionHandle.unauthorized) {
+  //     }
+  //   } catch (e) {
+  //     LoggerUtils.e('Error: ${e.toString()}');
+  //   }
+  //   return null;
+  // }
 
   @override
   Future<void> onResponse(
@@ -60,8 +60,9 @@ class TokenInterceptor extends QueuedInterceptor {
       final RestUtils restUtils = AppDependencies.injector
           .get<RestUtils>(instanceName: _mainInstanceName);
       // final Map<String, dynamic>? token = await getToken();
-      final String? accessToken = 'f09da0692d671f4a3dde13a43f7c316bbc8e693b';
-      final String? refreshToken = 'f09da0692d671f4a3dde13a43f7c316bbc8e693b';
+      final String? accessToken = await _preference.refreshToken ?? '';
+      final String? refreshToken = await _preference.refreshToken ?? '';
+
       LoggerUtils.d(
           '-----------New AccessToken: $accessToken ------------New RefreshToken: $refreshToken');
       MemCache.accessToken = accessToken ?? '';
@@ -71,7 +72,7 @@ class TokenInterceptor extends QueuedInterceptor {
         final Dio dio = Dio();
         dio.options = restUtils.dio.options;
         final RequestOptions request = response.requestOptions;
-        request.headers['Authorization'] = 'Bearer f09da0692d671f4a3dde13a43f7c316bbc8e693b';
+        request.headers['Authorization'] = 'Bearer $accessToken';
 
         final Options options = Options(
           headers: request.headers,
@@ -96,4 +97,3 @@ class TokenInterceptor extends QueuedInterceptor {
     super.onResponse(response, handler);
   }
 }
-
