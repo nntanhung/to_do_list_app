@@ -3,15 +3,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/routers/route_keys.dart';
 
-import '../../../widgets/widget.dart';
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
 import '../../../helpers/helper.dart';
+import '../../../routers/app_router.dart';
+import '../../../routers/route_keys.dart';
 import '../../../styles/style.dart';
 import '../../../themes/app_colors.dart';
 import '../../../widgets/commons/common.dart';
+import '../../../widgets/widget.dart';
 
 class TicketDetailScreen extends BaseCubitStatefulWidget {
   final String? ticketId;
@@ -38,8 +39,7 @@ class _TicketDetailScreenState
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: SvgPicture.asset(ImageAssetPath.backIcon,
-              color: AppColors.primaryBlack),
+          icon: SvgPicture.asset(ImageAssetPath.backIcon),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [
@@ -47,10 +47,24 @@ class _TicketDetailScreenState
             onPressed: null,
             icon: SvgPicture.asset(ImageAssetPath.clockIcon),
           ),
-          
-          IconButton(
-            onPressed: () =>  AutoRouter.of(context).pushNamed(RouteKey.createTicket),
-            icon: SvgPicture.asset(ImageAssetPath.editIcon),
+          BlocProvider(
+            create: (context) => bloc,
+            child: BlocBuilder(
+              bloc: bloc,
+              builder: (context, TicketDetailState state) {
+                return state.maybeWhen(
+                  orElse: () => IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                  ),
+                  success: (ticketList) => IconButton(
+                    onPressed: () => AutoRouter.of(context)
+                        .push(CreateTicketScreenRoute(ticketList: ticketList, titleScreen: tr('edit_todo'))),
+                    icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                  ),
+                );
+              },
+            ),
           ),
           IconButton(
             onPressed: () => _buildBottomSheet(context),
@@ -88,14 +102,12 @@ class _TicketDetailScreenState
           builder: (context, TicketDetailState state) {
             return state.maybeWhen(
               orElse: () => const LoadingStateWidget(),
-              error: ((message) => Container(
-                    height: 500,
-                    child: Text(message)
-                  )),
+              error: ((message) =>
+                  Container(height: 500, child: Text(message))),
               success: (ticketList) => Padding(
                 padding: const EdgeInsets.only(
                   left: Dimens.size24,
-                  top: Dimens.size16,
+                  // top: Dimens.size16,
                   right: Dimens.size24,
                 ),
                 child: SingleChildScrollView(
@@ -136,7 +148,6 @@ class _TicketDetailScreenState
           padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               BlocProvider(
                 create: (context) => bloc,

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:todo_list/models/services/create_ticket.dart';
+
+import '../../../models/services/service_model.dart';
 
 part 'create_ticket_state.freezed.dart';
 

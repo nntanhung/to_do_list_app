@@ -6,9 +6,8 @@ import '../../constants.dart';
 import '../../routers/route_keys.dart';
 
 class AppBarCustom extends StatelessWidget {
-  const AppBarCustom({
-    Key? key,
-  }) : super(key: key);
+  final bool isShowIcon;
+  const AppBarCustom({Key? key, this.isShowIcon = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +16,14 @@ class AppBarCustom extends StatelessWidget {
       centerTitle: false,
       automaticallyImplyLeading: false,
       actions: [
-        IconButton(
-            onPressed: () {
-                AutoRouter.of(context)
-                              .pushNamed(RouteKey.logout);
-            }, icon: SvgPicture.asset(ImageAssetPath.setting))
+        isShowIcon
+            ? IconButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed(RouteKey.logout);
+                },
+                icon: SvgPicture.asset(ImageAssetPath.setting),
+              )
+            : const SizedBox(),
       ],
     );
   }

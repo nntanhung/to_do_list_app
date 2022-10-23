@@ -11,12 +11,10 @@ import '../themes/theme.dart';
 class TicketCard extends StatelessWidget {
   final Function()? onTap;
   final TicketResultResponse? ticketListModel;
-  // final Color? color;
   const TicketCard({
     super.key,
     this.onTap,
     this.ticketListModel,
-    // this.color = AppColors.appColor,
   });
   @override
   Widget build(BuildContext context) {
@@ -77,8 +75,7 @@ class TicketCard extends StatelessWidget {
                 tr(
                   'created_at',
                   args: [
-                    ticketListModel?.createdAt?.add(Duration(hours: 7)).toddMMMMyDate() ??
-                        DateTime.now().toddMMMMyDate(),
+                    ticketListModel?.createdAt?.add(Duration(hours: 7)).todMMMyDate() ?? ''
                   ],
                 ),
                 style: theme.subtitle2),

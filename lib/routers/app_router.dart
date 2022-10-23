@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../models/services/service_model.dart';
 import '../screens/screen.dart';
 import 'authen_guard.dart';
 import 'route_keys.dart';

@@ -8,7 +8,6 @@ class TicketListService extends BaseService {
     return rest.request<TicketListResponse>(
       Method.get,
       APIConfigPath.tasks,
-      // queryParameters: {"Authorization": "Bearer f09da0692d671f4a3dde13a43f7c316bbc8e693b"},
     );
   }
 

@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_list/helpers/helper.dart';
 
 import '../../routers/route_keys.dart';
-import '../../themes/theme.dart';
 import '../../widgets/commons/common.dart';
 import '../../blocs/bloc.dart';
 import '../../constants.dart';
@@ -23,7 +21,6 @@ class TicketListScreen extends BaseCubitStatefulWidget {
 
 class _TicketListPageState
     extends BaseCubitStateFulWidgetState<TicketListBloc, TicketListScreen> {
-
   @override
   void initState() {
     bloc.requestTicketListData();
@@ -38,32 +35,12 @@ class _TicketListPageState
   @override
   Widget buildBody(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-
     return WillPopScope(
       onWillPop: () async {
         final shouldPop = await showDialog<bool>(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              title: Text(tr('exit_app'),
-                  style: theme.headline5!
-                      .copyWith(color: AppColors.primaryBlack80)),
-              actionsAlignment: MainAxisAlignment.spaceBetween,
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                  },
-                  child: Text(tr('yes')),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, false);
-                  },
-                  child: Text(tr('cancel')),
-                ),
-              ],
-            );
+            return AlertDialogCustom();
           },
         );
         return shouldPop!;
@@ -74,7 +51,7 @@ class _TicketListPageState
           child: AppBarCustom(),
         ),
         body: RefreshIndicator(
-        onRefresh: () => bloc.requestTicketListData(),
+          onRefresh: () => bloc.requestTicketListData(),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Dimens.size24),
             child: Column(
@@ -107,57 +84,57 @@ class _TicketListPageState
                           orElse: () => const LoadingStateWidget(),
                           success: (ticketList) => AnimationLimiter(
                             child: ListView.builder(
-                              itemCount: ticketList?.length ?? 1,
-                              padding: EdgeInsets.only(bottom: Dimens.size16),
+                              itemCount: ticketList?.length ?? 0,
+                              padding: EdgeInsets.only(top: Dimens.size24, bottom: Dimens.size16),
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
-                                final item = ticketList![index];
+                                final item = ticketList?[index];
                                 return AnimationConfiguration.staggeredList(
                                   position: index,
                                   duration: const Duration(milliseconds: 1000),
                                   child: SlideAnimation(
                                     verticalOffset: 50.0,
                                     child: FadeInAnimation(
-                                      child: Dismissible(
-                                        key: UniqueKey(),
-                                        direction: DismissDirection.endToStart,
-                                        background: Container(
-                                          alignment: Alignment.centerRight,
-                                          margin: const EdgeInsets.only(
-                                            top: Dimens.size16,
-                                            bottom: Dimens.size24,
-                                          ),
-                                          padding: const EdgeInsets.only(
-                                              right: Dimens.size16),
-                                          color:
-                                              AppColors.appColor.withOpacity(0.8),
-                                          child: SvgPicture.asset(
-                                            ImageAssetPath.trashIcon,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        onDismissed: (direction)async {
-                                          bloc.removeTicketListData(item.id);
-                                            // bloc.requestTicketListData();
-                                          setState(() {
-                                            ticketList.removeAt(index);
-                                            //  
-                                          });
-                                        },
+                                      // child: Dismissible(
+                                      //   key: UniqueKey(),
+                                      //   direction: DismissDirection.endToStart,
+                                      //   background: Container(
+                                      //     alignment: Alignment.centerRight,
+                                      //     margin: const EdgeInsets.only(
+                                      //       top: Dimens.size16,
+                                      //       bottom: Dimens.size24,
+                                      //     ),
+                                      //     padding: const EdgeInsets.only(
+                                      //         right: Dimens.size16),
+                                      //     color: AppColors.appColor
+                                      //         .withOpacity(0.8),
+                                      //     child: SvgPicture.asset(
+                                      //       ImageAssetPath.trashIcon,
+                                      //       color: Colors.white,
+                                      //     ),
+                                      //   ),
+                                      //   onDismissed: (direction) {
+                                      //     bloc.removeTicketListData(item!.id);
+                                      //     print(
+                                      //         '----------ticketList?.length before ${ticketList?.length}');
+                                      //     // await bloc.requestTicketListData(); 
+                                      //     print(
+                                      //         '----------ticketList?.length after ${ticketList!.removeAt(index)}');
+                                      //     setState(() {
+                                      //       ticketList.removeAt(index);
+                                      //       // print((object))
+                                      //     });
+                                      //   },
                                         child: TicketCard(
                                           ticketListModel: item,
-                                          // color: item.due?.date ==
-                                          //         now.toyyyyMMddDate()
-                                          //     ? AppColors.primaryLightRed
-                                          //     : AppColors.appColor,
                                           onTap: () {
                                             AutoRouter.of(context).pushNamed(
                                               RouteKey.ticketDetail.replaceAll(
-                                                  ':id', item.id ?? ''),
+                                                  ':id', item!.id ?? ''),
                                             );
                                           },
                                         ),
-                                      ),
+                                      // ),
                                     ),
                                   ),
                                 );

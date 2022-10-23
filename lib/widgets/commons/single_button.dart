@@ -22,6 +22,7 @@ class SingleButton extends StatelessWidget {
     this.textStyle,
     this.maxHeight = Dimens.controlHeight,
     this.minWidth = Dimens.controlWidth,
+    this.maxWidth,
   }) : super(key: key);
 
   final String? text;
@@ -38,6 +39,7 @@ class SingleButton extends StatelessWidget {
   final TextStyle? textStyle;
   final double? maxHeight;
   final double? minWidth;
+  final double? maxWidth;
 
   BorderSide get _borderSide => BorderSide(
         style: (borderColor != null && !selected) ? BorderStyle.solid : BorderStyle.none,
@@ -60,7 +62,7 @@ class SingleButton extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: minWidth ?? Dimens.controlWidth,
         minHeight: maxHeight ?? Dimens.controlHeight,
-        maxWidth: double.infinity,
+        maxWidth: maxWidth ?? double.infinity,
         maxHeight: maxHeight ?? Dimens.controlHeight,
       ),
       child: Container(

@@ -60,9 +60,15 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CreateTicketScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateTicketScreenRouteArgs>(
+          orElse: () => const CreateTicketScreenRouteArgs());
       return MaterialPageX<String>(
         routeData: routeData,
-        child: const CreateTicketScreen(),
+        child: CreateTicketScreen(
+          key: args.key,
+          ticketList: args.ticketList,
+          titleScreen: args.titleScreen,
+        ),
       );
     },
     LogOutScreenRoute.name: (routeData) {
@@ -204,14 +210,42 @@ class ForgotPasswordScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CreateTicketScreen]
-class CreateTicketScreenRoute extends PageRouteInfo<void> {
-  const CreateTicketScreenRoute()
-      : super(
+class CreateTicketScreenRoute
+    extends PageRouteInfo<CreateTicketScreenRouteArgs> {
+  CreateTicketScreenRoute({
+    Key? key,
+    TicketResultResponse? ticketList,
+    String? titleScreen,
+  }) : super(
           CreateTicketScreenRoute.name,
           path: '/create-ticket',
+          args: CreateTicketScreenRouteArgs(
+            key: key,
+            ticketList: ticketList,
+            titleScreen: titleScreen,
+          ),
         );
 
   static const String name = 'CreateTicketScreenRoute';
+}
+
+class CreateTicketScreenRouteArgs {
+  const CreateTicketScreenRouteArgs({
+    this.key,
+    this.ticketList,
+    this.titleScreen,
+  });
+
+  final Key? key;
+
+  final TicketResultResponse? ticketList;
+
+  final String? titleScreen;
+
+  @override
+  String toString() {
+    return 'CreateTicketScreenRouteArgs{key: $key, ticketList: $ticketList, titleScreen: $titleScreen}';
+  }
 }
 
 /// generated route for

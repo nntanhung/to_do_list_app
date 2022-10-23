@@ -7,17 +7,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../blocs/bloc.dart';
 import '../../../constants.dart';
+import '../../../models/services/service_model.dart';
 import '../../../routers/route_keys.dart';
 import '../../../styles/style.dart';
 import '../../../themes/theme.dart';
-import '../../../widgets/base_cubit_stateful_widget.dart';
 import '../../../widgets/commons/common.dart';
-import '../../../widgets/date_picker.dart';
+import '../../../widgets/widget.dart';
 
 class CreateTicketScreen extends BaseCubitStatefulWidget {
-  const CreateTicketScreen({
-    Key? key,
-  }) : super(key: key);
+  final TicketResultResponse? ticketList;
+  final String?  titleScreen;
+  const CreateTicketScreen({Key? key, this.ticketList, this.titleScreen}) : super(key: key);
 
   @override
   State<CreateTicketScreen> createState() => _CreateTicketScreenState();
@@ -38,9 +38,18 @@ class _CreateTicketScreenState
   Widget buildBody(BuildContext context) {
     final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(
         debugLabel: 'GlobalFormKey #Create Ticket ');
-
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: AppColors.appColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.appColor,
+        leading: IconButton(
+          icon: SvgPicture.asset(ImageAssetPath.backIcon,
+              color: AppColors.primaryWhite),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(widget.titleScreen ?? tr('add_todo'), style: theme.headline5,),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -56,16 +65,20 @@ class _CreateTicketScreenState
                 bloc: bloc,
                 builder: (context, CreateTicketState state) {
                   return state.maybeWhen(
-                    orElse: () => const LoadingStateWidget(color: AppColors.primaryWhite,),
+                    orElse: () => const LoadingStateWidget(
+                      color: AppColors.primaryWhite,
+                    ),
                     initial: () => _FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
                       formKey: _formKey,
+                      ticketList: widget.ticketList,
                     ),
                     success: (createModel) => _FormCreateTask(
                       contentFocusNode: contentFocusNode,
                       bloc: bloc,
                       formKey: _formKey,
+                      ticketList: widget.ticketList,
                     ),
                   );
                 },
@@ -80,12 +93,17 @@ class _CreateTicketScreenState
 
 class _FormCreateTask extends StatelessWidget {
   const _FormCreateTask(
-      {Key? key, this.contentFocusNode, this.bloc, this.formKey})
+      {Key? key,
+      this.contentFocusNode,
+      this.bloc,
+      this.formKey,
+      this.ticketList})
       : super(key: key);
 
   final FocusNode? contentFocusNode;
   final CreateTicketBloc? bloc;
   final GlobalKey<FormBuilderState>? formKey;
+  final TicketResultResponse? ticketList;
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +117,16 @@ class _FormCreateTask extends StatelessWidget {
           TextFieldInput(
             name: 'title',
             hintText: 'title'.tr(),
+            initText: ticketList?.content ?? '',
             refreshAfterBuild: true,
             validateOnFocusChange: true,
             focusNode: contentFocusNode,
             onChanged: (value) {
-              bloc?.ticketItem.content = value;
+              if (value != null) {
+                bloc?.ticketItem.content = value;
+              } else {
+                bloc?.ticketItem.content = ticketList?.content;
+              }
             },
             validator: (value) {
               if (value!.isEmpty) {
@@ -120,15 +143,17 @@ class _FormCreateTask extends StatelessWidget {
           TextFieldInput(
             name: 'description',
             hintText: 'description'.tr(),
+            initText: ticketList?.description ?? '',
             refreshAfterBuild: true,
             validateOnFocusChange: true,
             onChanged: (value) {
-              bloc?.ticketItem.description = value;
+              if (value != null) {
+                bloc?.ticketItem.description = value;
+              } else {
+                bloc?.ticketItem.description = ticketList?.description;
+              }
             },
-            validator: (value) {
-              return null;
-            },
-            maxLines: 13,
+            maxLines: 15,
             colorText: AppColors.primaryWhite,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
@@ -138,6 +163,7 @@ class _FormCreateTask extends StatelessWidget {
           CustomDatePicker(
             key: ValueKey('issue'),
             isEditable: true,
+            initialDate: ticketList?.due?.datetime,
             hintText: tr('deadline_optional'),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             firstDate: DateTime(now.year, now.month, now.day),
@@ -149,8 +175,11 @@ class _FormCreateTask extends StatelessWidget {
             onChanged: (value) {
               if (value != null) {
                 bloc?.ticketItem.dueDatetime = value.toString();
-             
-                print('----- value datetime on ${bloc?.ticketItem.dueDatetime}');
+                print(
+                    '----- value datetime on ${bloc?.ticketItem.dueDatetime}');
+              } else {
+                bloc?.ticketItem.dueDatetime =
+                    ticketList?.due?.datetime.toString();
               }
             },
           ),
@@ -176,21 +205,34 @@ class _FormCreateTask extends StatelessWidget {
             height: Dimens.size16,
           ),
           SingleButton(
-            text: tr('add_todo'),
+            text: ticketList == null ? tr('add_todo') : tr('edit_todo'),
             textStyle: theme.button!.copyWith(color: AppColors.appColor),
             borderRadius: Dimens.size12,
             backgroundColor: AppColors.primaryWhite,
             onTapped: () async {
-              if (formKey!.currentState!.validate()) {
-                await bloc?.requestData(
-                  content: bloc?.ticketItem.content ?? 'content pikachu',
-                  id: bloc?.ticketItem.id,
-                  dueDatetime: bloc?.ticketItem.dueDatetime,
-                  createdAt: now,
-                  description: bloc?.ticketItem.description,
-                );
-                print('----- value date ${bloc?.ticketItem.dueDatetime}');
-                AutoRouter.of(context).pushNamed(RouteKey.tickets);
+              if (ticketList == null) {
+                if (formKey!.currentState!.validate()) {
+                  await bloc?.requestData(
+                    content: bloc?.ticketItem.content,
+                    id: bloc?.ticketItem.id,
+                    dueDatetime: bloc?.ticketItem.dueDatetime,
+                    description: bloc?.ticketItem.description,
+                  );
+                  print('----- value date ${bloc?.ticketItem.dueDatetime}');
+                  AutoRouter.of(context).pushNamed(RouteKey.tickets);
+                }
+              } else {
+                if (formKey!.currentState!.validate()) {
+                  await bloc?.updateTicket(
+                    id: ticketList!.id ?? '',
+                    content: bloc?.ticketItem.content,
+                    dueDatetime: bloc?.ticketItem.dueDatetime,
+                    description: bloc?.ticketItem.description,
+                  );
+                  print(
+                      '----- value update dueDatetime ${bloc?.ticketItem.dueDatetime}');
+                  AutoRouter.of(context).pushNamed(RouteKey.tickets);
+                }
               }
             },
           ),

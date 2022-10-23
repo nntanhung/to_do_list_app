@@ -42,6 +42,7 @@ class TextFieldInput extends StatefulWidget {
   final bool removeDisableHorizontalPadding;
   final TextEditingController? controller;
   final Color colorText;
+  final TextStyle? errorStyle;
 
   /// [name] is required, the placeholder value is just for avoiding mass conflict
   const TextFieldInput({
@@ -79,6 +80,7 @@ class TextFieldInput extends StatefulWidget {
     this.removeDisableHorizontalPadding = false,
     this.controller,
     this.colorText = AppColors.primaryBlack80,
+    this.errorStyle,
   }) : super(key: key);
 
   @override
@@ -217,7 +219,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                         horizontal: Dimens.size16, vertical: Dimens.size0)
                     : null,
                 errorText: widget.errorText,
-                errorStyle:
+                errorStyle: widget.errorStyle ??
                     textTheme.subtitle2?.copyWith(color: AppColors.accentColor),
                 errorMaxLines: widget.errorMaxLines,
                 filled: widget.backgroundColor != null || !widget.enabled
@@ -226,11 +228,12 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 fillColor: !widget.enabled
                     ? AppColors.primaryBlack80
                     : widget.backgroundColor,
-                suffixIcon:
-                    widget.isPassword ? passwordIcon : Padding(
-                      padding: const EdgeInsets.only(right: Dimens.size16),
-                      child: widget.suffixIcon,
-                    ),
+                suffixIcon: widget.isPassword
+                    ? passwordIcon
+                    : Padding(
+                        padding: const EdgeInsets.only(right: Dimens.size16),
+                        child: widget.suffixIcon,
+                      ),
                 suffixIconColor: widget.colorText,
                 suffixIconConstraints: BoxConstraints(
                     minHeight: 16, maxHeight: 32, minWidth: 16, maxWidth: 32),
@@ -243,8 +246,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 hoverColor: Colors.transparent,
                 counterText: '',
                 prefix: widget.prefix,
-                hintStyle: textTheme.bodyText2
-                    ?.copyWith(color: widget.colorText),
+                hintStyle:
+                    textTheme.bodyText2?.copyWith(color: widget.colorText),
                 hintText: widget.hintText),
           ),
         ],

@@ -10,15 +10,15 @@ class CreateTicketService extends BaseService {
       Method.post,
       APIConfigPath.tasks,
       data: request.toJson(),
-      
     );
   }
 
-    Future<DataResult<DataResponse<TicketResultResponse>>> updateTask(TicketListRequest ticketListRequest) async {
-    return rest.request<TicketResultResponse>(
+  Future<DataResult<DataResponse<CreateTicketResponse>>> updateTask(
+      CreateTicketRequest createTicketRequest, String id) async {
+    return rest.request<CreateTicketResponse>(
       Method.post,
-      APIConfigPath.tasksId.replaceAll(':id', ticketListRequest.id!),
-      data: ticketListRequest.toJson()
+      APIConfigPath.tasksId.replaceAll(':id', id),
+      data: createTicketRequest.toJson(),
     );
   }
 }

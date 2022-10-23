@@ -34,4 +34,28 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       return emit(CreateTicketState.error(message: 'message faild'));
     }
   }
+
+  Future<void> updateTicket(
+      {String? content,
+      required String id,
+      String? description,
+      String? dueDatetime}) async {
+    final request = CreateTicketRequest()
+      ..content = ticketItem.content
+      ..dueDatetime = ticketItem.dueDatetime
+      ..description = ticketItem.description;
+
+    try {
+      final res = await _service?.updateTask(request, id);
+
+       print('--------------request ${res?.data?.dataResponse.toString()}');
+      if (res!.isSuccess) {
+        emit(CreateTicketState.success(createModel: res.data!.dataResponse));
+      } else {
+        emit(CreateTicketState.error(message: 'message faild'));
+      }
+    } catch (e) {
+      return emit(CreateTicketState.error(message: 'message faild'));
+    }
+  }
 }

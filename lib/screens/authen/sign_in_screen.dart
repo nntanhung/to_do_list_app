@@ -159,10 +159,6 @@ class _SignInScreenState
                         bloc.login(
                             email: bloc.users!.email,
                             password: bloc.users!.password);
-                        // print(
-                        //     '---------------------- email ${bloc.users!.email}');
-                        // print(
-                        //     '---------------------- password ${bloc.users!.password}');
                       } else {
                         print("Not Validated");
                       }

@@ -10,7 +10,7 @@ class Dimens {
   static const double borderRadius = 8.0;
   static const double blurRadius = 16.0;
   static const double controlHeight = 44.0;
-  static const double controlWidth = 180.0;
+  static const double controlWidth = 20.0;
   static const double iconSize = 24.0;
 
   static const paddingAll = EdgeInsets.all(spacing);

@@ -36,7 +36,6 @@ dependencies:
   global_configs: ^1.1.2
   json_annotation: ^4.7.0
   encrypted_shared_preferences: ^3.0.1
-  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

@@ -64,7 +64,8 @@ class AppTheme {
           subtitle1: TextStyle(
             color: AppColors.primaryWhite,
             fontSize: Dimens.size16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Montserrat'
           ),
 
           /// For button
