@@ -46,7 +46,7 @@ class TicketCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                  ticketListModel?.content ?? '' ,
+                    ticketListModel?.content ?? '',
                     style: theme.headline5,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -54,17 +54,21 @@ class TicketCard extends StatelessWidget {
                 const SizedBox(
                   width: Dimens.size8,
                 ),
-                ticketListModel?.due?.datetime != null ?  SvgPicture.asset(
-                  ImageAssetPath.clockSmallIcon,
-                  color: AppColors.primaryWhite,
-                ): const SizedBox(),
+                ticketListModel?.due?.datetime != null
+                    ? SvgPicture.asset(
+                        ImageAssetPath.clockSmallIcon,
+                        color: AppColors.primaryWhite,
+                      )
+                    : const SizedBox(),
               ],
             ),
             const SizedBox(
               height: Dimens.size8,
             ),
             Text(
-             ticketListModel?.description ?? '',
+              ticketListModel?.description == ''
+                  ? tr('no_additional_text')
+                  : ticketListModel?.description ?? '',
               style: theme.headline6
                   ?.copyWith(height: 1.27, color: AppColors.primaryWhite),
               maxLines: 4,
@@ -75,7 +79,10 @@ class TicketCard extends StatelessWidget {
                 tr(
                   'created_at',
                   args: [
-                    ticketListModel?.createdAt?.add(Duration(hours: 7)).todMMMyDate() ?? ''
+                    ticketListModel?.createdAt
+                            ?.add(Duration(hours: 7))
+                            .todMMMyDate() ??
+                        ''
                   ],
                 ),
                 style: theme.subtitle2),

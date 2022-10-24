@@ -40,5 +40,6 @@
     "yes": "Yes",
     "login_success": "Login Success",
     "login_fail": "Login Fail",
+    "no_additional_text": "(No additional text)",
     "end_json": ""
 }

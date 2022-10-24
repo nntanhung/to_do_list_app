@@ -16,8 +16,9 @@ import '../../../widgets/widget.dart';
 
 class CreateTicketScreen extends BaseCubitStatefulWidget {
   final TicketResultResponse? ticketList;
-  final String?  titleScreen;
-  const CreateTicketScreen({Key? key, this.ticketList, this.titleScreen}) : super(key: key);
+  final String? titleScreen;
+  const CreateTicketScreen({Key? key, this.ticketList, this.titleScreen})
+      : super(key: key);
 
   @override
   State<CreateTicketScreen> createState() => _CreateTicketScreenState();
@@ -48,7 +49,10 @@ class _CreateTicketScreenState
               color: AppColors.primaryWhite),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(widget.titleScreen ?? tr('add_todo'), style: theme.headline5,),
+        title: Text(
+          widget.titleScreen ?? tr('add_todo'),
+          style: theme.headline5,
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -243,4 +247,15 @@ class _FormCreateTask extends StatelessWidget {
       ),
     );
   }
+
+  bool isCheckDate() {
+    var now = DateTime.now();
+    var dateTime = ticketList!.due!.datetime;
+    if (ticketList != null && now.isBefore(dateTime!))  {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

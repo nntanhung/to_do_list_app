@@ -39,5 +39,6 @@
     "yes": "Đồng ý",
     "login_success": "Đăng nhập thành công",
     "login_fail": "Đăng nhập không thành công",
+    "no_additional_text": "(Không có văn bản bổ sung)",
     "end_json": ""
 }

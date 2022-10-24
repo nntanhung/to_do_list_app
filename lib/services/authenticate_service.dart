@@ -11,6 +11,8 @@ class AuthenticateService extends BaseService {
     if (email != "nntanhung@gmail.com" || password != "12345678") {
       throw Exception("username and password does not match");
     } else {
+      await preference.setAccessToken(MemCache.accessToken);
+      await preference.setRefreshToken(MemCache.accessToken);
       return Future.value(UserAuth(
           accessToken: MemCache.accessToken,
           refreshToken: MemCache.refreshToken));

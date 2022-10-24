@@ -58,8 +58,10 @@ class _TicketDetailScreenState
                     icon: SvgPicture.asset(ImageAssetPath.editIcon),
                   ),
                   success: (ticketList) => IconButton(
-                    onPressed: () => AutoRouter.of(context)
-                        .push(CreateTicketScreenRoute(ticketList: ticketList, titleScreen: tr('edit_todo'))),
+                    onPressed: () => AutoRouter.of(context).push(
+                        CreateTicketScreenRoute(
+                            ticketList: ticketList,
+                            titleScreen: tr('edit_todo'))),
                     icon: SvgPicture.asset(ImageAssetPath.editIcon),
                   ),
                 );
@@ -107,7 +109,6 @@ class _TicketDetailScreenState
               success: (ticketList) => Padding(
                 padding: const EdgeInsets.only(
                   left: Dimens.size24,
-                  // top: Dimens.size16,
                   right: Dimens.size24,
                 ),
                 child: SingleChildScrollView(
