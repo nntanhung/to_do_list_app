@@ -21,7 +21,7 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       ..content = ticketItem.content ?? ''
       ..dueDatetime = ticketItem.dueDatetime
       ..description = ticketItem.description;
-
+    showLoading();
     print('--------------request ${request.dueDatetime?.toString()}');
     try {
       final res = await _service?.getCreateTask(request);
@@ -30,8 +30,10 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       } else {
         emit(CreateTicketState.error(message: 'message faild'));
       }
+      await dismissLoading();
     } catch (e) {
-      return emit(CreateTicketState.error(message: 'message faild'));
+        emit(CreateTicketState.error(message: 'message faild'));
+       await dismissLoading();
     }
   }
 
@@ -44,7 +46,7 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       ..content = ticketItem.content
       ..dueDatetime = ticketItem.dueDatetime
       ..description = ticketItem.description;
-
+    showLoading();
     try {
       final res = await _service?.updateTask(request, id);
 
@@ -54,8 +56,10 @@ class CreateTicketBloc extends BaseCubit<CreateTicketState> {
       } else {
         emit(CreateTicketState.error(message: 'message faild'));
       }
+       await dismissLoading();
     } catch (e) {
-      return emit(CreateTicketState.error(message: 'message faild'));
+      emit(CreateTicketState.error(message: 'message faild'));
+       await dismissLoading();
     }
   }
 }

@@ -1,3 +1,4 @@
+import '../constants.dart';
 import '../models/services/user_auth.dart';
 import '../utilities/utility.dart';
 import 'base_service.dart';
@@ -14,6 +15,7 @@ class AuthenticateService extends BaseService {
       await preference.setAccessToken(MemCache.accessToken);
       await preference.setRefreshToken(MemCache.accessToken);
       return Future.value(UserAuth(
+          userId: Constants.userId,
           accessToken: MemCache.accessToken,
           refreshToken: MemCache.refreshToken));
     }

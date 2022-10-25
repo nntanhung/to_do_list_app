@@ -1,7 +1,7 @@
+import '../../../constants.dart';
 import '../../../models/services/service_model.dart';
 import '../../../routers/route_keys.dart';
 import '../../../services/service.dart';
-import '../../../utilities/utility.dart';
 import '../../base_bloc/base_bloc.dart';
 import '../../bloc.dart';
 
@@ -15,7 +15,7 @@ class SignInBloc extends BaseCubit<BaseState> {
     try {
       UserAuth response = await _authService!
           .login(email: email!.trim().toLowerCase(), password: password!);
-      if (response.accessToken == MemCache.accessToken) {
+      if (response.userId == Constants.userId) {
         emit(SignInSuccess(nextPage: RouteKey.tickets));
       } else {
         emit(SignInFail(errorMessage: 'errorMessage'));

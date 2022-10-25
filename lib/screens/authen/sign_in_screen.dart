@@ -93,11 +93,11 @@ class _SignInScreenState
                       bloc.users!.email = value;
                     },
                     validator: (value) {
-                      if (emailFocusNode.hasFocus) {
+                      if (emailFocusNode.hasFocus ) {
                         return _signUpValidator.validateEmail(value);
                       }
 
-                      if (StringUtils.isNotNullOrEmpty(value)) {
+                      if (!StringUtils.isNotNullOrEmpty(value)) {
                         return _signUpValidator.validateEmail(value);
                       }
                       return null;
@@ -123,7 +123,7 @@ class _SignInScreenState
                       if (passwordFocusNode.hasFocus) {
                         return _signUpValidator.validatePassword(value);
                       }
-                      if (StringUtils.isNotNullOrEmpty(value)) {
+                      if (!StringUtils.isNotNullOrEmpty(value)) {
                         return _signUpValidator.validatePassword(value);
                       }
                       return null;
@@ -152,15 +152,11 @@ class _SignInScreenState
                     text: 'sign_in'.tr().toUpperCase(),
                     borderRadius: Dimens.size12,
                     backgroundColor: AppColors.appColor,
-                    onTapped: () {
-                      if (bloc.users!.email != null &&
-                          bloc.users!.password != null &&
-                          _formKey.currentState!.validate()) {
-                        bloc.login(
-                            email: bloc.users!.email,
-                            password: bloc.users!.password);
-                      } else {
-                        print("Not Validated");
+                    onTapped: () async{
+                      if (_formKey.currentState!.validate()) {
+                       await bloc.login(
+                            email: bloc.users?.email,
+                            password: bloc.users?.password);
                       }
                     },
                   ),

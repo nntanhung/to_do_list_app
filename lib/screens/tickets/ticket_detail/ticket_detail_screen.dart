@@ -104,8 +104,7 @@ class _TicketDetailScreenState
           builder: (context, TicketDetailState state) {
             return state.maybeWhen(
               orElse: () => const LoadingStateWidget(),
-              error: ((message) =>
-                  Container(height: 500, child: Text(message))),
+              error: ((message) => const LoadingStateWidget()),
               success: (ticketList) => Padding(
                 padding: const EdgeInsets.only(
                   left: Dimens.size24,

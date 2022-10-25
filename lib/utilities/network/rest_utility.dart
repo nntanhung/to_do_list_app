@@ -76,6 +76,8 @@ class RestUtils {
       // final String dataResponse = response.data ?? '';
 
       // print('--$dataResponse--');
+
+      
       if (statusCode != null &&
           statusCode >= ExceptionHandle.success &&
           statusCode < ExceptionHandle.multipleChoice) {
@@ -84,6 +86,8 @@ class RestUtils {
         /// The main purpose is to reduce unnecessary performance overhead
         final bool isCompute = dataResponse.length > 10 * 1024;
         LoggerUtils.d('isCompute:$isCompute');
+
+        
         final Map<String, dynamic> _map = isCompute
             ? await compute(_parseData, dataResponse)
             : _parseData(dataResponse);

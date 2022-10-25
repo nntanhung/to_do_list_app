@@ -226,7 +226,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                     ? true
                     : false,
                 fillColor: !widget.enabled
-                    ? AppColors.primaryBlack80
+                    ? Colors.transparent
                     : widget.backgroundColor,
                 suffixIcon: widget.isPassword
                     ? passwordIcon

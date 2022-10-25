@@ -193,16 +193,18 @@ class _FormCreateTask extends StatelessWidget {
           TextFieldInput(
             name: 'add_image_optional',
             hintText: 'add_image_optional'.tr(),
+            enabled: false,
+            backgroundColor: AppColors.appColor,
             validator: (value) {
               return null;
             },
             suffixIcon: SvgPicture.asset(
               ImageAssetPath.imageIcon,
-              color: AppColors.primaryWhite,
+              color: AppColors.primaryWhite.withOpacity(0.5),
               height: Dimens.size22,
               width: Dimens.size22,
             ),
-            colorText: AppColors.primaryWhite,
+            colorText: AppColors.primaryWhite.withOpacity(0.5),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
           const SizedBox(
@@ -250,11 +252,11 @@ class _FormCreateTask extends StatelessWidget {
 
   bool isCheckDate() {
     var now = DateTime.now();
-    var dateTime = ticketList!.due!.datetime;
-    if (ticketList != null && now.isBefore(dateTime!))  {
-      return true;
-    } else {
+    var dateTime = ticketList?.due?.datetime;
+    if (ticketList != null && dateTime != null && now.isBefore(dateTime))  {
       return false;
+    } else {
+      return true;
     }
   }
 

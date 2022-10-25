@@ -1,5 +1,6 @@
 class Constants {
   static const String emptyString = '';
+  static const String userId = 'nntanhung@gmail.com';
   static const redAsterisk = ' *';
   static const double iconSize = 24.0;
   static const int maxPassword = 24;
