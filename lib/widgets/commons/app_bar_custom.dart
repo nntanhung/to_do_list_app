@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list/styles/dimens.dart';
 
 import '../../constants.dart';
 import '../../routers/route_keys.dart';
+import '../../styles/style.dart';
 
 class AppBarCustom extends StatelessWidget {
   final bool isShowIcon;

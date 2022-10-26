@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/models/services/create_ticket.dart';
+import '../../models/services/create_ticket.dart';
 
 @immutable
 abstract class BaseState  {}

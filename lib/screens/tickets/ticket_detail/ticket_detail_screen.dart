@@ -47,26 +47,23 @@ class _TicketDetailScreenState
             onPressed: null,
             icon: SvgPicture.asset(ImageAssetPath.clockIcon),
           ),
-          BlocProvider(
-            create: (context) => bloc,
-            child: BlocBuilder(
-              bloc: bloc,
-              builder: (context, TicketDetailState state) {
-                return state.maybeWhen(
-                  orElse: () => IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(ImageAssetPath.editIcon),
-                  ),
-                  success: (ticketList) => IconButton(
-                    onPressed: () => AutoRouter.of(context).push(
-                        CreateTicketScreenRoute(
-                            ticketList: ticketList,
-                            titleScreen: tr('edit_todo'))),
-                    icon: SvgPicture.asset(ImageAssetPath.editIcon),
-                  ),
-                );
-              },
-            ),
+          BlocBuilder(
+            bloc: bloc,
+            builder: (context, TicketDetailState state) {
+              return state.maybeWhen(
+                orElse: () => IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                ),
+                success: (ticketList) => IconButton(
+                  onPressed: () => AutoRouter.of(context).push(
+                      CreateTicketScreenRoute(
+                          ticketList: ticketList,
+                          titleScreen: tr('edit_todo'))),
+                  icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                ),
+              );
+            },
           ),
           IconButton(
             onPressed: () => _buildBottomSheet(context),
@@ -74,28 +71,25 @@ class _TicketDetailScreenState
           ),
         ],
       ),
-      bottomSheet: BlocProvider(
-        create: (context) => bloc,
-        child: BlocBuilder(
-          bloc: bloc,
-          builder: (context, TicketDetailState state) {
-            return state.maybeWhen(
-              orElse: () => const LoadingStateWidget(),
-              success: (ticketList) => Container(
-                width: double.infinity,
-                color: AppColors.primaryWhite,
-                padding: const EdgeInsets.only(
-                    top: Dimens.size12, bottom: Dimens.size16),
-                child: Text(
-                  tr('created_at',
-                      args: [ticketList?.createdAt!.toddMMMMyDate() ?? '']),
-                  textAlign: TextAlign.center,
-                  style: theme.headline6,
-                ),
+      bottomSheet: BlocBuilder(
+        bloc: bloc,
+        builder: (context, TicketDetailState state) {
+          return state.maybeWhen(
+            orElse: () => const LoadingStateWidget(),
+            success: (ticketList) => Container(
+              width: double.infinity,
+              color: AppColors.primaryWhite,
+              padding: const EdgeInsets.only(
+                  top: Dimens.size12, bottom: Dimens.size16),
+              child: Text(
+                tr('created_at',
+                    args: [ticketList?.createdAt!.toddMMMMyDate() ?? '']),
+                textAlign: TextAlign.center,
+                style: theme.headline6,
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
       body: BlocProvider(
         create: (context) => bloc,
@@ -149,27 +143,24 @@ class _TicketDetailScreenState
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              BlocProvider(
-                create: (context) => bloc,
-                child: BlocBuilder(
-                  bloc: bloc,
-                  builder: (context, TicketDetailState state) {
-                    return state.maybeWhen(
-                      orElse: () => const LoadingStateWidget(),
-                      success: (ticketList) => SingleButton(
-                        text: 'delete_todo'.tr(),
-                        borderRadius: Dimens.size12,
-                        textStyle: theme.bodyText1!
-                            .copyWith(color: AppColors.appColor),
-                        backgroundColor: AppColors.primaryWhite,
-                        onTapped: () async {
-                          await bloc.removeTicket(ticketList!.id);
-                          AutoRouter.of(context).pushNamed(RouteKey.tickets);
-                        },
-                      ),
-                    );
-                  },
-                ),
+              BlocBuilder(
+                bloc: bloc,
+                builder: (context, TicketDetailState state) {
+                  return state.maybeWhen(
+                    orElse: () => const LoadingStateWidget(),
+                    success: (ticketList) => SingleButton(
+                      text: 'delete_todo'.tr(),
+                      borderRadius: Dimens.size12,
+                      textStyle:
+                          theme.bodyText1!.copyWith(color: AppColors.appColor),
+                      backgroundColor: AppColors.primaryWhite,
+                      onTapped: () async {
+                        await bloc.removeTicket(ticketList!.id);
+                        AutoRouter.of(context).pushNamed(RouteKey.tickets);
+                      },
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: Dimens.size16),
               SingleButton(

@@ -179,8 +179,6 @@ class _FormCreateTask extends StatelessWidget {
             onChanged: (value) {
               if (value != null) {
                 bloc?.ticketItem.dueDatetime = value.toString();
-                print(
-                    '----- value datetime on ${bloc?.ticketItem.dueDatetime}');
               } else {
                 bloc?.ticketItem.dueDatetime =
                     ticketList?.due?.datetime.toString();
@@ -224,7 +222,6 @@ class _FormCreateTask extends StatelessWidget {
                     dueDatetime: bloc?.ticketItem.dueDatetime,
                     description: bloc?.ticketItem.description,
                   );
-                  print('----- value date ${bloc?.ticketItem.dueDatetime}');
                   AutoRouter.of(context).pushNamed(RouteKey.tickets);
                 }
               } else {
@@ -235,8 +232,6 @@ class _FormCreateTask extends StatelessWidget {
                     dueDatetime: bloc?.ticketItem.dueDatetime,
                     description: bloc?.ticketItem.description,
                   );
-                  print(
-                      '----- value update dueDatetime ${bloc?.ticketItem.dueDatetime}');
                   AutoRouter.of(context).pushNamed(RouteKey.tickets);
                 }
               }
