@@ -8,7 +8,7 @@
     "add_todo": "THÊM TODO",
     "all": "Tất cả",
     "by_time": "Vào lúc {}",
-    "deadline": "Dealine",
+    "deadline": "Deadline",
     "email": "Email",
     "password": "Mật khẩu",
     "full_name": "Họ và tên",
@@ -40,5 +40,7 @@
     "login_success": "Đăng nhập thành công",
     "login_fail": "Đăng nhập không thành công",
     "no_additional_text": "(Không có văn bản bổ sung)",
+    "no_deadlines": "Không có thời hạn",
+    "deadlines": "Deadlines: ",
     "end_json": ""
 }

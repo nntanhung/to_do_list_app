@@ -43,10 +43,7 @@ class _TicketDetailScreenState
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [
-          IconButton(
-            onPressed: null,
-            icon: SvgPicture.asset(ImageAssetPath.clockIcon),
-          ),
+     
           BlocBuilder(
             bloc: bloc,
             builder: (context, TicketDetailState state) {
@@ -55,12 +52,23 @@ class _TicketDetailScreenState
                   onPressed: () {},
                   icon: SvgPicture.asset(ImageAssetPath.editIcon),
                 ),
-                success: (ticketList) => IconButton(
-                  onPressed: () => AutoRouter.of(context).push(
-                      CreateTicketScreenRoute(
-                          ticketList: ticketList,
-                          titleScreen: tr('edit_todo'))),
-                  icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                success: (ticketList) => Row(
+                  children: [
+                    IconButton(
+                        onPressed: () => AutoRouter.of(context).push(
+                          CreateTicketScreenRoute(
+                              ticketList: ticketList,
+                              titleScreen: tr('edit_todo'))),
+                      icon: SvgPicture.asset(ImageAssetPath.clockIcon),
+                    ),
+                    IconButton(
+                      onPressed: () => AutoRouter.of(context).push(
+                          CreateTicketScreenRoute(
+                              ticketList: ticketList,
+                              titleScreen: tr('edit_todo'))),
+                      icon: SvgPicture.asset(ImageAssetPath.editIcon),
+                    ),
+                  ],
                 ),
               );
             },
@@ -112,6 +120,9 @@ class _TicketDetailScreenState
                       Text(
                         (ticketList?.content ?? '').toUpperCase(),
                         style: theme.headline4,
+                      ),
+                        Text('deadlines'.tr() + ( ticketList?.due?.datetime?.toddMMMMyDate() ?? 'no_deadlines'.tr() ),
+                        style: theme.subtitle2!.copyWith(fontWeight: FontWeight.w500, color: AppColors.primaryBlack80),
                       ),
                       const SizedBox(height: Dimens.size24),
                       Text(

@@ -1,14 +1,13 @@
-import 'dart:convert';
+
 
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dio/dio.dart';
-import 'package:todo_list/routers/route_keys.dart';
 
-import '../../preference/user_preference.dart';
-import 'network.dart';
 import '../../app_dependencies.dart';
+import '../../preference/user_preference.dart';
 import '../logger.dart';
 import '../mem_cache.dart';
+import 'network.dart';
 
 class AuthInterceptor extends Interceptor {
   final _preference = AppDependencies.injector.get<UserPreference>();

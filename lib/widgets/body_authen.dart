@@ -73,9 +73,9 @@ class _BodyAuthenState extends State<BodyAuthen> {
               _email = value;
             },
             validator: (value) {
-              // if (widget.emailFocusNode!.hasFocus) {
-              //   return _signUpValidator.validateEmail(value);
-              // }
+              if (widget.emailFocusNode!.hasFocus) {
+                return _signUpValidator.validateEmail(value);
+              }
 
               if (StringUtils.isNotNullOrEmpty(value)) {
                 return _signUpValidator.validateEmail(value);

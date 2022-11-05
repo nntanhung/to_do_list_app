@@ -19,8 +19,7 @@ class AlertDialogCustom extends StatelessWidget {
     return AlertDialog(
       actionsPadding: EdgeInsets.only(top: Dimens.size16, bottom: Dimens.size24),
       title: Text(tr('exit_app'),
-          style: theme.subtitle1!
-              .copyWith(color: AppColors.primaryBlack)),
+          style: theme.subtitle1),
       actionsAlignment: MainAxisAlignment.center,
       actions: [
         SingleButton(

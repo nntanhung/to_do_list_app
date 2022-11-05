@@ -101,6 +101,7 @@ class _FormCreateTask extends StatelessWidget {
       this.contentFocusNode,
       this.bloc,
       this.formKey,
+      this.titleScreen,
       this.ticketList})
       : super(key: key);
 
@@ -108,6 +109,7 @@ class _FormCreateTask extends StatelessWidget {
   final CreateTicketBloc? bloc;
   final GlobalKey<FormBuilderState>? formKey;
   final TicketResultResponse? ticketList;
+  final String? titleScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +168,7 @@ class _FormCreateTask extends StatelessWidget {
           ),
           CustomDatePicker(
             key: ValueKey('issue'),
-            isEditable: true,
+            isEditable: isCheckDate(titleScreen),
             initialDate: ticketList?.due?.datetime,
             hintText: tr('deadline_optional'),
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -245,10 +247,10 @@ class _FormCreateTask extends StatelessWidget {
     );
   }
 
-  bool isCheckDate() {
+  bool isCheckDate(String? title) {
     var now = DateTime.now();
     var dateTime = ticketList?.due?.datetime;
-    if (ticketList != null && dateTime != null && now.isBefore(dateTime))  {
+    if (title == 'add_todo'.tr() && dateTime != null && now.isBefore(dateTime) || (title == 'edit_todo'.tr() && dateTime == null) )  {
       return false;
     } else {
       return true;

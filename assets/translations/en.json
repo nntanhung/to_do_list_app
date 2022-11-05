@@ -41,5 +41,7 @@
     "login_success": "Login Success",
     "login_fail": "Login Fail",
     "no_additional_text": "(No additional text)",
+    "no_deadlines": "No deadlines",
+    "deadlines": "Deadlines: ",
     "end_json": ""
 }

@@ -35,7 +35,7 @@ class AppTheme {
         
         textTheme: const TextTheme(
           caption: TextStyle(
-            color: AppColors.primaryWhite,
+            color: AppColors.primaryBlack,
             fontSize: 14.0,
             fontWeight: FontWeight.w600,
           ),
@@ -62,7 +62,7 @@ class AppTheme {
           ),
 
           subtitle1: TextStyle(
-            color: AppColors.primaryWhite,
+            color: AppColors.primaryBlack,
             fontSize: Dimens.size16,
             fontWeight: FontWeight.w500,
             fontFamily: 'Montserrat'
