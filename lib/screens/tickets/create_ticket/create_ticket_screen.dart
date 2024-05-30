@@ -14,7 +14,7 @@ import '../../../themes/theme.dart';
 import '../../../widgets/commons/common.dart';
 import '../../../widgets/widget.dart';
 
-
+//xoa dong nay di nha
 class CreateTicketScreen extends BaseCubitStatefulWidget {
   final TicketResultResponse? ticketList;
   final String? titleScreen;
